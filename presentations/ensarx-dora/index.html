@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#222d57">
+  <meta name="description" content="Restitution EnsarX : cartographie réglementaire (DORA, RGPD, IA Act, CRA), gestion d’un incident cyber et mesures techniques, organisationnelles et humaines.">
+  <title>Restitution EnsarX — Réglementation</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Réglementation SSI"
+      data-students="Momed Abdou Souffe · Armand Zireg · Ethan Siegler"
+      data-teacher=""
+      data-deck-title="Restitution EnsarX"
+      aria-label="Restitution EnsarX : réglementation" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">ENSARX<span>RÉGLEMENTATION</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="3">Cartographie</button><button data-go="5">DORA</button><button data-go="7">RGPD</button><button data-go="9">IA Act</button><button data-go="11">CRA</button><button data-go="13">Incident</button><button data-go="20">THO</button></div>
+    <span class="edition">ENSAR · SSI</span>
+  </header>
+
+  <div id="slides">
+    <!-- 01 · Page de garde -->
+    <section class="slide cover is-active" data-title="Restitution EnsarX · Réglementation" data-chapter="Introduction">
+      <div class="cover-copy">
+        <p class="eyebrow reveal">RESTITUTION</p>
+        <h1 class="reveal">EnsarX<br><em>Réglementation</em></h1>
+        <span class="rule-line reveal"></span>
+        <dl class="identity reveal">
+          <div><dt>École</dt><dd>ENSAR</dd></div>
+          <div><dt>Matière</dt><dd>Réglementation SSI</dd></div>
+          <div class="wide"><dt>Étudiants</dt><dd>Momed Abdou Souffe · Armand Zireg · Ethan Siegler</dd></div>
+        </dl>
+      </div>
+      <img class="cover-illus reveal" src="assets/img/bouclier.svg" alt="Illustration : bouclier cadenassé entouré de documents, d’engrenages et d’un nuage">
+    </section>
+
+    <!-- 02 · Sommaire -->
+    <section class="slide" data-title="Sommaire" data-chapter="Introduction">
+      <h2 class="title reveal">Sommaire</h2>
+      <ol class="summary reveal">
+        <li><button data-go="3"><span>01</span>Cartographie réglementaire</button></li>
+        <li><button data-go="5"><span>02</span>DORA</button></li>
+        <li><button data-go="7"><span>03</span>RGPD</button></li>
+        <li><button data-go="9"><span>04</span>IA Act</button></li>
+        <li><button data-go="11"><span>05</span>CRA</button></li>
+        <li><button data-go="13"><span>06</span>Incident cyber · point de vue réglementaire</button></li>
+        <li><button data-go="20"><span>07</span>Incident cyber · point de vue THO</button></li>
+      </ol>
+    </section>
+
+    <!-- 03 · Partie 01 -->
+    <section class="slide part" data-title="01 · Cartographie réglementaire" data-chapter="Cartographie">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>01</span><h2>Cartographie réglementaire</h2></div>
+    </section>
+
+    <!-- 04 · Quelles réglementations -->
+    <section class="slide" data-title="Quelles réglementations ?" data-chapter="Cartographie">
+      <h2 class="title reveal">Quelles réglementations ?</h2>
+      <div class="regs reveal">
+        <article class="yes"><header><h3>DORA</h3><span><svg><use href="#i-check"/></svg>Oui</span></header><p>Le règlement vise explicitement les entités financières dont l’activité dépend des technologies de l’information pour la fourniture de services.</p></article>
+        <article class="no"><header><h3>NIS 2</h3><span><svg><use href="#i-x"/></svg>Non</span></header><p>EnsarX a des services numériques critiques, au vu de son secteur. Mais DORA « prime » sur NIS 2 pour les entités financières.</p></article>
+        <article class="yes"><header><h3>RGPD</h3><span><svg><use href="#i-check"/></svg>Oui</span></header><p>Traitement de données personnelles inhérent à ses activités.</p></article>
+        <article class="yes"><header><h3>IA Act</h3><span><svg><use href="#i-check"/></svg>Oui</span></header><p>Exploitation d’un système d’IA destiné à évaluer la solvabilité ou le profil de risque des clients.</p></article>
+        <article class="yes"><header><h3>CRA</h3><span><svg><use href="#i-check"/></svg>Oui</span></header><p>EnsarX met à disposition une application mobile et des services logiciels donnant accès à ses services financiers.</p></article>
+        <article class="no"><header><h3>LPM</h3><span><svg><use href="#i-x"/></svg>Non</span></header><p>Ce cadre concerne les opérateurs d’importance vitale désignés par les autorités nationales.</p></article>
+      </div>
+    </section>
+
+    <!-- 05 · Partie 02 -->
+    <section class="slide part" data-title="02 · DORA" data-chapter="DORA">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>02</span><h2>DORA</h2></div>
+    </section>
+
+    <!-- 06 · DORA -->
+    <section class="slide" data-title="DORA · périmètre et obligations" data-chapter="DORA">
+      <h2 class="title reveal">DORA</h2>
+      <div class="scope reveal">
+        <article><h3>Entités, produits et SI soumis</h3><ul class="chips"><li>Plateforme bancaire</li><li>Prestataire cloud</li><li>Application mobile</li><li>Postes de travail</li></ul></article>
+        <article><h3>Obligations principales</h3><ol class="obl"><li>Gestion des risques TIC</li><li>Rapport d’incidents</li><li>Tests de résilience opérationnelle numérique</li><li>Gestion des risques TIC liés aux tiers</li><li>Partage d’informations et de renseignements</li></ol></article>
+      </div>
+    </section>
+
+    <!-- 07 · Partie 03 -->
+    <section class="slide part" data-title="03 · RGPD" data-chapter="RGPD">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>03</span><h2>RGPD</h2></div>
+    </section>
+
+    <!-- 08 · RGPD -->
+    <section class="slide" data-title="RGPD · périmètre et obligations" data-chapter="RGPD">
+      <h2 class="title reveal">RGPD</h2>
+      <div class="scope reveal">
+        <article><h3>Entités, produits et SI soumis</h3><ul class="chips"><li>Données bancaires</li><li>Historique des transactions</li><li>Données identifiantes</li><li>Données personnelles</li></ul></article>
+        <article><h3>Obligations principales</h3><ol class="obl"><li>Sécurité du traitement</li><li>Documentation</li><li>Analyse d’impact</li><li>Notification des violations</li></ol></article>
+      </div>
+    </section>
+
+    <!-- 09 · Partie 04 -->
+    <section class="slide part" data-title="04 · IA Act" data-chapter="IA Act">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>04</span><h2>IA Act</h2></div>
+    </section>
+
+    <!-- 10 · IA Act -->
+    <section class="slide" data-title="IA Act · périmètre et obligations" data-chapter="IA Act">
+      <h2 class="title reveal">IA Act</h2>
+      <div class="scope reveal">
+        <article><h3>Entités, produits et SI soumis</h3><ul class="chips"><li>IA de scoring</li></ul></article>
+        <article><h3>Obligations principales</h3><ol class="obl"><li>Gouvernance de l’IA</li><li>Qualité et traçabilité des données</li><li>Supervision humaine</li><li>Gestion des incidents</li></ol></article>
+      </div>
+    </section>
+
+    <!-- 11 · Partie 05 -->
+    <section class="slide part" data-title="05 · CRA" data-chapter="CRA">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>05</span><h2>CRA</h2></div>
+    </section>
+
+    <!-- 12 · CRA -->
+    <section class="slide" data-title="CRA · périmètre et obligations" data-chapter="CRA">
+      <h2 class="title reveal">CRA</h2>
+      <div class="scope reveal">
+        <article><h3>Entités, produits et SI soumis</h3><ul class="chips"><li>Application mobile</li></ul></article>
+        <article><h3>Obligations principales</h3><ol class="obl"><li>Security by design</li><li>Gestion des vulnérabilités</li><li>Correctifs et maintenance</li><li>Notification des incidents</li></ol></article>
+      </div>
+    </section>
+
+    <!-- 13 · Partie 06 -->
+    <section class="slide part" data-title="06 · Incident cyber : point de vue réglementaire" data-chapter="Incident">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>06</span><h2>Incident cyber</h2><p>Point de vue réglementaire</p></div>
+    </section>
+
+    <!-- 14 · Récap -->
+    <section class="slide" data-title="Récapitulatif de l’incident" data-chapter="Incident">
+      <h2 class="title reveal">Récap de l’incident</h2>
+      <div class="recap reveal">
+        <article><strong>5 000</strong><p>Un bug dans l’IA de scoring expose temporairement les données de 5 000 clients.</p></article>
+        <article><strong>6 h</strong><p>Les systèmes cloud subissent une indisponibilité de 6 h, empêchant certaines transactions financières.</p></article>
+      </div>
+    </section>
+
+    <!-- 15 · DORA incident -->
+    <section class="slide" data-title="Incident · DORA" data-chapter="Incident">
+      <h2 class="title reveal"><small>INCIDENT · DORA</small>Actions et documentation</h2>
+      <div class="incident reveal">
+        <article><h3>Actions immédiates</h3><ol class="steps"><li>Gestion d’incident</li><li>Restauration</li><li>Analyse d’impact</li><li>Documentation</li></ol></article>
+        <article><h3>Documentation demandée</h3><ul class="docs"><li>Politique de sécurité des TIC</li><li>Logs et preuves techniques</li><li>Notifications ACPR et rapports</li><li>PCA et PRA</li><li>Rapports de tests et d’audits</li><li>Documentation des prestataires</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 16 · DORA notification -->
+    <section class="slide" data-title="Incident · notification à l’ACPR (DORA)" data-chapter="Incident">
+      <h2 class="title reveal"><small>INCIDENT · DORA</small>Notification à l’ACPR</h2>
+      <ol class="timeline reveal">
+        <li><span>4 h / 24 h</span><h3>Notification initiale</h3><p>Dans les 4 h suivant la classification comme incident majeur, et au plus tard 24 h après en avoir pris connaissance.</p></li>
+        <li><span>72 h</span><h3>Rapport intermédiaire</h3><p>Au plus tard 72 h après la notification initiale, même si la situation n’a pas changé ; actualisé au retour à la normale.</p></li>
+        <li><span>1 mois</span><h3>Rapport final</h3><p>Au plus tard un mois après le dernier rapport intermédiaire.</p></li>
+      </ol>
+    </section>
+
+    <!-- 17 · RGPD incident -->
+    <section class="slide" data-title="Incident · RGPD" data-chapter="Incident">
+      <h2 class="title reveal"><small>INCIDENT · RGPD</small>Actions, notification et documentation</h2>
+      <div class="incident three reveal">
+        <article><h3>Actions immédiates</h3><ol class="steps"><li>Identification</li><li>Évaluation</li><li>Correction</li><li>Documentation et notification</li></ol></article>
+        <article><h3>Notification à la CNIL</h3><ol class="steps"><li>Évaluation interne</li><li>Notification de la CNIL</li><li>Notification des clients</li><li>Documentation interne</li></ol></article>
+        <article><h3>Documentation demandée</h3><ul class="docs"><li>Registre des violations de données</li><li>Rapport interne d’incident</li><li>Analyse d’impact</li><li>Preuve de notification à la CNIL</li><li>Preuve de notification des clients</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 18 · IA Act incident -->
+    <section class="slide" data-title="Incident · IA Act" data-chapter="Incident">
+      <h2 class="title reveal"><small>INCIDENT · IA ACT</small>Actions, notification et documentation</h2>
+      <div class="incident three reveal">
+        <article><h3>Actions immédiates</h3><ol class="steps"><li>Interruption</li><li>Correction</li><li>Identification</li><li>Documentation</li></ol></article>
+        <article><h3>Notifications</h3><ol class="steps"><li>Rapport d’analyse</li><li>Rapport de correctif</li><li>Notification à la CNIL</li><li>Notification à l’ACPR (DORA)</li></ol></article>
+        <article><h3>Documentation demandée</h3><ul class="docs"><li>Registre des incidents</li><li>Documentation technique</li><li>Analyse du dysfonctionnement</li><li>Actions correctives</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 19 · CRA incident -->
+    <section class="slide" data-title="Incident · CRA" data-chapter="Incident">
+      <h2 class="title reveal"><small>INCIDENT · CRA</small>Actions, notification et documentation</h2>
+      <div class="incident three reveal">
+        <article><h3>Actions immédiates</h3><ol class="steps"><li>Identification</li><li>Évaluation</li><li>Correction</li><li>Documentation</li></ol></article>
+        <article><h3>Notifications</h3><ol class="steps"><li>Notification initiale</li><li>Notification détaillée</li><li>Rapport final</li></ol></article>
+        <article><h3>Documentation demandée</h3><ul class="docs"><li>Rapport de vulnérabilité</li><li>Documentation technique</li><li>Documentation du correctif</li><li>Notification au CERT-FR</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 20 · Partie 07 -->
+    <section class="slide part" data-title="07 · Incident cyber : point de vue THO" data-chapter="THO">
+      <img class="part-illus reveal" src="assets/img/laptop.svg" alt="">
+      <div class="part-box reveal"><span>07</span><h2>Incident cyber</h2><p>Point de vue THO</p></div>
+    </section>
+
+    <!-- 21 · THO -->
+    <section class="slide" data-title="Mesures techniques, organisationnelles et humaines" data-chapter="THO">
+      <h2 class="title reveal">Mesures THO</h2>
+      <div class="tho reveal">
+        <article><span>T</span><h3>Techniques</h3><ul class="docs"><li>Déploiement d’un correctif</li><li>Renforcement des contrôles</li><li>Chiffrement renforcé</li><li>Meilleure supervision</li><li>Renforcement de la sécurité cloud</li><li>Meilleure gestion des vulnérabilités</li></ul></article>
+        <article><span>O</span><h3>Organisationnelles</h3><ul class="docs"><li>Meilleure gestion des incidents</li><li>Mise à jour du PCA et du PRA</li><li>Veille sur les vulnérabilités</li><li>Mise en avant de la SSI</li><li>Mise à jour de l’AIPD du scoring IA</li></ul></article>
+        <article><span>H</span><h3>Humaines</h3><ul class="docs"><li>Formation des équipes</li><li>Sensibilisation des collaborateurs</li><li>Exercice de gestion de crise</li><li>Renforcement de la culture SSI</li><li>Formation aux risques liés à l’IA</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 22 · Merci -->
+    <section class="slide thanks" data-title="Merci ! Des questions ?" data-chapter="Questions">
+      <img class="cover-illus reveal" src="assets/img/bouclier.svg" alt="">
+      <div class="cover-copy"><h2 class="reveal">Merci&nbsp;!</h2><p class="lead reveal">Avez-vous des questions ?</p></div>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">INTRODUCTION</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et crédits">Sources</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 22</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">RESTITUTION ENSARX</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">RESTITUTION ENSARX</p><h2 id="sources-title">Sources et crédits</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Contenu</h3>
+  <p>Reprise de la présentation PowerPoint originale. Pour chaque règlement, les slides « périmètre » et « obligations » sont réunies, comme les slides d’incident (actions, notification, documentation) et les trois slides THO. Les délais de notification DORA viennent des notes du présentateur. Une slide de sommaire a été ajoutée.</p>
+  <h3>Illustrations et typographie</h3>
+  <p>Illustrations vectorielles reprises de la présentation originale. Bebas Neue (Dharma Type) et Outfit (The Outfit Project Authors), licence SIL Open Font License 1.1.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

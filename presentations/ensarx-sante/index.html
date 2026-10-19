@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fb6b00">
+  <meta name="description" content="ENSARx, réglementation SSI : textes applicables à une plateforme SaaS de rendez-vous médicaux, analyse des écarts et feuilles de route avec ou sans SecNumCloud.">
+  <title>ENSARx — Réglementation SSI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20zM12 10v4M12 17v.5"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Réglementation en sécurité des SI"
+      data-students="ENSAR Consulting"
+      data-teacher=""
+      data-deck-title="ENSARx · Réglementation SSI"
+      aria-label="ENSARx : réglementation en sécurité des systèmes d’information" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">ENSARx<span>RÉGLEMENTATION SSI</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="4">Textes</button><button data-go="9">Écarts</button><button data-go="17">Sans SecNumCloud</button><button data-go="20">Avec SecNumCloud</button></div>
+    <span class="edition">ENSAR CONSULTING</span>
+  </header>
+
+  <div id="slides">
+    <!-- 01 · Page de garde -->
+    <section class="slide cover is-active" data-title="ENSARx · Réglementation SSI" data-chapter="Introduction">
+      <div class="orange-block cover-block" aria-hidden="true"></div>
+      <figure class="photo cover-photo reveal"><img src="assets/img/circuit.jpg" alt="Gros plan en noir et blanc d’un processeur sur une carte électronique"></figure>
+      <div class="cover-copy">
+        <h1 class="reveal">ENSAR<em>x</em></h1>
+        <p class="lead reveal">Réglementation en sécurité des systèmes d’information</p>
+        <dl class="identity reveal">
+          <div><dt>École</dt><dd>ENSAR</dd></div>
+          <div><dt>Matière</dt><dd>Réglementation SSI</dd></div>
+          <div><dt>Présenté par</dt><dd>ENSAR Consulting</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 02 · Introduction -->
+    <section class="slide" data-title="Introduction · ENSAR Consulting" data-chapter="Introduction">
+      <h2 class="title reveal"><small>INTRODUCTION</small>Notre entreprise</h2>
+      <div class="intro reveal">
+        <img src="assets/img/ssi.webp" alt="Logo de l’option SSI de l’ENSAR">
+        <p><b>ENSAR Consulting</b> est un cabinet spécialisé en cybersécurité et en gouvernance des systèmes d’information. Nous accompagnons les organisations dans l’analyse de leurs risques, la mise en conformité réglementaire et la définition de stratégies de sécurité adaptées à leurs enjeux métiers.</p>
+      </div>
+    </section>
+
+    <!-- 03 · Sommaire -->
+    <section class="slide" data-title="Sommaire" data-chapter="Introduction">
+      <figure class="photo side-photo reveal"><img src="assets/img/bureau.jpg" alt="Bureau en noir et blanc, carte du monde et ordinateur"></figure>
+      <h2 class="title right reveal">Sommaire</h2>
+      <ol class="summary reveal">
+        <li><button data-go="4"><span>01.</span>Textes et règlements pertinents pour ENSARx</button></li>
+        <li><button data-go="9"><span>02.</span>Analyse des écarts et évaluation des risques</button></li>
+        <li><button data-go="17"><span>03.</span>Feuille de route sans SecNumCloud</button></li>
+        <li><button data-go="20"><span>04.</span>Feuille de route avec SecNumCloud</button></li>
+      </ol>
+    </section>
+
+    <!-- 04 · Partie 01 -->
+    <section class="slide part" data-title="01 · Textes et règlements applicables" data-chapter="Textes">
+      <figure class="photo part-photo reveal"><img src="assets/img/paiement.jpg" alt="Main tenant une carte bancaire devant une onde lumineuse"></figure>
+      <div class="part-copy"><span class="part-number reveal">01</span><h2 class="reveal">Textes et règlements pertinents et applicables pour ENSARx</h2></div>
+    </section>
+
+    <!-- 05 · RGPD / LIL -->
+    <section class="slide" data-title="RGPD et Loi Informatique et Libertés" data-chapter="Textes">
+      <h2 class="title reveal"><small>TRAITEMENT DE DONNÉES</small>RGPD / Loi Informatique et Libertés</h2>
+      <div class="cards two reveal">
+        <article><h3>RGPD</h3><p class="tag">Règlement (UE) 2016/679</p><p>La plateforme traite des données personnelles et des <b>données de santé</b> (catégorie particulière) : sécurité, privacy by design et by default, registre, droits, sous-traitance, notification des violations, transferts hors UE.</p></article>
+        <article><h3>Loi Informatique et Libertés</h3><p class="tag">France, modifiée</p><p>Applicable car ENSARx est une organisation française traitant des données personnelles et des données de santé.</p></article>
+      </div>
+    </section>
+
+    <!-- 06 · HDS / PCI DSS / PGSSI-S -->
+    <section class="slide" data-title="HDS, PCI DSS et PGSSI-S" data-chapter="Textes">
+      <h2 class="title reveal"><small>SANTÉ ET PAIEMENT</small>HDS / PCI DSS / PGSSI-S</h2>
+      <div class="cards three reveal">
+        <article><h3>HDS</h3><p class="tag">Hébergeurs de données de santé</p><p>Plateforme SaaS de rendez-vous médicaux qui traite des données de santé, avec une infrastructure hébergée et infogérée en propre.</p></article>
+        <article><h3>PCI DSS</h3><p class="tag">Payment Card Industry Data Security Standard</p><p>Collecte et traitement d’informations de paiement pour la réservation.</p></article>
+        <article><h3>PGSSI-S</h3><p class="tag">Politique générale de sécurité des SI de santé</p><p>Contexte santé : rendez-vous médicaux et données de santé.</p></article>
+      </div>
+    </section>
+
+    <!-- 07 · ISO -->
+    <section class="slide" data-title="ISO 27001, 27002 et 27005" data-chapter="Textes">
+      <h2 class="title reveal"><small>DÉMARCHE DE MANAGEMENT DE LA SÉCURITÉ</small>ISO 27001 / 27002 / 27005</h2>
+      <div class="cards three reveal">
+        <article><h3>ISO 27001</h3><p class="tag">SMSI · objectif affiché</p><p>L’entreprise souhaite démarrer ISO 27001 : la norme structure gouvernance, analyse de risques, politiques, preuves et amélioration continue.</p></article>
+        <article><h3>ISO 27002</h3><p class="tag">Catalogue de mesures</p><p>Associée à 27001 pour sélectionner et justifier les mesures (annexe A).</p></article>
+        <article><h3>ISO 27005</h3><p class="tag">Gestion des risques SSI</p><p>La gestion des risques est à définir dans le SMSI : 27005 en cadre la méthode.</p></article>
+      </div>
+    </section>
+
+    <!-- 08 · Sous-traitance / SecNumCloud / CRA -->
+    <section class="slide" data-title="RGPD sous-traitance, SecNumCloud et CRA" data-chapter="Textes">
+      <h2 class="title reveal"><small>CLOUD, LOGICIEL ET SOUS-TRAITANCE</small>RGPD / SecNumCloud / CRA</h2>
+      <div class="cards three reveal">
+        <article><h3>RGPD · sous-traitance</h3><p class="tag">Accès à distance depuis l’étranger</p><p>Une partie du développement est sous-traitée à Madagascar, avec accès aux environnements dev, test et prod : encadrement, contrôle, sécurité et transferts deviennent structurants.</p></article>
+        <article><h3>SecNumCloud</h3><p class="tag">Qualification cloud de haut niveau</p><p>Interrogation de la direction sur cette qualification.</p></article>
+        <article><h3>CRA</h3><p class="tag">Cyber Resilience Act</p><p>Développement et exploitation d’une plateforme SaaS.</p></article>
+      </div>
+    </section>
+
+    <!-- 09 · Partie 02 -->
+    <section class="slide part" data-title="02 · Analyse des écarts et évaluation des risques" data-chapter="Écarts">
+      <figure class="photo part-photo reveal"><img src="assets/img/equipe.jpg" alt="Trois personnes en noir et blanc travaillent autour d’un ordinateur"></figure>
+      <div class="part-copy"><span class="part-number reveal">02</span><h2 class="reveal">Analyse des écarts et évaluation des risques</h2></div>
+    </section>
+
+    <!-- 10 · SMSI -->
+    <section class="slide" data-title="Écart · gouvernance et SMSI" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART ISO 27001</small>Gouvernance et structuration du SMSI</h2>
+      <div class="gaps reveal">
+        <article><h3>Politique de sécurité en cours</h3><p>La politique n’est pas encore finalisée.</p></article>
+        <article><h3>Absence de PCA / PRA</h3><p>Aucun plan de continuité ni de reprise d’activité.</p></article>
+        <article class="risk"><svg><use href="#i-alert"/></svg><h3>Un risque organisationnel</h3></article>
+      </div>
+    </section>
+
+    <!-- 11 · RGPD -->
+    <section class="slide" data-title="Écart · données personnelles et de santé (RGPD)" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART RGPD</small>Protection des données personnelles et de santé</h2>
+      <ul class="findings reveal">
+        <li>Utilisation de données réelles non anonymisées en environnement de test.</li>
+        <li>Contrôle d’accès insuffisant aux environnements de production.</li>
+        <li>Absence de formalisation complète des processus liés aux incidents.</li>
+        <li>Accès à distance depuis l’étranger sans précision sur les garanties encadrant ces transferts.</li>
+      </ul>
+      <p class="impact reveal"><svg><use href="#i-alert"/></svg><span><b>Risque</b> Sanctions administratives de la CNIL, atteinte à la réputation.</span></p>
+    </section>
+
+    <!-- 12 · Accès -->
+    <section class="slide" data-title="Écart · contrôle des accès" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART ISO 27001 / HDS / SECNUMCLOUD</small>Contrôle des accès et gestion des privilèges</h2>
+      <ul class="findings big reveal">
+        <li>Accès direct en production sans authentification forte ni gestion centralisée des privilèges.</li>
+        <li>Les accès distants ne font l’objet ni d’un chiffrement spécifique ni d’une journalisation systématique.</li>
+      </ul>
+    </section>
+
+    <!-- 13 · Vulnérabilités -->
+    <section class="slide" data-title="Écart · vulnérabilités et détection" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCARTS ISO / SECNUMCLOUD / CRA</small>Gestion des vulnérabilités et capacité de détection</h2>
+      <div class="gaps reveal">
+        <article><p class="tag">Écart SecNumCloud</p><h3>Obsolescence</h3></article>
+        <article><p class="tag">Écart CRA</p><h3>Absence d’ASM / EDR</h3></article>
+        <article><p class="tag">Écart ISO</p><h3>Absence de gestion des vulnérabilités</h3></article>
+      </div>
+    </section>
+
+    <!-- 14 · PCI DSS -->
+    <section class="slide" data-title="Écart · paiement en ligne et PCI DSS" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART PCI DSS</small>Paiement en ligne et conformité PCI DSS</h2>
+      <p class="impact top reveal"><svg><use href="#i-alert"/></svg><span>Aucun processus de paiement sécurisé complet n’est formalisé.</span></p>
+      <ol class="needs reveal">
+        <li>Segmentation des environnements</li>
+        <li>Formalisation de politiques adaptées</li>
+        <li>Chiffrement des données de paiement</li>
+        <li>Tests de sécurité réguliers</li>
+        <li>Journalisation des accès</li>
+      </ol>
+    </section>
+
+    <!-- 15 · Logs -->
+    <section class="slide" data-title="Écart · logs et supervision" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART ISO 27001 / RGPD / HDS</small>Logs et supervision</h2>
+      <div class="text-cols reveal">
+        <p>Les logs sont décrits comme <b>incomplets</b>, la centralisation <b>non systématique</b> et le processus de gestion des incidents <b>non formalisé</b>.</p>
+        <p>Ces éléments constituent un écart vis-à-vis d’ISO 27001, du RGPD et des exigences du référentiel HDS en matière de traçabilité.</p>
+      </div>
+      <p class="impact reveal"><svg><use href="#i-alert"/></svg><span>En cas d’incident majeur, ENSARx pourrait être incapable de détecter rapidement une intrusion, d’en mesurer l’impact et de satisfaire à ses obligations réglementaires.</span></p>
+    </section>
+
+    <!-- 16 · Cloisonnement -->
+    <section class="slide" data-title="Écart · cloisonnement et cloud" data-chapter="Écarts">
+      <h2 class="title reveal"><small>ÉCART ISO 27001 / SECNUMCLOUD</small>Cloisonnement des environnements et infrastructure cloud</h2>
+      <div class="text-cols reveal">
+        <p>L’audit met en évidence un <b>cloisonnement insuffisant</b> entre environnements internes et environnements clients. Aucun produit certifié ni qualification spécifique n’est mentionné.</p>
+        <p>C’est un écart aux bonnes pratiques ISO 27001 (séparation des environnements, sécurité réseau), incompatible avec SecNumCloud, qui impose un cloisonnement strict et une maîtrise complète de la chaîne d’administration.</p>
+      </div>
+      <p class="impact reveal"><svg><use href="#i-alert"/></svg><span>Risque de propagation latérale d’une compromission, pouvant affecter simultanément plusieurs clients.</span></p>
+    </section>
+
+    <!-- 17 · Partie 03 -->
+    <section class="slide part" data-title="03 · Feuille de route sans SecNumCloud" data-chapter="Sans SecNumCloud">
+      <figure class="photo part-photo reveal"><img src="assets/img/circuit-imprime.jpg" alt="Circuit imprimé en noir et blanc"></figure>
+      <div class="part-copy"><span class="part-number reveal">03</span><h2 class="reveal">Feuille de route sans SecNumCloud</h2></div>
+    </section>
+
+    <!-- 18 · Avis SecNumCloud -->
+    <section class="slide" data-title="Avis sur la qualification SecNumCloud" data-chapter="Sans SecNumCloud">
+      <h2 class="title reveal"><small>AVIS</small>Pourquoi pas la qualification SecNumCloud</h2>
+      <div class="reasons reveal">
+        <article><h3>Prix</h3><p>Les coûts d’audit et de maintien sont trop élevés pour l’entreprise.</p></article>
+        <article><h3>Complexité</h3><p>Les exigences techniques et organisationnelles sont très lourdes.</p></article>
+        <article><h3>Utilité</h3><p>La qualification vise surtout les clouds pour données très sensibles.</p></article>
+        <article><h3>Flexibilité</h3><p>Elle impose des contraintes fortes sur l’infrastructure et les partenaires.</p></article>
+      </div>
+    </section>
+
+    <!-- 19 · Feuille de route sans -->
+    <section class="slide" data-title="Feuille de route sans SecNumCloud" data-chapter="Sans SecNumCloud">
+      <h2 class="title reveal"><small>SANS SECNUMCLOUD</small>Feuille de route</h2>
+      <div class="roadmap two reveal">
+        <article><header><span>0 – 6 mois</span><b>Priorité immédiate</b></header><ul><li><i>Paiement</i>Paiement en ligne : réduction du périmètre PCI DSS</li><li><i>RGPD</i>Mise en conformité RGPD prioritaire</li><li><i>Sécurité</i>Sécurisation des accès et des environnements critiques</li></ul></article>
+        <article><header><span>6 – 18 mois</span><b>Priorité structurante</b></header><ul><li><i>Supervision</i>Gestion des vulnérabilités et supervision</li><li><i>Gouvernance</i>Gouvernance et pilotage</li><li><i>Sensibilisation</i>Sensibilisation et culture sécurité</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 20 · Partie 04 -->
+    <section class="slide part" data-title="04 · Feuille de route avec SecNumCloud" data-chapter="Avec SecNumCloud">
+      <figure class="photo part-photo reveal"><img src="assets/img/ecran.jpg" alt="Écran d’ordinateur sur un bureau, en noir et blanc"></figure>
+      <div class="part-copy"><span class="part-number reveal">04</span><h2 class="reveal">Feuille de route avec SecNumCloud</h2></div>
+    </section>
+
+    <!-- 21 · Feuille de route avec -->
+    <section class="slide" data-title="Feuille de route avec SecNumCloud" data-chapter="Avec SecNumCloud">
+      <h2 class="title reveal"><small>AVEC SECNUMCLOUD</small>Feuille de route</h2>
+      <div class="roadmap three reveal">
+        <article><header><span>0 – 6 mois</span><b>Priorité immédiate</b></header><ul><li><i>Architecture</i>Refonte de l’architecture et cloisonnement renforcé</li><li><i>RGPD</i>Mise sous contrôle RGPD et données sensibles</li><li><i>Sécurité</i>Sécurisation complète des accès et de la chaîne d’administration</li></ul></article>
+        <article><header><span>6 – 18 mois</span><b>Priorité structurante</b></header><ul><li><i>Exigences tech.</i>Exigences matérielles et technologiques</li><li><i>Supervision</i>Supervision avancée et capacité de détection</li><li><i>SMSI</i>Construction d’un SMSI « SecNumCloud-ready »</li></ul></article>
+        <article><header><span>18 – 24 mois</span><b>Résilience et auditabilité</b></header><ul><li><i>Sous-traitance</i>Maîtrise de la chaîne de sous-traitance</li><li><i>Audit</i>Pré-audit et audit de qualification</li><li><i>Gestion de crise</i>Continuité d’activité et gestion de crise</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 22 · Merci -->
+    <section class="slide thanks" data-title="Merci !" data-chapter="Questions">
+      <div class="orange-block thanks-block" aria-hidden="true"></div>
+      <figure class="photo thanks-photo reveal"><img src="assets/img/lectrice.jpg" alt="Femme en noir et blanc lisant un document"></figure>
+      <div class="thanks-copy"><h2 class="reveal">Merci&nbsp;!</h2><p class="lead reveal">Avez-vous des questions ?</p><img class="cat reveal" src="assets/img/chat.jpg" alt="Mème : chat à lunettes de soleil"></div>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">INTRODUCTION</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et crédits">Sources</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 22</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">ENSARX · RÉGLEMENTATION SSI</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">ENSARX · RÉGLEMENTATION SSI</p><h2 id="sources-title">Sources et crédits</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Contenu</h3>
+  <p>Reprise de la présentation PowerPoint originale. Les justifications des textes applicables (RGPD, ISO, sous-traitance) et l’écart PCI DSS viennent des notes du présentateur. Les étapes de chaque feuille de route sont réunies sur une slide.</p>
+  <h3>Images et typographie</h3>
+  <p>Photos et mème repris de la présentation originale. Lato (Łukasz Dziedzic), licence SIL Open Font License 1.1.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="description" content="ANSSI-PG-083, annexe B.1 : les records de calculs cryptographiques (DES, RSA, logarithme discret, courbes elliptiques) et leurs conséquences sur le dimensionnement.">
+  <title>Records de calculs cryptographiques — ANSSI B.1</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20zM12 10v4M12 17v.5"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Cryptographie · Guide ANSSI-PG-083"
+      data-students="Armand Zireg"
+      data-teacher=""
+      data-deck-title="Records de calculs cryptographiques"
+      aria-label="Annexe B.1 du guide ANSSI : records de calculs cryptographiques" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">ANSSI-PG-083<span>ANNEXE B.1</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="3">Enjeu</button><button data-go="4">Symétrique</button><button data-go="5">RSA</button><button data-go="6">Log discret</button><button data-go="7">Courbes</button><button data-go="8">Synthèse</button></div>
+    <span class="edition">ORAL · 10 MIN</span>
+  </header>
+
+  <div id="slides">
+    <!-- 01 · Page de garde -->
+    <section class="slide cover dark is-active" data-title="Records de calculs cryptographiques" data-chapter="Introduction">
+      <div class="cover-copy">
+        <p class="badge-red reveal">ANSSI-PG-083 v2.04 · Annexe B.1</p>
+        <h1 class="reveal">Records de calculs<br><em>cryptographiques</em></h1>
+        <p class="lead reveal">Guide des mécanismes cryptographiques de l’ANSSI : ce que les attaquants ont déjà accompli publiquement, et ce que cela impose au dimensionnement.</p>
+        <dl class="identity reveal">
+          <div><dt>École</dt><dd>ENSAR</dd></div>
+          <div><dt>Matière</dt><dd>Cryptographie · guide ANSSI</dd></div>
+          <div><dt>Étudiant</dt><dd>Armand Zireg</dd></div>
+        </dl>
+      </div>
+      <div class="cover-key reveal" aria-hidden="true"><span>2⁵⁶</span><span>795</span><span>2⁵⁴</span><span>9234</span></div>
+    </section>
+
+    <!-- 02 · Sommaire -->
+    <section class="slide" data-title="Sommaire" data-chapter="Introduction">
+      <h2 class="title reveal">Sommaire</h2>
+      <ol class="summary reveal">
+        <li style="--c:var(--ink)"><button data-go="3"><span>01</span><b>Pourquoi l’annexe B.1 ?</b><small>Des records comme borne inférieure</small></button></li>
+        <li style="--c:var(--blue)"><button data-go="4"><span>02</span><b>B.1.1 · Symétrique</b><small>La fin du DES</small></button></li>
+        <li style="--c:var(--red)"><button data-go="5"><span>03</span><b>B.1.2 · Factorisation RSA</b><small>De 397 à 795 bits</small></button></li>
+        <li style="--c:var(--olive)"><button data-go="6"><span>04</span><b>B.1.3 à B.1.5 · Logarithme discret</b><small>GF(p), GF(2ⁿ), GF(pⁿ)</small></button></li>
+        <li style="--c:var(--green)"><button data-go="7"><span>05</span><b>B.1.6 · Courbes elliptiques</b><small>Les challenges Certicom</small></button></li>
+        <li style="--c:var(--ink)"><button data-go="8"><span>06</span><b>Synthèse et conclusion</b><small>Implications pour le dimensionnement</small></button></li>
+      </ol>
+    </section>
+
+    <!-- 03 · Pourquoi -->
+    <section class="slide" data-title="Pourquoi l’annexe B.1 ?" data-chapter="Enjeu">
+      <h2 class="title reveal">Pourquoi l’annexe B.1 ?</h2>
+      <div class="cols three reveal">
+        <article style="--c:var(--blue)"><h3>Borne inférieure réelle</h3><p>Les records montrent ce qu’un attaquant a <b>déjà</b> accompli publiquement. Ce sont des minimums, pas des maximums.</p></article>
+        <article style="--c:var(--red)"><h3>Justification empirique</h3><p>Chaque règle de dimensionnement du chapitre 2 est calibrée sur ces records. Ce n’est pas de la théorie arbitraire.</p></article>
+        <article style="--c:var(--green)"><h3>Marge de sécurité</h3><p>L’ANSSI ajoute une marge (loi de Moore + progrès algorithmiques) pour fixer des seuils pérennes à 10–20 ans.</p></article>
+      </div>
+      <p class="warn reveal"><svg><use href="#i-alert"/></svg>Les records excluent les capacités gouvernementales non publiées : ils constituent une borne inférieure.</p>
+    </section>
+
+    <!-- 04 · DES -->
+    <section class="slide" data-title="B.1.1 · Cryptographie symétrique : le DES est mort" data-chapter="Symétrique">
+      <h2 class="title reveal"><small>B.1.1 · CRYPTOGRAPHIE SYMÉTRIQUE</small>Le DES est mort</h2>
+      <ol class="des reveal">
+        <li style="--w:100%"><span class="when">Juin 1997</span><b>96 jours</b><span class="bar"><i></i></span><p>Calcul distribué sur Internet (bénévoles)</p></li>
+        <li style="--w:43%"><span class="when">Fév. 1998</span><b>41 jours</b><span class="bar"><i></i></span><p>Calcul distribué, optimisations</p></li>
+        <li class="hot" style="--w:2.4%"><span class="when">Juil. 1998</span><b>56 heures</b><span class="bar"><i></i></span><p>Machine dédiée EFF « DES Cracker », ≈ 250 000 $</p></li>
+        <li class="hot" style="--w:1%"><span class="when">Janv. 1999</span><b>22 heures</b><span class="bar"><i></i></span><p>Machine EFF + calcul distribué combinés</p></li>
+      </ol>
+      <div class="foot-row reveal">
+        <p class="note">RC5-56 : 250 jours (oct. 1997) · RC5-64 : 1 757 jours (juil. 2002)</p>
+        <p class="rule"><b>Règle ANSSI</b> ≥ 128 bits recommandés dès maintenant (112 bits minimum jusqu’à fin 2025)</p>
+      </div>
+    </section>
+
+    <!-- 05 · RSA -->
+    <section class="slide" data-title="B.1.2 · Factorisation RSA" data-chapter="RSA">
+      <h2 class="title reveal"><small>B.1.2 · FACTORISATION RSA</small>Progression des records</h2>
+      <table class="records reveal">
+        <thead><tr><th>Date</th><th>Taille</th><th>Auteurs</th></tr></thead>
+        <tbody>
+          <tr><td>Juin 1993</td><td class="num">397 bits</td><td>Denny, Dodson, Lenstra, Manasse</td></tr>
+          <tr><td>Avr. 1994</td><td class="num">426 bits</td><td>Atkins, Graff, Lenstra, Leyland</td></tr>
+          <tr><td>Août 1999</td><td class="num">512 bits</td><td>te Riele et al.</td></tr>
+          <tr><td>Déc. 2003</td><td class="num">576 bits</td><td>Franke, Kleinjung</td></tr>
+          <tr><td>Mai 2005</td><td class="num">663 bits</td><td>Bahr, Boehm, Franke, Kleinjung</td></tr>
+          <tr><td>Déc. 2009</td><td class="num">768 bits</td><td>Kleinjung et al.</td></tr>
+          <tr class="hot"><td>Déc. 2019 ★</td><td class="num">795 bits</td><td>Thomé et al. (dernier record public)</td></tr>
+        </tbody>
+      </table>
+      <div class="side-notes reveal">
+        <article style="--c:var(--blue)"><h3>Algorithmes</h3><p>≤ 1994 : crible quadratique · ≥ 1996 : NFS (crible algébrique), le plus efficace connu</p></article>
+        <article style="--c:var(--red)"><h3>Machine dédiée</h3><p>Shamir-Tromer, 2003 : quelques dizaines de M€ pour factoriser 1024 bits en moins d’un an (théorique, aucune construction annoncée).</p></article>
+        <article style="--c:var(--green)"><h3>SNFS</h3><p>2¹⁰³⁹−1 factorisé (1039 bits, 2007), sans application aux modules RSA classiques.</p></article>
+        <p class="rule"><b>Règle ANSSI</b> ≥ 2048 bits (≤ 2030) · ≥ 3072 bits (≥ 2031)</p>
+      </div>
+    </section>
+
+    <!-- 06 · Log discret -->
+    <section class="slide" data-title="B.1.3 à B.1.5 · Logarithme discret" data-chapter="Log discret">
+      <h2 class="title reveal"><small>B.1.3 / B.1.4 / B.1.5 · LOGARITHME DISCRET</small>Toutes les structures ne se valent pas</h2>
+      <div class="fields reveal">
+        <article style="--c:var(--blue)">
+          <header><h3>GF(p)</h3><span>B.1.3 · Corps fini premier</span></header>
+          <ul><li>Record : <b>530 bits</b> (2007, Bahr, Franke, Kleinjung)</li><li>Complexité ≈ factorisation</li><li>Léger avantage pratique (+100 à 200 bits)</li></ul>
+          <footer>Mêmes règles que RSA : ≥ 2048 bits (≤ 2030), ≥ 3072 bits (≥ 2031)</footer>
+        </article>
+        <article style="--c:var(--red)">
+          <header><h3>GF(2ⁿ)</h3><span>B.1.4 · Corps binaire</span></header>
+          <ul><li>n premier : GF(2⁸⁰⁹) = <b>809 bits</b> (2013)</li><li>n composé : GF(2⁹²³⁴) = <b>9234 bits</b> (2014) !</li><li>Explosion soudaine des records en 2013 : à taille égale, beaucoup plus facile que GF(p)</li></ul>
+          <footer><svg><use href="#i-alert"/></svg>PROSCRIT pour le log discret</footer>
+        </article>
+        <article style="--c:var(--olive)">
+          <header><h3>GF(pⁿ)</h3><span>B.1.5 · Caractéristique moyenne</span></header>
+          <ul><li>p = 3 : GF(3⁸²²) = <b>1303 bits</b> (2014)</li><li>p &gt; 3 : <b>1425 bits</b> (2013)</li><li>Plus facile que GF(p) à taille égale : emploi à risque</li></ul>
+          <footer><svg><use href="#i-alert"/></svg>Soumis à avis ANSSI</footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- 07 · Courbes elliptiques -->
+    <section class="slide" data-title="B.1.6 · Courbes elliptiques : challenges Certicom" data-chapter="Courbes">
+      <h2 class="title reveal"><small>B.1.6 · COURBES ELLIPTIQUES</small>Challenges Certicom (depuis 1997)</h2>
+      <div class="ecc reveal">
+        <article><h3>ECCp · GF(p)</h3><ul><li><b>ECCp-79</b><span>✓ 1997 · 2⁴⁰</span></li><li><b>ECCp-89</b><span>✓ 1998 · 2⁴⁴</span></li><li><b>ECCp-97</b><span>✓ 1998 · 2⁴⁷</span></li><li><b>ECCp-109</b><span>✓ 2002 · 2⁵⁴</span></li><li class="open"><b>ECCp-131</b><span>✗ Non résolu</span></li></ul></article>
+        <article><h3>ECC2 · GF(2ⁿ)</h3><ul><li><b>ECC2-79</b><span>✓ 1997 · 2⁴⁰</span></li><li><b>ECC2-89</b><span>✓ 1998 · 2⁴⁴</span></li><li><b>ECC2-97</b><span>✓ 1999 · 2⁴⁷</span></li><li><b>ECC2-109</b><span>✓ 2004 · 2⁵⁴</span></li><li class="open"><b>ECC2-131</b><span>✗ Non résolu</span></li></ul></article>
+        <article><h3>ECC2K · Koblitz</h3><ul><li><b>ECC2K-95</b><span>✓ 1998 · 2⁴⁴</span></li><li><b>ECC2K-108</b><span>✓ 2000 · 2⁵¹</span></li><li class="open"><b>ECC2K-130</b><span>✗ Non résolu</span></li></ul></article>
+      </div>
+      <div class="foot-row reveal">
+        <p class="note">Barrière actuelle : ~112–131 bits (GF(p) 112 bits résolu en 2009 par Bos et al.)</p>
+        <p class="rule"><b>Règle ANSSI</b> ordre du sous-groupe ≥ 250 bits</p>
+      </div>
+    </section>
+
+    <!-- 08 · Synthèse -->
+    <section class="slide dark" data-title="Synthèse : implications pour le dimensionnement" data-chapter="Synthèse">
+      <h2 class="title reveal">Synthèse : implications pour le dimensionnement</h2>
+      <table class="synth reveal">
+        <thead><tr><th>Mécanisme</th><th>Règle actuelle</th><th>Règle future</th><th>Recommandé</th></tr></thead>
+        <tbody>
+          <tr style="--c:var(--blue)"><td>Symétrique (AES)</td><td>≥ 112 bits</td><td>≥ 128 bits</td><td>128 bits (AES)</td></tr>
+          <tr style="--c:var(--red)"><td>RSA / log GF(p)</td><td>≥ 2048 bits (jusqu’à 2030)</td><td>≥ 3072 bits (à partir de 2031)</td><td>3072 bits dès maintenant</td></tr>
+          <tr style="--c:var(--green)"><td>Courbes elliptiques</td><td>Ordre ≥ 250 bits</td><td>Ordre ≥ 250 bits</td><td>P-256, P-384, FRP256v1, Brainpool</td></tr>
+          <tr style="--c:var(--red)"><td>GF(2ⁿ) log discret</td><td class="bad">PROSCRIT</td><td class="bad">PROSCRIT</td><td>Structures vulnérables (records 2013)</td></tr>
+          <tr style="--c:var(--olive)"><td>GF(pⁿ) log discret</td><td>Avis ANSSI requis</td><td>Avis ANSSI requis</td><td>Plus facile que GF(p) à taille égale</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 09 · Conclusion -->
+    <section class="slide dark" data-title="Conclusion" data-chapter="Synthèse">
+      <h2 class="title reveal">Conclusion</h2>
+      <ol class="concl reveal">
+        <li style="--c:var(--blue)"><span>01</span><div><h3>Les records sont des preuves, pas des anecdotes.</h3><p>Chaque record passé justifie un seuil concret dans les règles ANSSI.</p></div></li>
+        <li style="--c:var(--red)"><span>02</span><div><h3>Toutes les structures algébriques ne se valent pas.</h3><p>GF(2ⁿ) et GF(pⁿ) ont été dévastés par des records récents : le choix du groupe est crucial.</p></div></li>
+        <li style="--c:var(--green)"><span>03</span><div><h3>La marge de sécurité est délibérée.</h3><p>L’ANSSI dimensionne au-dessus des limites connues pour absorber les progrès futurs (algorithmes, matériel).</p></div></li>
+      </ol>
+      <p class="ref reveal">ANSSI-PG-083 v2.04 · Guide des mécanismes cryptographiques · Annexe B.1</p>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">INTRODUCTION</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources">Sources</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 09</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">ANSSI · ANNEXE B.1</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">ANSSI · ANNEXE B.1</p><h2 id="sources-title">Sources</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Source</h3>
+  <p>ANSSI, <i>Guide des mécanismes cryptographiques : règles et recommandations</i>, ANSSI-PG-083 v2.04, annexe B.1.</p>
+  <h3>Contenu et typographie</h3>
+  <p>Reprise de la présentation PowerPoint originale (oral de 10 minutes) ; une slide de sommaire a été ajoutée. Carlito (licence SIL Open Font License 1.1), métriquement compatible avec Calibri, police de l’original.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "title": "Records de calculs cryptographiques — ANSSI B.1",
+  "description": "Annexe B.1 du guide ANSSI-PG-083 : records publics (DES, RSA, logarithme discret, courbes elliptiques) et dimensionnement des clés.",
+  "category": "ENSAR",
+  "visible": true
+}
