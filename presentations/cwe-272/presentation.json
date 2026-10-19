@@ -1,0 +1,6 @@
+{
+  "title": "CWE 272 — Least Privilege Violation",
+  "description": "Les failles système liées à la violation du principe de moindre privilège : risques, cas techniques, protection et taxonomie.",
+  "category": "ENSAR",
+  "visible": true
+}
