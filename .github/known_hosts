@@ -1,0 +1,8 @@
+# Clés publiques d'hôte reprises des archives de référence fournies.
+# Utilla : examples/bde_ensar-7(1).zip, .github/known_hosts.
+# Allitu : examples/traefik-mutualized-main(1).zip, .github/known_hosts.
+# Correspondance des noms hachés vérifiée avec ssh-keygen -F.
+# En cas de rotation, comparer la nouvelle empreinte depuis la console de la VM
+# avant de mettre à jour cette entrée. Ne pas désactiver StrictHostKeyChecking.
+utilla.cloug.fr ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMyQA1izDNVftUiwjmcZ+aiZzdxxYgeZYf6gk+FZiJq7
+allitu.cloug.fr ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMxRaYdTRDewoqHeyACbMHqq2algQc/yzYJUHIPQNIb1

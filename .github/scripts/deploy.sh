@@ -15,7 +15,8 @@ esac
 [[ ${IMAGE_DIGEST:-} =~ ^sha256:[a-f0-9]{64}$ ]] || fail 'Digest GHCR invalide.'
 [[ ${REGISTRY_USER:-} =~ ^[A-Za-z0-9][A-Za-z0-9-]*$ ]] || fail 'Utilisateur GHCR invalide.'
 [[ ${REGISTRY_TOKEN:-} =~ ^[A-Za-z0-9_.=-]+$ ]] || fail 'Token GHCR absent ou invalide.'
-[[ -n ${SSH_DEPLOY_PRIVATE_KEY:-} && -n ${SSH_KNOWN_HOSTS:-} ]] || fail 'Secrets SSH_DEPLOY_PRIVATE_KEY et SSH_KNOWN_HOSTS requis.'
+[[ -n ${SSH_DEPLOY_PRIVATE_KEY:-} ]] || fail 'Secret SSH_DEPLOY_PRIVATE_KEY requis dans cet environnement GitHub.'
+[[ -s .github/known_hosts ]] || fail 'Fichier .github/known_hosts absent ou vide.'
 prune_images=${PRUNE_IMAGES:-false}
 [[ $prune_images == true || $prune_images == false ]] || fail 'Option de nettoyage invalide.'
 
@@ -25,12 +26,12 @@ trap cleanup EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 printf '%s\n' "$SSH_DEPLOY_PRIVATE_KEY" | tr -d '\r' > "$ssh_dir/key"
-printf '%s\n' "$SSH_KNOWN_HOSTS" > "$ssh_dir/known_hosts"
+cp .github/known_hosts "$ssh_dir/known_hosts"
 chmod 600 "$ssh_dir/key" "$ssh_dir/known_hosts"
 registry_token=$REGISTRY_TOKEN
-unset SSH_DEPLOY_PRIVATE_KEY SSH_KNOWN_HOSTS REGISTRY_TOKEN
+unset SSH_DEPLOY_PRIVATE_KEY REGISTRY_TOKEN
 ssh-keygen -y -P '' -f "$ssh_dir/key" >/dev/null 2>&1 || fail 'Clé privée SSH invalide ou protégée par une passphrase.'
-ssh-keygen -F "$deploy_host" -f "$ssh_dir/known_hosts" >/dev/null || fail 'Hôte absent des clés SSH validées.'
+ssh-keygen -F "$deploy_host" -f "$ssh_dir/known_hosts" >/dev/null || fail "Hôte $deploy_host absent du fichier .github/known_hosts."
 ssh_options=(
     -i "$ssh_dir/key"
     -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes

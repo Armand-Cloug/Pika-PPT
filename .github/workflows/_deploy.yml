@@ -58,7 +58,6 @@ jobs:
           IMAGE_DIGEST: ${{ steps.registry.outputs.digest }}
           PRUNE_IMAGES: ${{ inputs.prune_images }}
           SSH_DEPLOY_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash .github/scripts/deploy.sh

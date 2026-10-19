@@ -40,6 +40,7 @@ docker/                        Nginx et entrypoint sécurisé
 scripts/                       Génération du catalogue
 .github/workflows/             Build, deploy-preprod, deploy-prod, _deploy
 .github/scripts/               Scripts Bash : métadonnées, SSH, déploiement VM
+.github/known_hosts            Clés publiques SSH d'Utilla et Allitu
 docs/                          Migration HB
 ```
 
@@ -186,16 +187,17 @@ Si cette étape est oubliée, le workflow crée un `.env` privé depuis `.env.di
 
 Créer deux **GitHub Environments** : `preprod` et `production`. Limiter les branches de déploiement et ajouter, si souhaité, des reviewers obligatoires pour `production`.
 
-Dans **chacun** des environnements, définir :
+Dans **chacun** des environnements, définir ce seul secret personnalisé :
 
 | Secret | Contenu |
 | --- | --- |
 | `SSH_DEPLOY_PRIVATE_KEY` | Clé privée dédiée complète, non chiffrée par passphrase, correspondant à la clé publique de `deploy` |
-| `SSH_KNOWN_HOSTS` | Ligne(s) `known_hosts` de cet hôte, vérifiées hors bande ; noms clairs ou hachés acceptés |
 
 **Aucun `AUTH_USERNAME` ou `AUTH_PASSWORD` dans GitHub.** `GITHUB_TOKEN` est fourni automatiquement ; permissions `packages:write` pour Build et `packages:read` pour Deploy. Pour un package GHCR privé, autoriser ce dépôt dans **Package settings → Manage Actions access**. Aucun PAT persistant sur les VMs : un login GHCR éphémère utilise le token du job, transmis par l’entrée standard SSH puis `docker login --password-stdin`. Son répertoire Docker temporaire privé est supprimé à la fin, y compris après erreur.
 
-Pour `SSH_KNOWN_HOSTS`, obtenir les clés candidates depuis une machine de confiance :
+Les clés publiques des serveurs sont versionnées dans `.github/known_hosts`, comme dans le modèle BDE ; aucun secret `SSH_KNOWN_HOSTS` n’est nécessaire. L’entrée Utilla provient de l’archive BDE fournie et l’entrée Allitu de l’archive Traefik fournie. La correspondance des noms hachés a été vérifiée avec `ssh-keygen -F`, sans nouvelle connexion aux VMs.
+
+Si une clé d’hôte change, obtenir la clé candidate depuis une machine de confiance :
 
 ```sh
 ssh-keyscan -t ed25519 utilla.cloug.fr > /tmp/utilla.known_hosts
@@ -204,7 +206,7 @@ ssh-keygen -lf /tmp/utilla.known_hosts
 sudo ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
 ```
 
-Comparer les empreintes, puis copier **la ligne complète** de `/tmp/utilla.known_hosts` dans le secret `SSH_KNOWN_HOSTS` de `preprod`. Répéter avec Allitu pour `production`. `ssh-keyscan` seul ne valide pas l’identité. Aucun `accept-new`, aucune désactivation de `StrictHostKeyChecking`. Les empreintes héritées des projets de référence n’ont pas été réutilisées aveuglément.
+Comparer les empreintes, puis remplacer l’entrée correspondante dans `.github/known_hosts` par **la ligne complète** de `/tmp/utilla.known_hosts` et committer la modification. Procéder de même avec Allitu en cas de rotation de sa clé. `ssh-keyscan` seul ne valide pas l’identité. Le script utilise `ssh-keygen -F` pour reconnaître aussi les noms hachés. Aucun `accept-new`, aucune désactivation de `StrictHostKeyChecking`.
 
 ## Build et publication GHCR
 
@@ -262,7 +264,7 @@ docker compose exec pika-ppt-web wget -qO- http://127.0.0.1:8081/healthz
 - **Certificat indisponible** : vérifier la résolution DNS, IPv4/IPv6, ports 80/443 et les logs de l’infrastructure Traefik existante. Aucun Certbot à installer ici.
 - **Catalogue invalide** : le build indique le dossier et le champ à corriger. Les titres/descriptions sont rendus comme texte, sans interprétation HTML.
 - **Image GHCR introuvable / denied** : vérifier le tag, le namespace, la réussite du Build et l’accès Actions au package privé.
-- **Host key verification failed** : vérifier l’empreinte sur la console serveur, puis mettre à jour `SSH_KNOWN_HOSTS` si le changement est légitime ; ne pas désactiver la vérification.
+- **Host key verification failed** : vérifier l’empreinte sur la console serveur, puis mettre à jour `.github/known_hosts` si le changement est légitime ; ne pas désactiver la vérification.
 - **Permission sur `/opt/pika-ppt`** : corriger le propriétaire, pas les droits globaux en 777. `.env` doit rester en 600 et ne pas être un lien symbolique.
 - **Images/CSS manquants après import** : inspecter les chemins depuis le sous-répertoire et les formats autorisés. Voir [migration HB](docs/migration-hb.md).
 - **Déploiement échoué après recréation** : le conteneur peut déjà utiliser le nouveau code ; redéployer l’ancien tag. La restauration de `.env` seule ne constitue pas un rollback.
