@@ -25,6 +25,11 @@ esac
 for command in docker flock; do
     command -v "$command" >/dev/null || fail "Prérequis absent : $command."
 done
+docker compose version >/dev/null 2>&1 || fail 'Plugin Docker Compose absent ou inutilisable sur la VM. Installer Compose >= 2.24.'
+compose_help=$(docker compose config --help 2>/dev/null) || fail 'Commande docker compose config indisponible sur la VM.'
+[[ $compose_help == *--hash* && $compose_help == *--environment* ]] ||
+    fail 'Docker Compose trop ancien sur la VM : config --hash et --environment sont requis. Installer Compose >= 2.24.'
+unset compose_help
 
 cd /opt/pika-ppt
 exec 9> .deploy.lock
@@ -44,9 +49,21 @@ export IMAGE_TAG=$image_tag
 image=ghcr.io/armand-cloug/pika-ppt/web
 service=pika-ppt-web
 compose=(docker compose --project-name pika-ppt --env-file .env -f docker-compose.yml)
-# Compose reste le seul parseur du .env. Ses sorties restent en mémoire et
-# ses erreurs sont masquées, car elles peuvent contenir des valeurs sensibles.
-config_hash=$("${compose[@]}" config --hash "$service" 2>/dev/null) || fail 'Configuration Compose/.env invalide.'
+# Ne jamais afficher le diagnostic brut : même stderr peut contenir un secret.
+# Identifier uniquement des erreurs connues et publier un message fixe.
+if ! compose_error=$("${compose[@]}" config --quiet 2>&1 >/dev/null); then
+    case $compose_error in
+        *'AUTH_USERNAME requis'*) fail 'AUTH_USERNAME absent ou vide dans /opt/pika-ppt/.env. Renseigner le nom utilisateur sur la VM.' ;;
+        *'AUTH_PASSWORD requis'*) fail 'AUTH_PASSWORD absent ou vide dans /opt/pika-ppt/.env. Renseigner le mot de passe sur la VM (entre apostrophes simples).' ;;
+        *'DOMAIN requis'*) fail "DOMAIN absent ou vide dans /opt/pika-ppt/.env. Valeur attendue : $domain" ;;
+        *'failed to read'*|*'failed to parse'*|*'unterminated quoted value'*|*'unexpected character'*)
+            fail 'Lecture du Compose/.env impossible : vérifier les permissions, la syntaxe et les guillemets sur la VM.' ;;
+        *) fail 'Configuration Compose/.env invalide. Sur la VM, exécuter dans /opt/pika-ppt : docker compose --env-file .env -f docker-compose.yml config --quiet. Consulter le diagnostic localement, sans publier sa sortie (secrets possibles).' ;;
+    esac
+fi
+unset compose_error
+# Compose reste le seul parseur du .env. Ses sorties restent en mémoire.
+config_hash=$("${compose[@]}" config --hash "$service" 2>/dev/null) || fail 'Configuration valide, mais calcul du hash Compose impossible. Vérifier la version de Compose (>= 2.24) et le service pika-ppt-web sur la VM.'
 resolved=$("${compose[@]}" config --environment 2>/dev/null) || fail 'Variables Compose invalides.'
 username_found=false
 password_found=false

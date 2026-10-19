@@ -31,7 +31,7 @@ Dockerfile                     Génération catalogue + image Nginx
 .env.dist                      Modèle serveur, sans identifiants
 compose.local.yml              Compose local autonome
 docker-compose.yml             Compose préprod/prod, image GHCR uniquement
-dashboard/                     Accueil, 404, CSS, JS, logo SVG local
+dashboard/                     Accueil, 404, CSS, JS, logo PNG local
 presentations/
    vacances/presentation.json  Métadonnées + sources originales
    ticket/presentation.json    Métadonnées + HTML autonome original
@@ -43,6 +43,8 @@ scripts/                       Génération du catalogue
 .github/known_hosts            Clés publiques SSH d'Utilla et Allitu
 docs/                          Migration HB
 ```
+
+Le logo partagé est `dashboard/assets/logo.png`. Il apparaît dans le header de l’accueil et de la 404, ainsi que dans l’onglet de chaque présentation existante. Pour les futures présentations, ajouter dans `<head>` : `<link rel="icon" href="/assets/logo.png" type="image/png">`. Les logos propres au contenu des diapositives sont conservés. Un changement de logo nécessite un nouveau build et un déploiement de l’image.
 
 ## Démarrage local
 
@@ -257,6 +259,7 @@ docker compose exec pika-ppt-web nginx -t
 docker compose exec pika-ppt-web wget -qO- http://127.0.0.1:8081/healthz
 ```
 
+- **Configuration Compose/.env invalide** : le déploiement distingue les variables obligatoires vides et les fonctionnalités Compose manquantes. Consulter le diagnostic détaillé uniquement sur la VM avec `docker compose --env-file .env -f docker-compose.yml config --quiet`, dans `/opt/pika-ppt` ; même les erreurs peuvent contenir des secrets, ne pas copier leur sortie dans des logs publics. En préproduction, `DOMAIN=preprod.pika-ppt.cloug.fr` ; en production, `DOMAIN=pika-ppt.cloug.fr`.
 - **401 sans identifiants** : comportement attendu. 401 après saisie : vérifier les apostrophes Compose, puis recréer le service pour prendre en compte un changement.
 - **Démarrage refusé** : identifiants vides, nom non admis, mot de passe multiligne/trop long, tmpfs absent. Le message ne contient pas le secret.
 - **404 Traefik** : vérifier DNS, `DOMAIN`, réseau externe, labels, provider Docker et `traefik.enable=true`.
