@@ -1,0 +1,23 @@
+name: Deploy — Préproduction
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Tag GHCR (vide = VERSION ; préférer version-build ou SHA)
+        type: string
+        default: ''
+      prune_images:
+        description: Nettoyer uniquement les images Pika-PPT dangling de plus de 7 jours
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  packages: read
+jobs:
+  deploy:
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: preprod
+      image_tag: ${{ inputs.image_tag }}
+      prune_images: ${{ inputs.prune_images }}

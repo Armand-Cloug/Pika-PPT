@@ -1,0 +1,39 @@
+name: Deploy — Production
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Tapez exactement deploy-prod
+        required: true
+        type: string
+      image_tag:
+        description: Même tag immuable que celui validé en préproduction (vide = VERSION)
+        type: string
+        default: ''
+      prune_images:
+        description: Nettoyer uniquement les images Pika-PPT dangling de plus de 7 jours
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  packages: read
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirmation exacte
+        env:
+          CONFIRMATION: ${{ inputs.confirm }}
+        run: |
+          if [ "$CONFIRMATION" != deploy-prod ]; then
+            echo '::error::La confirmation exacte deploy-prod est requise.'
+            exit 1
+          fi
+  deploy:
+    needs: confirm
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: production
+      image_tag: ${{ inputs.image_tag }}
+      prune_images: ${{ inputs.prune_images }}

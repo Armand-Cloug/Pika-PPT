@@ -1,0 +1,13 @@
+**
+!Dockerfile
+!docker/**
+!scripts/build_catalog.py
+!dashboard/**
+!presentations/**
+**/.env*
+**/.git
+**/.git/**
+**/node_modules
+**/node_modules/**
+**/__pycache__/**
+**/.DS_Store

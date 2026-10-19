@@ -1,0 +1,21 @@
+# Independent local stack: no shared Traefik network, loopback binding only.
+name: pika-ppt-local
+services:
+  pika-ppt-web:
+    image: pika-ppt:local
+    build: .
+    environment:
+      AUTH_USERNAME: ${AUTH_USERNAME:?AUTH_USERNAME requis}
+      AUTH_PASSWORD: ${AUTH_PASSWORD:?AUTH_PASSWORD requis}
+    ports: [127.0.0.1:8090:8080]
+    read_only: true
+    tmpfs: ['/tmp:rw,noexec,nosuid,nodev,size=32m,mode=1777']
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.50
+    pids_limit: 100
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}

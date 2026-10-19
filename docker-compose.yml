@@ -1,0 +1,37 @@
+name: pika-ppt
+services:
+  pika-ppt-web:
+    image: ghcr.io/armand-cloug/pika-ppt/web:${IMAGE_TAG:?IMAGE_TAG requis}
+    restart: unless-stopped
+    environment:
+      AUTH_USERNAME: ${AUTH_USERNAME:?AUTH_USERNAME requis}
+      AUTH_PASSWORD: ${AUTH_PASSWORD:?AUTH_PASSWORD requis}
+    user: nginx:nginx
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=32m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 0.50
+    mem_limit: 128m
+    pids_limit: 100
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    networks: [traefik_proxy]
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: traefik_proxy
+      traefik.http.routers.pika-ppt.rule: Host(`${DOMAIN:?DOMAIN requis}`)
+      traefik.http.routers.pika-ppt.entrypoints: websecure
+      traefik.http.routers.pika-ppt.tls: 'true'
+      traefik.http.routers.pika-ppt.tls.certresolver: letsencrypt
+      traefik.http.routers.pika-ppt.service: pika-ppt-web@docker
+      traefik.http.routers.pika-ppt.middlewares: security-headers@file
+      traefik.http.services.pika-ppt-web.loadbalancer.server.port: '8080'
+networks:
+  traefik_proxy:
+    external: true
+    name: traefik_proxy
