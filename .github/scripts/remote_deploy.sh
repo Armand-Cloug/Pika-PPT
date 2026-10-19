@@ -22,7 +22,7 @@ esac
 [[ $registry_user =~ ^[A-Za-z0-9][A-Za-z0-9-]*$ ]] || fail 'Utilisateur GHCR invalide.'
 [[ $registry_token =~ ^[A-Za-z0-9_.=-]+$ ]] || fail 'Token GHCR invalide.'
 [[ $prune_images == true || $prune_images == false ]] || fail 'Option de nettoyage invalide.'
-for command in docker jq flock; do
+for command in docker flock; do
     command -v "$command" >/dev/null || fail "Prérequis absent : $command."
 done
 
@@ -44,31 +44,41 @@ export IMAGE_TAG=$image_tag
 image=ghcr.io/armand-cloug/pika-ppt/web
 service=pika-ppt-web
 compose=(docker compose --project-name pika-ppt --env-file .env -f docker-compose.yml)
-# Compose peut inclure des valeurs sensibles dans ses erreurs : ne pas afficher
-# ses sorties de configuration. Le JSON transite uniquement en mémoire/stdin.
-config=$("${compose[@]}" config --format json 2>/dev/null) || fail 'Configuration Compose/.env invalide.'
-printf '%s' "$config" | jq -e --arg rule "Host(\`$domain\`)" '
-    .services["pika-ppt-web"] as $s |
-    ($s.labels["traefik.http.routers.pika-ppt.rule"] == $rule) and
-    ($s.environment.AUTH_USERNAME | type == "string" and test("^[A-Za-z0-9_.@-]{1,128}$")) and
-    ($s.environment.AUTH_PASSWORD | type == "string" and length > 0 and (test("[\\x00-\\x1f\\x7f]") | not))
-' >/dev/null 2>&1 || fail 'DOMAIN ou identifiants invalides dans le .env serveur.'
-unset config
-# La sortie JSON de Compose rééchappe les dollars. --environment fournit la
-# valeur littérale pour contrôler sa longueur, sans l'exécuter ni la journaliser.
+# Compose reste le seul parseur du .env. Ses sorties restent en mémoire et
+# ses erreurs sont masquées, car elles peuvent contenir des valeurs sensibles.
+config_hash=$("${compose[@]}" config --hash "$service" 2>/dev/null) || fail 'Configuration Compose/.env invalide.'
 resolved=$("${compose[@]}" config --environment 2>/dev/null) || fail 'Variables Compose invalides.'
+username_found=false
 password_found=false
+domain_found=false
 while IFS= read -r line; do
     case $line in
+        AUTH_USERNAME=*)
+            [[ $username_found == false ]] || fail 'AUTH_USERNAME ambigu ou multiligne.'
+            username=${line#AUTH_USERNAME=}
+            [[ $username =~ ^[A-Za-z0-9_.@-]{1,128}$ ]] || fail 'AUTH_USERNAME invalide dans le .env serveur.'
+            username_found=true
+            ;;
         AUTH_PASSWORD=*)
+            [[ $password_found == false ]] || fail 'AUTH_PASSWORD ambigu ou multiligne.'
             password=${line#AUTH_PASSWORD=}
             [[ -n $password && ${#password} -le 512 ]] || fail 'AUTH_PASSWORD : 1 à 512 octets attendus.'
+            [[ $password != *[[:cntrl:]]* ]] || fail 'AUTH_PASSWORD : caractères de contrôle interdits.'
             password_found=true
+            ;;
+        DOMAIN=*)
+            [[ $domain_found == false && ${line#DOMAIN=} == "$domain" ]] || fail 'DOMAIN ne correspond pas à cet environnement.'
+            domain_found=true
             ;;
     esac
 done <<< "$resolved"
-[[ $password_found == true ]] || fail 'AUTH_PASSWORD absent du .env serveur.'
-unset resolved password line
+[[ $username_found == true && $password_found == true && $domain_found == true ]] || fail 'DOMAIN, AUTH_USERNAME et AUTH_PASSWORD requis dans le .env serveur.'
+# --environment affiche du texte : une valeur multiligne peut être tronquée
+# par read. Réinjecter les valeurs validées et comparer les empreintes natives
+# de Compose garantit que le service résolu est strictement identique.
+validated_hash=$(AUTH_USERNAME="$username" AUTH_PASSWORD="$password" DOMAIN="$domain" "${compose[@]}" config --hash "$service" 2>/dev/null) || fail 'Validation des variables Compose impossible.'
+[[ -n $config_hash && $config_hash == "$validated_hash" ]] || fail 'DOMAIN ou identifiants multilignes/ambigus dans le .env serveur.'
+unset resolved username password line config_hash validated_hash
 
 docker network inspect traefik_proxy >/dev/null 2>&1 || fail 'Réseau externe traefik_proxy introuvable.'
 registry_dir=
@@ -133,9 +143,12 @@ printf '%s\n' "$registry_token" |
 unset registry_token
 printf '[Deploy] Pull %s:%s\n' "$image" "$image_tag"
 "${compose[@]}" pull "$service" >/dev/null 2>&1 || fail 'Pull GHCR échoué.'
-repo_digests=$(docker image inspect "$image:$image_tag" --format '{{json .RepoDigests}}' 2>/dev/null) || fail "Inspection de l'image impossible."
-printf '%s' "$repo_digests" | jq -e --arg ref "$image@$image_digest" 'index($ref) != null' >/dev/null ||
-    fail 'Le tag a changé depuis sa validation GHCR ; aucun conteneur recréé.'
+repo_digests=$(docker image inspect "$image:$image_tag" --format '{{range .RepoDigests}}{{println .}}{{end}}' 2>/dev/null) || fail "Inspection de l'image impossible."
+digest_found=false
+while IFS= read -r ref; do
+    [[ $ref != "$image@$image_digest" ]] || digest_found=true
+done <<< "$repo_digests"
+[[ $digest_found == true ]] || fail 'Le tag a changé depuis sa validation GHCR ; aucun conteneur recréé.'
 
 # Remplacement atomique après pull validé ; restauration si up/healthcheck échoue.
 backup_env=$(mktemp .env-previous.XXXXXX)
