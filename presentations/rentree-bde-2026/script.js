@@ -18,7 +18,7 @@
   let statusTimer;
 
   function pageLabel(index) {
-    return `${String(index + 1).padStart(2, '0')} / ${slides.length}`;
+    return `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   }
   function resize() {
     stage.style.setProperty('--scale', Math.min(window.innerWidth / 1600, window.innerHeight / 900));

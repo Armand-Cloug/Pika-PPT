@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#826eed">
+  <meta name="description" content="Serveur web : fonctionnement, surface d’attaque et mesures de protection essentielles.">
+  <title>Serveur web — Surface d’attaque et protection</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Sécurité des serveurs web"
+      data-students="Armand Zireg"
+      data-teacher="Romain Drapeau"
+      data-deck-title="Serveur web"
+      aria-label="Serveur web : surface d’attaque et protection" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">Serveur web<span>ENSAR · 2025</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="3">Intro</button><button data-go="7">Attaque</button><button data-go="11">Défense</button><button data-go="14">Conclusion</button></div>
+  </header>
+
+  <div id="slides">
+    <!-- 1 · Page de garde -->
+    <section class="slide cover is-active" data-title="Serveur web" data-chapter="Accueil">
+      <span class="blob blob-a" aria-hidden="true"></span><span class="blob blob-b" aria-hidden="true"></span><span class="blob blob-c" aria-hidden="true"></span>
+      <div class="content">
+        <p class="eyebrow reveal">ENSAR · SÉCURITÉ DES SERVEURS WEB · 2025</p>
+        <h1 class="reveal">Serveur web</h1>
+        <p class="cover-sub reveal"><span>Surface d’attaque</span><span>Protection</span></p>
+        <dl class="identity reveal">
+          <div><dt>École</dt><dd>ENSAR</dd></div>
+          <div><dt>Matière</dt><dd>Sécurité des serveurs web</dd></div>
+          <div><dt>Étudiant</dt><dd>Armand Zireg</dd></div>
+          <div><dt>Enseignant</dt><dd>Romain Drapeau</dd></div>
+        </dl>
+        <button class="text-button reveal" data-next>Commencer <svg><use href="#i-arrow"/></svg></button>
+      </div>
+    </section>
+
+    <!-- 2 · Sommaire -->
+    <section class="slide" data-title="Table des matières" data-chapter="Accueil">
+      <div class="content wide">
+        <p class="eyebrow reveal">TABLE DES MATIÈRES</p>
+        <h2 class="reveal">Quatre parties</h2>
+        <ol class="summary-list reveal">
+          <li><button data-go="3"><span>01</span><b>Intro</b><small>Introduction technique aux serveurs web</small></button></li>
+          <li><button data-go="7"><span>02</span><b>Attaque</b><small>Surface d’attaque d’un serveur web</small></button></li>
+          <li><button data-go="11"><span>03</span><b>Défense</b><small>Mesures de protection essentielles</small></button></li>
+          <li><button data-go="14"><span>04</span><b>Conclusion</b><small>Conclusion synthétique et questions</small></button></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3 · Partie 01 -->
+    <section class="slide part" data-title="01 · Intro" data-chapter="Intro">
+      <span class="blob blob-a" aria-hidden="true"></span><span class="blob blob-c" aria-hidden="true"></span>
+      <div class="content">
+        <span class="part-number reveal">01</span>
+        <h2 class="reveal">Intro</h2>
+        <p class="lead reveal">Introduction technique aux serveurs web</p>
+      </div>
+    </section>
+
+    <!-- 4 · Serveurs web courants -->
+    <section class="slide" data-title="Les serveurs web courants" data-chapter="Intro">
+      <div class="content wide">
+        <p class="eyebrow reveal">INTRO · LE PAYSAGE</p>
+        <h2 class="reveal">Serveurs web courants</h2>
+        <div class="logos reveal">
+          <figure><img src="assets/img/apache.svg" alt="Apache HTTP Server"></figure>
+          <figure><img src="assets/img/nginx.webp" alt="Nginx"></figure>
+          <figure><img src="assets/img/lighttpd.svg" alt="Lighttpd"></figure>
+          <figure><img src="assets/img/caddy.webp" alt="Caddy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · Architecture -->
+    <section class="slide" data-title="Architecture trois-tiers" data-chapter="Intro">
+      <div class="content wide">
+        <p class="eyebrow reveal">INTRO · OÙ SE PLACE LE SERVEUR</p>
+        <h2 class="reveal">Architecture</h2>
+        <figure class="tiers reveal">
+          <svg viewBox="0 0 1300 470" role="img" aria-label="Architecture trois-tiers. Niveau 1 : le navigateur client envoie une requête HTTP au niveau 2, le serveur HTTP, qui lui renvoie du HTML. Le serveur HTTP transmet des paramètres aux applications du niveau 3, qui lui renvoient du HTML. Les applications échangent en SQL avec les bases de données.">
+            <defs><marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z"/></marker></defs>
+            <g class="tier-band"><rect x="0" y="0" width="300" height="400" rx="26"/><rect x="420" y="0" width="300" height="400" rx="26"/><rect x="840" y="0" width="460" height="400" rx="26"/></g>
+            <g class="tier-title"><text x="150" y="52">Niveau 1</text><text x="570" y="52">Niveau 2</text><text x="1070" y="52">Niveau 3</text></g>
+            <g class="tier-box"><rect x="40" y="140" width="220" height="140" rx="20"/><rect x="460" y="140" width="220" height="140" rx="20"/><rect x="865" y="140" width="190" height="140" rx="20"/><rect x="1095" y="140" width="185" height="140" rx="20"/></g>
+            <g class="tier-label"><text x="150" y="203">Navigateur</text><text x="150" y="238">= client</text><text x="570" y="220">Serveur HTTP</text><text x="960" y="220">Applications</text><text x="1187" y="203">Bases de</text><text x="1187" y="238">données</text></g>
+            <g class="tier-link">
+              <path d="M262 175H456"/><path d="M458 245H264"/>
+              <path d="M682 175H861"/><path d="M863 245H684"/>
+              <path class="both" d="M1059 210H1091"/>
+            </g>
+            <g class="tier-note"><text x="360" y="160">Requête HTTP</text><text x="360" y="275">HTML</text><text x="772" y="160">Paramètres</text><text x="772" y="275">HTML</text><text x="1075" y="126">SQL</text></g>
+            <text class="tier-caption" x="650" y="455">Architecture trois-tiers</text>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 6 · Config minimale Nginx -->
+    <section class="slide code-slide" data-title="Configuration minimale Nginx" data-chapter="Intro">
+      <div class="content">
+        <p class="eyebrow reveal">INTRO · EN PRATIQUE</p>
+        <h2 class="reveal">Config minimale Nginx</h2>
+      </div>
+      <figure class="terminal nginx reveal" aria-label="Configuration Nginx minimale">
+        <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><code><span class="kw">server</span> {
+    <span class="kw">listen</span> <span class="num">80</span>;
+    <span class="kw">server_name</span> <span class="str">example.com</span>;
+
+    <span class="kw">root</span> <span class="str">/var/www/html</span>;
+    <span class="kw">index</span> <span class="str">index.php index.html</span>;
+
+    <span class="kw">location</span> <span class="str">/</span> {
+        <span class="kw">try_files</span> <span class="var">$uri $uri/</span> <span class="num">=404</span>;
+    }
+
+    <span class="kw">location</span> ~ <span class="op">\.</span><span class="str">php$</span> {
+        <span class="kw">include</span> <span class="str">snippets/fastcgi-php.conf</span>;
+        <span class="kw">fastcgi_pass</span> <span class="str">unix:/run/php/php8.1-fpm.sock</span>;
+    }
+
+    <span class="kw">location</span> ~ <span class="str">/</span><span class="op">\.</span><span class="str">ht</span> {
+        <span class="kw">deny</span> <span class="str">all</span>;
+    }
+}</code></pre>
+      </figure>
+    </section>
+
+    <!-- 7 · Partie 02 -->
+    <section class="slide part" data-title="02 · Attaque" data-chapter="Attaque">
+      <span class="blob blob-b" aria-hidden="true"></span><span class="blob blob-c" aria-hidden="true"></span>
+      <div class="content">
+        <span class="part-number reveal">02</span>
+        <h2 class="reveal">Attaque</h2>
+        <p class="lead reveal">Surface d’attaque d’un serveur web</p>
+      </div>
+    </section>
+
+    <!-- 8 · Repérage de la cible -->
+    <section class="slide recon" data-title="Repérage de la cible" data-chapter="Attaque">
+      <div class="content wide">
+        <p class="eyebrow reveal">ATTAQUE · ÉTAPE 1</p>
+        <h2 class="reveal">Repérage de la cible</h2>
+      </div>
+      <figure class="terminal nmap reveal" aria-label="Scan nmap de la machine">
+        <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><code><span class="prompt">root@Sanctum:/home/debian#</span> nmap <span class="flag">-p</span> <span class="num">80,443 127.0.0.1</span>
+Starting Nmap <span class="num">7.93</span> ( https://nmap.org ) at <span class="num">2025-05-06 13:31</span> CEST
+Nmap scan report for localhost (<span class="num">127.0.0.1</span>)
+Host is up (<span class="num">0.00011s</span> latency).
+
+PORT     STATE  SERVICE
+<span class="num">80</span>/tcp   closed http
+<span class="num">443</span>/tcp  <span class="hl">open</span>   https
+
+Nmap done: <span class="num">1</span> IP address (<span class="num">1</span> host up) scanned in <span class="num">0.10</span> seconds
+<span class="prompt">root@Sanctum:/home/debian#</span> nmap <span class="flag">-sV -Pn</span> <span class="num">127.0.0.1</span>
+Starting Nmap <span class="num">7.93</span> ( https://nmap.org ) at <span class="num">2025-05-06 13:31</span> CEST
+Nmap scan report for localhost (<span class="num">127.0.0.1</span>)
+Host is up (<span class="num">0.0000070s</span> latency).
+Not shown: <span class="num">995</span> closed tcp ports (reset)
+PORT      STATE SERVICE  VERSION
+<span class="num">22</span>/tcp    <span class="hl">open</span>  ssh      OpenSSH <span class="num">9.2p1</span> Debian 2+deb12u5 (protocol <span class="num">2.0</span>)
+<span class="num">25</span>/tcp    <span class="hl">open</span>  smtp     Exim smtpd <span class="num">4.96</span>
+<span class="num">443</span>/tcp   <span class="hl">open</span>  ssl/http nginx
+<span class="num">2100</span>/tcp  <span class="hl">open</span>  ftp      ProFTPD
+<span class="num">3306</span>/tcp  <span class="hl">open</span>  mysql    MySQL <span class="num">5.5.5-10.11.11</span>-MariaDB-0+deb12u1
+Service Info: Host: Sanctum; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: <span class="num">1</span> IP address (<span class="num">1</span> host up) scanned in <span class="num">12.72</span> seconds</code></pre>
+      </figure>
+      <figure class="terminal curl reveal" aria-label="En-têtes HTTP récupérés avec curl">
+        <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><code><span class="prompt">root@Sanctum:/home/debian#</span> curl <span class="flag">-I</span> https://portfolio.fruixy.cloug.fr
+HTTP/1.1 <span class="num">200</span> OK
+<span class="hl">Server: nginx</span>
+Date: Tue, <span class="num">06</span> May <span class="num">2025 11:34:03</span> GMT
+Content-Type: text/html
+Content-Length: <span class="num">2647</span>
+Last-Modified: Sun, <span class="num">27</span> Apr <span class="num">2025 18:39:05</span> GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+ETag: "680e79c9-a57"
+Strict-Transport-Security: max-age=<span class="num">31536000</span>
+Accept-Ranges: bytes</code></pre>
+      </figure>
+    </section>
+
+    <!-- 9 · Fichiers sensibles -->
+    <section class="slide" data-title="Fichiers sensibles" data-chapter="Attaque">
+      <div class="content wide">
+        <p class="eyebrow reveal">ATTAQUE · CE QUE L’ON CHERCHE</p>
+        <h2 class="reveal">Fichiers sensibles</h2>
+        <div class="files reveal">
+          <code>.env</code><code>.git</code><code>.htaccess</code><code>config.php</code><code>.sql</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · Injections via l'URL -->
+    <section class="slide" data-title="Injections via l’URL" data-chapter="Attaque">
+      <div class="content wide">
+        <p class="eyebrow reveal">ATTAQUE · PAR LES PARAMÈTRES</p>
+        <h2 class="reveal">Injections via l’URL</h2>
+        <div class="urls reveal">
+          <div class="url-row"><span class="url-tag">Requête normale</span><code>http://example.com/search.php?q=test</code></div>
+          <div class="url-row danger"><span class="url-tag">Injection SQL</span><code>?q=test' OR '1'='1</code></div>
+          <div class="url-row danger"><span class="url-tag">XSS</span><code>?q=&lt;script&gt;alert(1)&lt;/script&gt;</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Partie 03 -->
+    <section class="slide part" data-title="03 · Défense" data-chapter="Défense">
+      <span class="blob blob-a" aria-hidden="true"></span><span class="blob blob-b" aria-hidden="true"></span>
+      <div class="content">
+        <span class="part-number reveal">03</span>
+        <h2 class="reveal">Défense</h2>
+        <p class="lead reveal">Mesures de protection essentielles</p>
+      </div>
+    </section>
+
+    <!-- 12 · Failles classiques -->
+    <section class="slide" data-title="Failles classiques" data-chapter="Défense">
+      <div class="content wide">
+        <p class="eyebrow reveal">DÉFENSE · ÉVITER LES ERREURS</p>
+        <h2 class="reveal">Failles classiques</h2>
+        <div class="cards reveal">
+          <article><h3>Config</h3><p>Bien configurer son serveur web avec la documentation officielle.</p></article>
+          <article><h3>Droits</h3><p>Bien gérer les droits de chaque utilisateur.</p></article>
+          <article><h3>Exposition</h3><p>Ne pas laisser de dossiers ou de fichiers visibles.</p></article>
+          <article><h3>SSL/TLS</h3><p>Toujours mettre en place du HTTPS.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · Protection de base -->
+    <section class="slide" data-title="Protection de base" data-chapter="Défense">
+      <div class="content wide">
+        <p class="eyebrow reveal">DÉFENSE · LE SOCLE</p>
+        <h2 class="reveal">Protection de base</h2>
+        <div class="cards reveal">
+          <article><h3>Firewall</h3><p>Mettre en place un pare-feu.</p></article>
+          <article><h3>Fail2Ban</h3><p>Utiliser un service contre le brute force.</p></article>
+          <article><h3>Supervision</h3><p>Surveiller l’activité du serveur via Zabbix et/ou une stack ELK.</p></article>
+          <article><h3>Isolation</h3><p>Isoler son serveur, voire le déployer dans Docker.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · Partie 04 -->
+    <section class="slide part" data-title="04 · Conclusion" data-chapter="Conclusion">
+      <span class="blob blob-a" aria-hidden="true"></span><span class="blob blob-c" aria-hidden="true"></span>
+      <div class="content">
+        <span class="part-number reveal">04</span>
+        <h2 class="reveal">Conclusion</h2>
+        <p class="lead reveal">Conclusion synthétique et questions</p>
+      </div>
+    </section>
+
+    <!-- 15 · Synthèse -->
+    <section class="slide" data-title="Ce qu’il faut retenir" data-chapter="Conclusion">
+      <div class="content wide">
+        <p class="eyebrow reveal">CONCLUSION · À RETENIR</p>
+        <h2 class="reveal">Trois messages</h2>
+        <ol class="takeaways reveal">
+          <li><span>01</span><h3>Connaître son serveur</h3><p>Son rôle dans l’architecture et une configuration minimale maîtrisée.</p></li>
+          <li><span>02</span><h3>Réduire la surface</h3><p>Ports, versions, fichiers sensibles et paramètres d’URL sont les premières cibles.</p></li>
+          <li><span>03</span><h3>Protéger en couches</h3><p>Configuration, droits, HTTPS, pare-feu, Fail2Ban, supervision et isolation.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 16 · Merci -->
+    <section class="slide thanks" data-title="Merci ! Des questions ?" data-chapter="Conclusion">
+      <span class="blob blob-a" aria-hidden="true"></span><span class="blob blob-b" aria-hidden="true"></span><span class="blob blob-c" aria-hidden="true"></span>
+      <div class="content">
+        <h2 class="reveal giant">Merci !</h2>
+        <p class="lead reveal">Des questions ?</p>
+        <a class="mail reveal" href="mailto:Armand.zireg@etu.univ-poitiers.fr">Armand.zireg@etu.univ-poitiers.fr</a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">ACCUEIL</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Crédits">Crédits</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 16</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">SERVEUR WEB</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">SERVEUR WEB</p><h2 id="sources-title">Crédits</h2></div><button class="close-dialog" aria-label="Fermer les crédits">×</button></div><div class="sources-copy">
+  <h3>Contenu</h3>
+  <p>Reprise de la présentation PowerPoint originale. Les captures de code (configuration Nginx, nmap, curl) sont retranscrites en texte et le schéma trois-tiers est redessiné. La slide « Trois messages » synthétise les parties précédentes.</p>
+  <h3>Logos</h3>
+  <p>Apache HTTP Server, Nginx, Lighttpd et Caddy sont des marques de leurs détenteurs respectifs ; logos repris de la présentation originale.</p>
+  <h3>Typographies</h3>
+  <p>Sigmar One (The Sigmar One Project Authors) et Hind (Indian Type Foundry), sous licence SIL Open Font License 1.1. Fichiers dans <code>assets/fonts/</code>.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

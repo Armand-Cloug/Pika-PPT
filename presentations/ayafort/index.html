@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e2a45">
+  <meta name="description" content="AyaFort : bastion SSH auto-hébergé avec interface web de gestion, développé en alternance pour aYaline.">
+  <title>AyaFort — Fiche projet</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Alternance ingénieur ENSAR × aYaline"
+      data-students="Armand Zireg"
+      data-teacher=""
+      data-deck-title="AyaFort"
+      aria-label="Fiche projet AyaFort" aria-roledescription="diaporama">
+  <header class="topbar">
+    <span class="brand">AyaFort<span>FICHE PROJET</span></span>
+    <span class="edition">ALTERNANCE · ENSAR × aYaline</span>
+  </header>
+
+  <div id="slides">
+    <section class="slide project is-active" data-title="AyaFort · Bastion SSH" data-chapter="Fiche projet">
+      <div class="project-copy">
+        <h1 class="reveal">AyaFort</h1>
+        <p class="tagline reveal">Bastion SSH auto-hébergé avec interface web de gestion</p>
+        <p class="intro reveal">Développé en interne pour aYaline, en remplacement de Passhport — solution open source non maintenue depuis 2023 — AyaFort centralise et trace l’ensemble des accès SSH vers l’infrastructure de l’entreprise.</p>
+        <ul class="features reveal">
+          <li><b>Bastion SSH (Rust)</b> — point d’entrée unique vers les VMs</li>
+          <li><b>Interface web (Next.js)</b> — gestion des accès, terminal SSH intégré</li>
+          <li><b>Runner Ansible (Rust)</b> — automatisation multi-hôtes</li>
+          <li><b>Authentification Google OAuth</b>, clés SSH centralisées (MariaDB)</li>
+          <li><b>Architecture 100 % conteneurisée</b> (Docker), CI/CD GitLab</li>
+        </ul>
+      </div>
+
+      <figure class="architecture reveal" role="img" aria-label="Architecture d’AyaFort. Navigateur, puis Traefik (reverse proxy), puis l’interface web Next.js (gestion et terminal SSH), qui s’appuie sur MariaDB (données applicatives). L’interface web déclenche un playbook (SSH + SSE) sur le runner Ansible en Rust et ouvre un terminal SSH via le bastion. Un client SSH passe aussi par le bastion (jump server en Rust). Le bastion et le runner Ansible accèdent aux VMs de l’infrastructure aYaline : Proxmox, Kubernetes, Docker.">
+        <svg class="wires" viewBox="0 0 1600 900" aria-hidden="true">
+          <defs><marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z"/></marker></defs>
+          <path class="arrow" d="M810 234V270"/>
+          <path class="arrow" d="M810 336V372"/>
+          <path class="arrow" d="M810 450V486"/>
+          <path class="arrow" d="M948 411H1056"/>
+          <path class="arrow" d="M930 372V354H1512V336"/>
+          <path class="arrow" d="M1296 411H1404V336"/>
+          <path class="arrow" d="M1458 234V270"/>
+          <path class="arrow" d="M1458 336V600"/>
+        </svg>
+        <div class="node plain" style="left:672px;top:168px;width:276px;height:66px"><b>Navigateur</b></div>
+        <div class="node" style="left:672px;top:270px;width:276px;height:66px"><i></i><b>Traefik</b><small>Reverse proxy</small></div>
+        <div class="node" style="left:672px;top:372px;width:276px;height:78px"><i></i><b>Web — Next.js</b><small>Gestion + terminal SSH</small></div>
+        <div class="node" style="left:672px;top:486px;width:276px;height:66px"><i></i><b>MariaDB</b><small>Données applicatives</small></div>
+        <div class="node" style="left:1056px;top:372px;width:240px;height:78px"><i></i><b>Ansible</b><small>Runner Rust</small></div>
+        <div class="node plain" style="left:1356px;top:168px;width:204px;height:66px"><b>Client SSH</b></div>
+        <div class="node" style="left:1356px;top:270px;width:204px;height:66px"><i></i><b>Bastion</b><small>Jump server (Rust)</small></div>
+        <div class="node infra" style="left:1032px;top:600px;width:516px;height:90px"><b>VMs — infrastructure aYaline</b><small>Proxmox / Kubernetes / Docker</small></div>
+        <span class="edge-label" style="left:950px;top:418px;width:104px">déclenche un playbook (SSH + SSE)</span>
+        <span class="edge-label" style="left:960px;top:322px;width:324px">ouvre un terminal SSH</span>
+      </figure>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">FICHE PROJET</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Crédits">Crédits</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 01</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">AYAFORT</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">AYAFORT</p><h2 id="sources-title">Crédits</h2></div><button class="close-dialog" aria-label="Fermer les crédits">×</button></div><div class="sources-copy">
+  <h3>Contenu</h3>
+  <p>Reprise fidèle de la fiche projet PowerPoint originale. Schéma d’architecture redessiné en HTML/SVG à l’identique.</p>
+  <h3>Typographie</h3>
+  <p>Carlito (The Carlito Project Authors), compatible métriquement avec Calibri, police de l’original. Licence SIL Open Font License 1.1, fichier dans <code>assets/fonts/</code>.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>
