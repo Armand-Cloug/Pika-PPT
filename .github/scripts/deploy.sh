@@ -39,9 +39,12 @@ ssh_options=(
     -o ConnectTimeout=30 -o ServerAliveInterval=15
 )
 remote="deploy@$deploy_host"
-ssh "${ssh_options[@]}" "$remote" 'umask 077; mkdir -p /opt/pika-ppt/.deploy'
-scp "${ssh_options[@]}" docker-compose.yml .env.dist "$remote:/opt/pika-ppt/"
-scp "${ssh_options[@]}" .github/scripts/remote_deploy.sh "$remote:/opt/pika-ppt/.deploy/remote_deploy.sh"
+ssh "${ssh_options[@]}" "$remote" 'command -v rsync >/dev/null || { echo "Prérequis absent sur la VM : rsync." >&2; exit 1; }; umask 077; mkdir -p /opt/pika-ppt/.deploy'
+# rsync passe par SSH, sans sous-système SFTP côté serveur. Les options SSH ne
+# contiennent pas d'espace (répertoire mktemp), -e peut donc les recevoir jointes.
+rsync_ssh="ssh ${ssh_options[*]}"
+rsync -e "$rsync_ssh" docker-compose.yml .env.dist "$remote:/opt/pika-ppt/"
+rsync -e "$rsync_ssh" .github/scripts/remote_deploy.sh "$remote:/opt/pika-ppt/.deploy/remote_deploy.sh"
 # printf est un builtin Bash : aucune valeur secrète dans les arguments d'un
 # processus externe. Le script distant est fixe ; stdin transporte les données.
 printf '%s\n' "$TARGET_ENV" "$IMAGE_TAG" "$IMAGE_DIGEST" "$REGISTRY_USER" "$prune_images" "$registry_token" |

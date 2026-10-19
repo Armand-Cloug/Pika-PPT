@@ -148,7 +148,7 @@ Utiliser A/AAAA vers les adresses correspondantes, ou un CNAME vers le nom du se
 
 Répéter sur chaque serveur, avec son domaine et ses identifiants propres.
 
-1. Préparer Docker Engine, Compose ≥ 2.24, Bash, `flock` (paquet `util-linux`), les outils GNU courants (`coreutils`), le client OpenSSH/SFTP et les certificats CA système. Ni Python ni `jq` ne sont requis sur les VMs. Le compte `deploy` doit pouvoir utiliser Docker sans `sudo` interactif. Les VMs doivent être Linux **amd64**, architecture publiée par le workflow.
+1. Préparer Docker Engine, Compose ≥ 2.24, Bash, `flock` (paquet `util-linux`), les outils GNU courants (`coreutils`), le serveur OpenSSH, `rsync` (transfert des fichiers de déploiement, sans SFTP requis) et les certificats CA système. Ni Python ni `jq` ne sont requis sur les VMs. Le compte `deploy` doit pouvoir utiliser Docker sans `sudo` interactif. Les VMs doivent être Linux **amd64**, architecture publiée par le workflow.
 2. Par un compte administrateur, créer le répertoire appartenant à `deploy` :
 
    ```sh
@@ -163,13 +163,14 @@ Répéter sur chaque serveur, avec son domaine et ses identifiants propres.
    docker compose version
    bash --version
    flock --version
+   rsync --version
    ```
 
 5. Transférer `.env.dist` puis préparer le `.env` **sur la VM** :
 
    ```sh
    # Depuis le dépôt, exemple préproduction :
-   scp .env.dist deploy@utilla.cloug.fr:/opt/pika-ppt/.env.dist
+   rsync .env.dist deploy@utilla.cloug.fr:/opt/pika-ppt/.env.dist
    ssh deploy@utilla.cloug.fr
    cd /opt/pika-ppt
    umask 077
@@ -231,7 +232,7 @@ Le runner construit pour `linux/amd64` ; les VMs ne construisent jamais l’imag
 
 **Préproduction** : Actions → **Deploy — Préproduction** → renseigner le tag exact, par exemple `1.0.0-build.42.1`. Vide = contenu de `VERSION` de la branche choisie. L’option de nettoyage reste décochée par défaut.
 
-Le workflow réutilisable appelle `metadata.sh` pour résoudre les tags, puis `deploy.sh` pour le transport SSH strict. Il vérifie l’existence du tag, résout le digest avec `jq` déjà fourni sur le runner GitHub, crée le répertoire si nécessaire et copie uniquement Compose, `.env.dist` et `.deploy/remote_deploy.sh`. Ce dernier s’exécute avec Bash sur la VM, sans `jq` : il lit les valeurs résolues par `docker compose config --environment`, vérifie leur correspondance exacte avec `config --hash` et lit les digests via le format natif de `docker image inspect`. Sous verrou `flock`, il valide le `.env`, le domaine et le réseau ; effectue le login éphémère, le pull et la comparaison du digest ; remplace atomiquement le seul `IMAGE_TAG` ; recrée uniquement `pika-ppt-web` avec `--no-deps` ; attend le healthcheck Docker. Les autres lignes du `.env` sont préservées, sans `source` ni `eval`. Les identifiants restent sur la VM.
+Le workflow réutilisable appelle `metadata.sh` pour résoudre les tags, puis `deploy.sh` pour le transport SSH strict. Il vérifie l’existence du tag, résout le digest avec `jq` déjà fourni sur le runner GitHub, crée le sous-répertoire `.deploy` si nécessaire et copie avec `rsync` via SSH uniquement Compose, `.env.dist` et `.deploy/remote_deploy.sh`. Ce dernier s’exécute avec Bash sur la VM, sans `jq` : il lit les valeurs résolues par `docker compose config --environment`, vérifie leur correspondance exacte avec `config --hash` et lit les digests via le format natif de `docker image inspect`. Sous verrou `flock`, il valide le `.env`, le domaine et le réseau ; effectue le login éphémère, le pull et la comparaison du digest ; remplace atomiquement le seul `IMAGE_TAG` ; recrée uniquement `pika-ppt-web` avec `--no-deps` ; attend le healthcheck Docker. Les autres lignes du `.env` sont préservées, sans `source` ni `eval`. Les identifiants restent sur la VM.
 
 La concurrence est sérialisée par environnement dans GitHub et un verrou distant évite deux recréations simultanées. La recréation de l’unique conteneur peut provoquer une brève interruption ; ce projet ne prétend pas offrir un déploiement sans interruption.
 
