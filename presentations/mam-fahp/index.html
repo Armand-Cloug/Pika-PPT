@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1b222d">
+  <meta name="description" content="Lecture et analyse d’une MAM : choix d’un langage de programmation orienté objet par la méthode Fuzzy AHP, commentaires et analyse critique sous l’angle SSI.">
+  <title>Lecture et analyse d’une MAM — Fuzzy AHP</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Méthodes d’analyse multicritères"
+      data-students="Ethan Siegler · Armand Zireg"
+      data-teacher=""
+      data-deck-title="Lecture et analyse d’une MAM"
+      aria-label="Lecture et analyse d’une MAM : la méthode Fuzzy AHP appliquée au choix d’un langage" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>MAM<span class="sub">FUZZY AHP</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="4">Référence</button><button data-go="6">Synthèse</button><button data-go="12">Commentaires</button><button data-go="15">Analyse critique</button></div>
+    <span class="edition">ENSAR · SSI</span>
+  </header>
+  <div class="window" aria-hidden="true"><div class="chrome"><i></i><i></i><i></i></div><div class="pane"></div></div>
+  <span class="planet p1" aria-hidden="true"></span><span class="planet p2" aria-hidden="true"></span>
+
+  <div id="slides">
+    <!-- 01 · Page de garde -->
+    <section class="slide cover is-active" data-title="Lecture et analyse d’une MAM" data-chapter="Introduction">
+      <div class="folder dark cover-folder reveal" style="--tab:var(--yellow)">
+        <p class="kicker">MÉTHODES D’ANALYSE MULTICRITÈRES</p>
+        <h1>Lecture et analyse<br>d’une <em>MAM</em></h1>
+        <dl class="identity">
+          <div><dt>École</dt><dd>ENSAR · option SSI</dd></div>
+          <div><dt>Matière</dt><dd>Méthodes d’analyse multicritères</dd></div>
+          <div><dt>Étudiants</dt><dd>Ethan Siegler · Armand Zireg</dd></div>
+        </dl>
+      </div>
+      <div class="logos reveal"><img src="assets/img/ssi.webp" alt="Logo de l’option SSI de l’ENSAR"><img src="assets/img/ensar.webp" alt="Logo ENSAR"><img src="assets/img/universite-poitiers.webp" alt="Logo de l’Université de Poitiers"></div>
+    </section>
+
+    <!-- 02 · Table des matières -->
+    <section class="slide" data-title="Table des matières" data-chapter="Introduction">
+      <h2 class="title reveal">Table des matières</h2>
+      <ol class="toc reveal">
+        <li><button data-go="4"><span class="tag yellow">01</span><b>Référence</b><small>Référence bibliographique de l’article</small></button></li>
+        <li><button data-go="6"><span class="tag green">02</span><b>Synthèse</b><small>Synthèse structurée de l’étude</small></button></li>
+        <li><button data-go="12"><span class="tag pink">03</span><b>Commentaires</b><small>Commentaires de la méthode</small></button></li>
+        <li><button data-go="15"><span class="tag purple">04</span><b>Analyse critique</b><small>Point de vue sécurité des systèmes d’information</small></button></li>
+      </ol>
+    </section>
+
+    <!-- 03 · Introduction -->
+    <section class="slide" data-title="Introduction · MAM, SSI, langage" data-chapter="Introduction">
+      <h2 class="title reveal">Introduction</h2>
+      <div class="folders three reveal">
+        <article class="folder dark" style="--tab:var(--red)"><h3>MAM</h3><p>Méthode permettant de comparer et de choisir entre plusieurs options selon différents critères.</p></article>
+        <article class="folder dark" style="--tab:var(--yellow)"><h3>SSI</h3><p>Option de gestion des risques de l’ENSAR, orientée vers la sécurité des systèmes d’information.</p></article>
+        <article class="folder dark" style="--tab:var(--pink)"><h3>Langage</h3><p>Outil formel permettant d’écrire des instructions compréhensibles par un ordinateur pour exécuter des tâches.</p></article>
+      </div>
+    </section>
+
+    <!-- 04 · Partie 01 -->
+    <section class="slide part" data-title="01 · Référence" data-chapter="Référence">
+      <span class="part-number reveal">01</span>
+      <div class="part-folder reveal" style="--tab:var(--yellow)"><h2>Référence</h2><p>Référence bibliographique de l’article</p></div>
+    </section>
+
+    <!-- 05 · Référence -->
+    <section class="slide" data-title="Référence bibliographique" data-chapter="Référence">
+      <h2 class="title reveal">Référence bibliographique</h2>
+      <div class="folder dark ref reveal" style="--tab:var(--yellow)">
+        <p class="authors">Rouyendegh, B. D., &amp; Lesani, S. H. (2014)</p>
+        <p class="paper">Object-Oriented Programming Language Selection Using Fuzzy AHP Method.</p>
+        <p class="venue"><i>International Journal of the Analytic Hierarchy Process</i>, Washington D.C., 29 juin – 2 juillet 2014.</p>
+        <p class="fr">« Sélection d’un langage de programmation orienté objet à l’aide de la méthode AHP floue » · Babak Daneshvar Rouyendegh et Seyed Hesamoddin Lesani</p>
+      </div>
+    </section>
+
+    <!-- 06 · Partie 02 -->
+    <section class="slide part" data-title="02 · Synthèse" data-chapter="Synthèse">
+      <span class="part-number reveal">02</span>
+      <div class="part-folder reveal" style="--tab:var(--green)"><h2>Synthèse</h2><p>Synthèse structurée de l’étude</p></div>
+    </section>
+
+    <!-- 07 · Contexte -->
+    <section class="slide" data-title="Contexte de l’étude" data-chapter="Synthèse">
+      <h2 class="title reveal">Contexte</h2>
+      <div class="folder dark context reveal" style="--tab:var(--sky)">
+        <p>Choisir un langage de programmation est un <b>problème multicritère</b> : au-delà de la performance, comptent aussi la lisibilité, la maintenance et la diffusion académique et industrielle.</p>
+        <p>Pour gérer l’incertitude liée aux jugements subjectifs, les auteurs utilisent le <b>Fuzzy AHP</b>, une extension de l’AHP (<i>Analytic Hierarchy Process</i>) qui modélise mieux les hésitations des experts.</p>
+      </div>
+      <div class="mascots reveal" aria-hidden="true"><img src="assets/img/garen.webp" alt=""><img src="assets/img/tryndamere.webp" alt=""><img src="assets/img/yuumi.webp" alt=""><img src="assets/img/azir.webp" alt=""></div>
+    </section>
+
+    <!-- 08 · Méthode FAHP -->
+    <section class="slide" data-title="La méthode FAHP en cinq étapes" data-chapter="Synthèse">
+      <h2 class="title reveal">Méthode FAHP</h2>
+      <ol class="pipeline reveal">
+        <li style="--tab:var(--yellow)"><span>1</span><h3>Modèle</h3><p>Modélisation hiérarchique : objectif, critères, sous-critères, actions</p></li>
+        <li style="--tab:var(--green)"><span>2</span><h3>Jugement</h3><p>Jugements flous : nombres triangulaires (l, m, u) au lieu de l’échelle 1 à 9</p></li>
+        <li style="--tab:var(--pink)"><span>3</span><h3>Agrégation</h3><p>Moyennes géométriques floues pour obtenir des poids agrégés</p></li>
+        <li style="--tab:var(--sky)"><span>4</span><h3>Défuzzification</h3><p>Valeurs floues transformées en scores nets via l’indice d’optimisme λ</p></li>
+        <li style="--tab:var(--red)"><span>5</span><h3>Classement</h3><p>Normalisation des scores pour établir un ordre</p></li>
+      </ol>
+    </section>
+
+    <!-- 09 · Critères 1/2 -->
+    <section class="slide" data-title="Critères utilisés · 1 / 2" data-chapter="Synthèse">
+      <h2 class="title reveal">Critères utilisés <small>1 / 2</small></h2>
+      <div class="criteria reveal">
+        <span class="hub">Langage<br>orienté objet</span>
+        <b style="--tab:var(--purple)">Facilité d’usage</b><b style="--tab:var(--purple)">Acceptation industrielle</b><b style="--tab:var(--purple)">Acceptation académique</b><b style="--tab:var(--purple)">Propriétés logicielles</b>
+      </div>
+    </section>
+
+    <!-- 10 · Critères 2/2 -->
+    <section class="slide" data-title="Critères utilisés · 2 / 2" data-chapter="Synthèse">
+      <h2 class="title reveal">Critères utilisés <small>2 / 2</small></h2>
+      <div class="criteria reveal">
+        <span class="hub">Langage<br>orienté objet</span>
+        <b style="--tab:var(--purple)">Disponibilité</b><b style="--tab:var(--purple)">Pédagogie</b><b style="--tab:var(--purple)">Finalité</b><b style="--tab:var(--purple)">Méthodologie</b>
+      </div>
+    </section>
+
+    <!-- 11 · Résultats -->
+    <section class="slide" data-title="Résultats · Python en tête" data-chapter="Synthèse">
+      <h2 class="title reveal">Résultats</h2>
+      <ol class="bars reveal" aria-label="Scores finaux par langage">
+        <li style="--v:100%;--tab:var(--yellow)"><b>01 · Python</b><span><i></i></span><em>0,120</em></li>
+        <li style="--v:63%;--tab:var(--green)"><b>02 · Ruby</b><span><i></i></span><em>0,076</em></li>
+        <li style="--v:31%;--tab:var(--pink)"><b>03 · C#</b><span><i></i></span><em>0,037</em></li>
+        <li style="--v:27.5%;--tab:var(--sky)"><b>04 · C++</b><span><i></i></span><em>0,033</em></li>
+        <li style="--v:20%;--tab:var(--red)"><b>05 · Java</b><span><i></i></span><em>0,024</em></li>
+      </ol>
+      <p class="verdict reveal">Python est jugé le plus adapté grâce à sa lisibilité, sa flexibilité et son adoption académique et industrielle.</p>
+    </section>
+
+    <!-- 12 · Partie 03 -->
+    <section class="slide part" data-title="03 · Commentaires" data-chapter="Commentaires">
+      <span class="part-number reveal">03</span>
+      <div class="part-folder reveal" style="--tab:var(--pink)"><h2>Commentaires</h2><p>Commentaires de la méthode</p></div>
+    </section>
+
+    <!-- 13 · Intérêt -->
+    <section class="slide" data-title="Intérêt du FAHP" data-chapter="Commentaires">
+      <h2 class="title reveal">Intérêt du FAHP</h2>
+      <div class="folders three reveal">
+        <article class="folder dark" style="--tab:var(--green)"><h3>Robustesse</h3><p>Permet de mieux capter l’incertitude humaine : tout l’intérêt du FAHP.</p></article>
+        <article class="folder dark" style="--tab:var(--green)"><h3>Quanti / quali</h3><p>Des jugements qualitatifs traduits en valeurs numériques exploitables.</p></article>
+        <article class="folder dark" style="--tab:var(--green)"><h3>Collectif</h3><p>Plusieurs experts peuvent contribuer, leurs jugements sont combinés en un seul.</p></article>
+      </div>
+    </section>
+
+    <!-- 14 · Limites -->
+    <section class="slide" data-title="Limites méthodologiques" data-chapter="Commentaires">
+      <h2 class="title reveal">Limites méthodologiques</h2>
+      <div class="folders three reveal">
+        <article class="folder dark" style="--tab:var(--red)"><h3>Dépendance</h3><p>Aux critères choisis : changer une pondération ou ajouter un critère peut bouleverser le classement.</p></article>
+        <article class="folder dark" style="--tab:var(--red)"><h3>Paramètre λ</h3><p>Un biais implicite : le choix de ce paramètre peut influencer le résultat.</p></article>
+        <article class="folder dark" style="--tab:var(--red)"><h3>Validation</h3><p>Pas de validation empirique, par exemple la productivité réelle des étudiants dans chaque langage.</p></article>
+      </div>
+    </section>
+
+    <!-- 15 · Partie 04 -->
+    <section class="slide part" data-title="04 · Analyse critique SSI" data-chapter="Analyse critique">
+      <span class="part-number reveal">04</span>
+      <div class="part-folder reveal" style="--tab:var(--purple)"><h2>Analyse critique</h2><p>Point de vue sécurité des systèmes d’information</p></div>
+    </section>
+
+    <!-- 16 · Langages vus par la SSI -->
+    <section class="slide" data-title="Les cinq langages vus par la SSI" data-chapter="Analyse critique">
+      <h2 class="title reveal">Les langages vus par la SSI</h2>
+      <div class="langs reveal">
+        <article style="--tab:var(--yellow)"><h3>Python</h3><ul class="plus"><li>Simplicité</li><li>Énorme écosystème</li><li>Ressources cyber</li></ul><ul class="minus"><li>Typage dynamique</li><li>Dépendances tierces</li></ul></article>
+        <article style="--tab:var(--green)"><h3>Ruby</h3><ul class="plus"><li>Metasploit</li></ul><ul class="minus"><li>Faible utilisation</li><li>Communauté réduite</li></ul></article>
+        <article style="--tab:var(--pink)"><h3>C#</h3><ul class="plus"><li>Langage C moderne</li><li>Outils de sécurité</li><li>RGPD &amp; ISO</li></ul><ul class="minus"><li>Langage complexe</li><li>Gestion de mémoire</li></ul></article>
+        <article style="--tab:var(--sky)"><h3>C++</h3><ul class="plus"><li>Langage bas niveau</li><li>Forte communauté</li><li>Très robuste</li></ul><ul class="minus"><li>Langage très complexe</li><li>Gestion mémoire</li><li>Aucune aide interne</li></ul></article>
+        <article style="--tab:var(--red)"><h3>Java</h3><ul class="plus"><li>Virtualisation</li><li>Robuste</li><li>Langage le plus utilisé</li></ul><ul class="minus"><li>Lourd</li><li>Langage complexe</li><li>Framework sensible</li></ul></article>
+      </div>
+    </section>
+
+    <!-- 17 · Critères SSI manquants -->
+    <section class="slide" data-title="Le manque de critères SSI" data-chapter="Analyse critique">
+      <h2 class="title reveal">Manque de critères SSI</h2>
+      <div class="missing reveal">
+        <article><h3>Robustesse</h3><p>Gestion des pointeurs, overflow, exceptions</p></article>
+        <article><h3>Sécurité interne</h3><p>Analyse statique, vérification formelle, outils de fuzzing</p></article>
+        <article><h3>Écosystème</h3><p>Maturité des gestionnaires de paquets, support SBOM, signatures</p></article>
+        <article><h3>Communauté</h3><p>Présence d’outils, librairies et frameworks dédiés</p></article>
+      </div>
+    </section>
+
+    <!-- 18 · Merci -->
+    <section class="slide thanks" data-title="Merci ! Avez-vous des questions ?" data-chapter="Questions">
+      <div class="folder dark thanks-folder reveal" style="--tab:var(--green)"><h2>Merci&nbsp;!</h2><p>Avez-vous des questions ?</p></div>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">INTRODUCTION</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et crédits">Sources</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 18</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">LECTURE ET ANALYSE D’UNE MAM</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">LECTURE ET ANALYSE D’UNE MAM</p><h2 id="sources-title">Sources et crédits</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Article étudié</h3>
+  <p>Rouyendegh, B. D., &amp; Lesani, S. H. (2014). <i>Object-Oriented Programming Language Selection Using Fuzzy AHP Method</i>. International Journal of the Analytic Hierarchy Process, Washington D.C.</p>
+  <h3>Contenu</h3>
+  <p>Reprise de la présentation PowerPoint originale. Les précisions sur les étapes du FAHP, la conclusion des auteurs et les exemples des limites viennent des notes du présentateur. Les cinq slides « langage » sont regroupées en une seule et le tableau des résultats est présenté en barres.</p>
+  <h3>Images et typographie</h3>
+  <p>Logos (SSI, ENSAR, Université de Poitiers) et visuels repris de la présentation originale. Epilogue (Etcetera Type Co) et Cabin (The Cabin Project Authors), licence SIL Open Font License 1.1.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

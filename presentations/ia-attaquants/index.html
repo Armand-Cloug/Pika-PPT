@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#134f5c">
+  <meta name="description" content="L’IA au service des attaquants : ingénierie sociale, automatisation des attaques, OSINT et attaques autonomes.">
+  <title>L’IA au service des attaquants</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+</defs></svg>
+
+<main id="stage"
+      data-school="ENSAR"
+      data-course="Ingénieur A2 GDR · SSI"
+      data-students="Armand Zireg"
+      data-teacher=""
+      data-deck-title="L’IA au service des attaquants"
+      aria-label="L’IA au service des attaquants" aria-roledescription="diaporama">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">IA &amp; ATTAQUANTS<span>SSI · ENSAR</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="5">Ingénierie sociale</button><button data-go="7">Automatisation</button><button data-go="9">OSINT</button><button data-go="11">Attaques autonomes</button></div>
+    <span class="edition">ARMAND ZIREG</span>
+  </header>
+  <div class="lines" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i></div>
+
+  <div id="slides">
+    <!-- 01 · Page de garde -->
+    <section class="slide cover is-active" data-title="L’IA au service des attaquants" data-chapter="Introduction">
+      <img class="illus cover-illus reveal" src="assets/illus/robot-casque.svg" alt="Illustration : un robot au casque sort d’un écran à côté d’une personne">
+      <div class="cover-copy">
+        <h1 class="reveal">L’IA au service<br>des <em>attaquants</em></h1>
+        <dl class="identity reveal">
+          <div><dt>École</dt><dd>ENSAR</dd></div>
+          <div><dt>Formation</dt><dd>Ingénieur A2 GDR · SSI</dd></div>
+          <div><dt>Étudiant</dt><dd>Armand Zireg</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 02 · Chiffre -->
+    <section class="slide figure" data-title="348 000 atteintes numériques en 2024" data-chapter="Introduction">
+      <div class="big-number reveal"><strong>348 000</strong><span>Environ 80 000 de plus qu’en 2023</span></div>
+      <p class="caption reveal">Nombre d’atteintes numériques en France en 2024</p>
+      <p class="source reveal">Source : ministère de l’Intérieur</p>
+    </section>
+
+    <!-- 03 · Citation -->
+    <section class="slide quote" data-title="Citation" data-chapter="Introduction">
+      <blockquote class="reveal"><p>« L’IA n’a pas rendu les attaquants meilleurs, elle permet aujourd’hui à <em>n’importe qui</em>, même sans intelligence ni compétence, de devenir dangereux. »</p><cite>— Un gars pas con (moi)</cite></blockquote>
+      <img class="illus quote-illus reveal" src="assets/illus/robot-telephone.svg" alt="">
+    </section>
+
+    <!-- 04 · Sommaire -->
+    <section class="slide" data-title="Table des matières" data-chapter="Introduction">
+      <h2 class="title reveal">Table des matières</h2>
+      <ol class="summary reveal">
+        <li><button data-go="5"><span>01</span>Ingénierie sociale</button></li>
+        <li><button data-go="7"><span>02</span>Automatisation des attaques</button></li>
+        <li><button data-go="9"><span>03</span>OSINT</button></li>
+        <li><button data-go="11"><span>04</span>Attaques autonomes</button></li>
+      </ol>
+      <img class="illus summary-illus reveal" src="assets/illus/robot-casque.svg" alt="">
+    </section>
+
+    <!-- 05 · Partie 01 -->
+    <section class="slide part" data-title="01 · Ingénierie sociale" data-chapter="Ingénierie sociale">
+      <div class="part-copy"><span class="part-number reveal">01</span><h2 class="reveal">Ingénierie sociale</h2><p class="lead reveal">La confiance devient une vulnérabilité exploitable à grande échelle.</p></div>
+      <img class="illus part-illus reveal" src="assets/illus/ecran.svg" alt="">
+    </section>
+
+    <!-- 06 · Ingénierie sociale -->
+    <section class="slide" data-title="Ingénierie sociale · DeepFake, phishing, fake news" data-chapter="Ingénierie sociale">
+      <h2 class="title reveal">Ingénierie sociale</h2>
+      <div class="cards reveal">
+        <article><img src="assets/img/deepfake.jpg" alt="Exemple de photo truquée de deux personnes"><h3>DeepFake</h3><p>Modification d’image ou de voix ultra réaliste</p></article>
+        <article><img src="assets/img/phishing.jpg" alt="Illustration d’un pirate qui pêche des données sur un ordinateur"><h3>Phishing</h3><p>Rédaction de messages de phishing « parfaits »</p></article>
+        <article><img src="assets/img/fake-news.jpg" alt="Montage « Fake news » avec Donald Trump au mégaphone"><h3>Fake news</h3><p>Simplification de la création et de la diffusion</p></article>
+      </div>
+    </section>
+
+    <!-- 07 · Partie 02 -->
+    <section class="slide part" data-title="02 · Automatisation des attaques" data-chapter="Automatisation">
+      <div class="part-copy"><span class="part-number reveal">02</span><h2 class="reveal">Automatisation des attaques</h2><p class="lead reveal">Un attaquant moyen équipé d’IA devient redoutablement efficace.</p></div>
+      <img class="illus part-illus reveal" src="assets/illus/ecran.svg" alt="">
+    </section>
+
+    <!-- 08 · Automatisation -->
+    <section class="slide" data-title="Automatisation · malware, polyvalence, réaction" data-chapter="Automatisation">
+      <h2 class="title reveal">Automatisation des attaques</h2>
+      <div class="tiles reveal">
+        <article><span class="icon"><img src="assets/illus/i-malware.svg" alt=""></span><h3>Malware</h3><p>Une IA peut générer un malware en quelques minutes seulement.</p></article>
+        <article><span class="icon"><img src="assets/illus/i-polyvalence.svg" alt=""></span><h3>Polyvalence</h3><p>Grâce à l’IA, un simple virus peut choisir le meilleur chemin d’attaque en fonction de l’hôte.</p></article>
+        <article><span class="icon"><img src="assets/illus/i-reaction.svg" alt=""></span><h3>Réaction</h3><p>En intégrant de l’IA, un virus peut réagir aux actions de l’utilisateur.</p></article>
+      </div>
+    </section>
+
+    <!-- 09 · Partie 03 -->
+    <section class="slide part" data-title="03 · OSINT" data-chapter="OSINT">
+      <div class="part-copy"><span class="part-number reveal">03</span><h2 class="reveal">OSINT</h2><p class="lead reveal">Internet n’oublie rien, l’IA nous rappelle tout.</p></div>
+      <img class="illus part-illus reveal" src="assets/illus/ecran.svg" alt="">
+    </section>
+
+    <!-- 10 · DeepSearch -->
+    <section class="slide osint" data-title="DeepSearch" data-chapter="OSINT">
+      <figure class="osint-img reveal"><img src="assets/img/osint.jpg" alt="Illustration OSINT : une main numérique tient un cercle « OSINT » entouré d’icônes"></figure>
+      <div class="osint-copy"><h2 class="reveal">DeepSearch</h2><p class="lead reveal">DeepSearch, ou les applis du genre, permettent de naviguer sur tout Internet pour trouver des infos sur une personne.</p></div>
+    </section>
+
+    <!-- 11 · Partie 04 -->
+    <section class="slide part" data-title="04 · Attaques autonomes" data-chapter="Attaques autonomes">
+      <div class="part-copy"><span class="part-number reveal">04</span><h2 class="reveal">Attaques autonomes</h2><p class="lead reveal">La vitesse devient un avantage stratégique pour l’attaquant.</p></div>
+      <img class="illus part-illus reveal" src="assets/illus/ecran.svg" alt="">
+    </section>
+
+    <!-- 12 · Attaques autonomes -->
+    <section class="slide" data-title="Attaques autonomes · botnets et portée mondiale" data-chapter="Attaques autonomes">
+      <h2 class="title reveal">Attaques autonomes</h2>
+      <div class="tiles two reveal">
+        <article><span class="icon"><img src="assets/illus/i-boting.svg" alt=""></span><h3>Botnets</h3><p>Des millions de serveurs contaminés par des malwares intelligents peuvent se réveiller et servir de bots, pour mener des attaques DDoS par exemple.</p></article>
+        <article><span class="icon"><img src="assets/illus/i-mondiale.svg" alt=""></span><h3>Mondiale</h3><p>L’IA permet de toucher le monde entier avec une seule attaque, par exemple en traduisant selon la langue de la cible.</p></article>
+      </div>
+    </section>
+
+    <!-- 13 · Merci -->
+    <section class="slide thanks" data-title="Merci ! Avez-vous des questions ?" data-chapter="Questions">
+      <figure class="meme reveal"><img src="assets/img/hacker.jpg" alt="Mème : un enfant en lunettes de soleil tape sur un ordinateur jouet, sur fond de code vert"></figure>
+      <div class="thanks-copy"><h2 class="reveal">Merci&nbsp;!</h2><p class="lead reveal">Avez-vous des questions ?</p></div>
+      <img class="illus thanks-illus reveal" src="assets/illus/bouclier.svg" alt="">
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">INTRODUCTION</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et crédits">Sources</button></div>
+    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 13</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">L’IA AU SERVICE DES ATTAQUANTS</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">L’IA AU SERVICE DES ATTAQUANTS</p><h2 id="sources-title">Sources et crédits</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Source</h3>
+  <p>Ministère de l’Intérieur : nombre d’atteintes numériques enregistrées en France en 2024.</p>
+  <h3>Contenu</h3>
+  <p>Reprise de la présentation PowerPoint originale, fautes de frappe corrigées.</p>
+  <h3>Images et typographie</h3>
+  <p>Illustrations vectorielles, photos et mèmes repris de la présentation originale. Sora (The Sora Project Authors) et Lato (Łukasz Dziedzic), licence SIL Open Font License 1.1.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>
