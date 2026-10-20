@@ -293,37 +293,14 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .big-ratio span{display:block;font-size:22px;margin-top:8px}
 
 /* 18 · Programme d’audit */
-.audit-band{display:flex;justify-content:space-between;gap:12px;height:44px;margin-top:22px;position:relative}
-.audit-band:before{content:'';position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;background:var(--line)}
-.audit-band li{position:relative;display:flex;align-items:center;gap:10px;padding-right:12px;background:var(--paper);font-size:18px;font-weight:700;white-space:nowrap}
-.audit-band li+li{padding-left:12px}
-.audit-band .when{font-size:18px}
-.audit-band .after{white-space:normal;line-height:1.15;max-width:350px;padding-right:0}
-.audit-band .after .when{background:var(--kraft-deep)}
-.audit-band .gap-link{color:var(--leaf-deep)}
-.audit-band .gap-link .when,.gap-card h3 .when{background:var(--leaf)}
-.audit-band .gap-link .when{position:relative}
-.audit-band .gap-link .when:after{content:'';position:absolute;left:50%;top:100%;width:4px;margin-left:-2px;height:32px;background:var(--leaf)}
-.audit-grid{display:grid;grid-template-columns:430px 1fr;gap:32px;margin-top:24px;align-items:start}
-.gap-card{padding:20px 24px 22px;border-radius:20px;background:var(--leaf-tint);border-top:6px solid var(--leaf)}
-.gap-card h3{display:flex;align-items:center;gap:12px;font-size:30px;font-weight:700;margin-bottom:12px}
-.gap-card dl{display:grid;gap:12px}
-.gap-card dt{font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--leaf-deep)}
-.gap-card dd{margin-top:3px;font-size:18px;line-height:1.35}
-.gap-bar{display:flex;height:30px;margin-top:8px!important;border-radius:8px;overflow:hidden}
-.gap-bar span{flex:var(--v) 0 0;display:flex;align-items:center;padding:0 10px;font:800 20px 'Barlow Condensed',sans-serif}
-.gap-legend{display:flex;flex-wrap:wrap;gap:2px 14px;margin-top:6px!important;font-size:16px!important;color:var(--muted)}
-.gap-legend span{display:flex;align-items:center;gap:6px}
-.gap-legend i{width:12px;height:12px;border-radius:3px}
-.coverage h3{display:flex;align-items:baseline;gap:14px;font-size:30px;font-weight:700;margin-bottom:8px}
-.coverage h3 span{font:700 17px 'DM Sans',sans-serif;color:var(--muted)}
-.coverage table{width:100%;border-collapse:collapse;font-size:18px;line-height:1.25}
-.coverage thead th{padding:0 14px 8px;text-align:left;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:3px solid var(--leaf)}
-.coverage tbody th,.coverage td{padding:10px 14px;text-align:left;border-bottom:2px solid var(--line-soft)}
-.coverage tbody th{font-weight:700;white-space:nowrap}
-.coverage tbody tr:nth-child(odd){background:var(--card)}
-.coverage .ref{font-size:15px;color:var(--leaf-deep);font-weight:500;white-space:nowrap}
-.audit-grid+.note{font-size:17px;line-height:1.35}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:56px;position:relative}
+.timeline:before{content:'';position:absolute;left:0;right:0;top:15px;height:4px;background:var(--leaf);border-radius:2px}
+.timeline li{position:relative;display:flex;flex-direction:column;gap:8px;font-size:21px;line-height:1.35;color:var(--muted);padding-top:2px}
+.timeline .when{position:relative;align-self:flex-start;font-size:19px}
+.timeline b{font:700 30px 'Barlow Condensed',sans-serif;color:var(--ink);margin-top:6px}
+.timeline .hot .when{background:var(--leaf)}
+.timeline .after .when{background:var(--kraft-deep)}
+.timeline .after{padding-left:0}
 
 /* 19 · Conclusion */
 .decisions{display:grid;gap:18px;margin-top:40px;max-width:1150px}
@@ -462,20 +439,10 @@ dialog::backdrop{background:var(--backdrop);backdrop-filter:blur(8px)}
   .gap-list{grid-template-columns:1fr}
   .gap-list li{font-size:17px}
   .big-ratio strong{font-size:80px}.big-ratio small{font-size:40px}.big-ratio span{font-size:19px}
-  .audit-band{flex-wrap:wrap;justify-content:flex-start;gap:8px 4px;margin-top:16px}
-  .audit-band:before,.audit-band .gap-link .when:after{display:none}
-  .audit-band{height:auto}
-  .audit-band li,.audit-band li+li{padding:0 8px 0 0;font-size:16px;white-space:normal}
-  .audit-grid{grid-template-columns:1fr;gap:16px;margin-top:16px}
-  .gap-card dl{gap:6px}.gap-card{padding:14px 20px}.gap-card h3{font-size:26px;margin-bottom:6px}
-  .coverage h3{font-size:26px;margin-bottom:4px}
-  .coverage thead{display:none}
-  .coverage table{font-size:16px;border-top:3px solid var(--leaf)}
-  .coverage tbody tr{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;padding:4px 8px;border-bottom:2px solid var(--line-soft)}
-  .coverage tbody th,.coverage td{padding:0;border:0;white-space:normal}
-  .coverage .ref{grid-column:1;font-size:14px}
-  .coverage td:last-child{grid-column:2;grid-row:1/span 2;align-self:center}
-  .audit-grid+.note{font-size:16px}
+  .timeline{grid-template-columns:1fr;gap:12px;margin-top:24px;padding-left:0}
+  .timeline:before{left:auto;right:auto;top:0;bottom:0;width:4px;height:auto;left:-14px}
+  .timeline li{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:18px}
+  .timeline b{font-size:25px;margin-top:0}
   .decisions li{font-size:25px;gap:18px;padding:18px 20px}
   .decisions span{width:52px;height:52px;font-size:30px}
   .next-step{font-size:21px}
