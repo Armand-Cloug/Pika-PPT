@@ -176,7 +176,6 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 /* Cartes mot-clé */
 .cards{display:grid;gap:26px;margin-top:56px}
 .cards.four{grid-template-columns:repeat(4,1fr)}
-.cards.three{grid-template-columns:repeat(3,1fr)}
 .cards li{display:flex;flex-direction:column;gap:16px;padding:38px 32px;border-radius:20px;background:var(--card);border:2px solid var(--line-soft)}
 .cards b{font:700 32px 'Barlow Condensed',sans-serif}
 .cards span{font-size:23px;line-height:1.4;color:var(--muted)}
@@ -221,15 +220,15 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .copil-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--forest)}
 
 /* 11 · Audit de certification */
-.certif{display:grid;grid-template-columns:480px 1fr;gap:30px;margin-top:30px}
+.certif{display:grid;grid-template-columns:380px 1fr;gap:30px;margin-top:30px}
 .certifier{display:flex;flex-direction:column;gap:14px;padding:30px;border-radius:20px;background:var(--forest);color:var(--on-dark)}
 .certifier .badge{background:var(--leaf-light);color:var(--forest)}
 .certifier b{font:700 42px 'Barlow Condensed',sans-serif}
 .certifier span{font-size:22px;line-height:1.4;color:var(--on-dark-muted)}
-.path{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.path li{display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:20px;background:var(--card);border:2px solid var(--line-soft);position:relative}
-.path li:first-child{background:var(--kraft-tint);border-color:var(--kraft)}
-.path li:first-child .when{background:var(--kraft-deep)}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.path li{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:20px;background:var(--card);border:2px solid var(--line-soft);position:relative}
+.path li.prep{background:var(--kraft-tint);border-color:var(--kraft)}
+.path li.prep .when{background:var(--kraft-deep)}
 .path .when{align-self:flex-start}
 .path b{font:700 32px 'Barlow Condensed',sans-serif}
 .path span:not(.when){font-size:21px;line-height:1.4;color:var(--muted)}
@@ -294,7 +293,7 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .big-ratio span{display:block;font-size:22px;margin-top:8px}
 
 /* 18 · Programme d’audit */
-.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px;position:relative}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:56px;position:relative}
 .timeline:before{content:'';position:absolute;left:0;right:0;top:15px;height:4px;background:var(--leaf);border-radius:2px}
 .timeline li{position:relative;display:flex;flex-direction:column;gap:8px;font-size:21px;line-height:1.35;color:var(--muted);padding-top:2px}
 .timeline .when{position:relative;align-self:flex-start;font-size:19px}
@@ -302,8 +301,6 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .timeline .hot .when{background:var(--leaf)}
 .timeline .after .when{background:var(--kraft-deep)}
 .timeline .after{padding-left:0}
-.timeline+.cards{margin-top:64px}
-.cards.three li{gap:10px;padding:26px 30px;border-top:5px solid var(--leaf)}
 
 /* 19 · Conclusion */
 .decisions{display:grid;gap:18px;margin-top:40px;max-width:1150px}
@@ -396,7 +393,7 @@ dialog::backdrop{background:var(--backdrop);backdrop-filter:blur(8px)}
   .socle li:nth-child(-n+2){border-top:0}
   .map-out{flex-direction:row;padding:10px}
   .cards{gap:14px;margin-top:24px}
-  .cards.four,.cards.three{grid-template-columns:1fr}
+  .cards.four{grid-template-columns:1fr}
   .cards li{flex-direction:row;align-items:center;padding:18px 20px;gap:16px}
   .cards.four li{display:grid;grid-template-columns:52px 1fr;gap:4px 16px}
   .cards.four .badge{grid-row:span 2;width:52px;height:52px;padding:13px}

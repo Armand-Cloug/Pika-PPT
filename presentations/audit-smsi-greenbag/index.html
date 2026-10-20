@@ -189,11 +189,11 @@
     <section class="slide" data-title="Gouvernance cible" data-chapter="Pilotage">
       <div class="content">
         <p class="eyebrow reveal">PILOTAGE · GOUVERNANCE CIBLE</p>
-        <h2 class="reveal">La direction décide, <em>le COPIL pilote.</em></h2>
-        <figure class="gov reveal" aria-label="Gouvernance du SMSI sur trois niveaux : direction générale, COPIL SMSI, équipe SMSI">
+        <h2 class="reveal">Le COMEX décide, <em>le COPIL pilote.</em></h2>
+        <figure class="gov reveal" aria-label="Gouvernance du SMSI sur trois niveaux : COMEX, COPIL SMSI, équipe SMSI">
           <div class="gov-level top">
-            <p class="gov-name"><b>Direction générale</b><span>Les 2 DG, dont un sponsor à désigner</span></p>
-            <p class="gov-role">Approuve la PSMSI, la DdA et les risques résiduels. Revue de direction en M7, puis une fois par an.</p>
+            <p class="gov-name"><b>COMEX</b><span>Les 2 DG et 7 membres, sponsor à désigner parmi les DG</span></p>
+            <p class="gov-role">Assume le rôle de direction générale : approuve la PSMSI, la DdA et les risques résiduels. Revue de direction en M7, puis une fois par an.</p>
           </div>
           <div class="gov-flow" aria-hidden="true"><span class="down"><svg><use href="#i-down"/></svg>Décision</span><span class="up"><svg><use href="#i-up"/></svg>Compte rendu</span></div>
           <div class="gov-level mid">
@@ -214,7 +214,7 @@
     <section class="slide" data-title="Calendrier" data-chapter="Pilotage">
       <div class="content">
         <p class="eyebrow reveal">PILOTAGE · CALENDRIER</p>
-        <h2 class="reveal">Douze mois, <em>cinq jalons.</em></h2>
+        <h2 class="reveal">Douze mois, <em>six jalons.</em></h2>
         <figure class="gantt reveal" aria-label="Diagramme de Gantt du projet, de M1 à M12">
           <div class="g-row g-head" aria-hidden="true"><span class="g-label"></span><div class="g-track"><span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span><span>M7</span><span>M8</span><span>M9</span><span>M10</span><span>M11</span><span>M12</span></div></div>
           <div class="g-row"><span class="g-label">Kick-off, puis audit initial (état des lieux)</span><div class="g-track"><i class="bar crit" style="--s:1;--e:2"></i><i class="ms" style="--m:1" title="Kick-off, M1"></i></div></div>
@@ -226,7 +226,7 @@
           <div class="g-row"><span class="g-label">Audit interne M6, revue de direction M7</span><div class="g-track"><i class="bar crit" style="--s:6;--e:7"></i><i class="ms" style="--m:6" title="Audit interne, M6"></i><i class="ms" style="--m:7" title="Revue de direction, M7"></i></div></div>
           <div class="g-row"><span class="g-label">Actions correctives</span><div class="g-track"><i class="bar crit" style="--s:7;--e:9"></i></div></div>
           <div class="g-row"><span class="g-label">Audit blanc M10, puis corrections</span><div class="g-track"><i class="bar crit" style="--s:10;--e:11"></i><i class="ms" style="--m:10" title="Audit blanc, M10"></i></div></div>
-          <div class="g-row"><span class="g-label">Audit de certification AFNOR</span><div class="g-track"><i class="bar crit" style="--s:12;--e:12"></i><i class="ms" style="--m:12" title="Audit de certification, M12"></i></div></div>
+          <div class="g-row"><span class="g-label">Certification AFNOR, étapes 1 et 2</span><div class="g-track"><i class="bar crit" style="--s:11;--e:12"></i><i class="ms" style="--m:11" title="Étape 1, M11"></i><i class="ms" style="--m:12" title="Étape 2, M12"></i></div></div>
           <div class="g-row g-copil"><span class="g-label">COPIL</span><div class="g-track"><i style="--m:1"></i><i style="--m:2"></i><i style="--m:3"></i><i style="--m:4"></i><i style="--m:5"></i><i style="--m:6"></i><i style="--m:7"></i><i style="--m:8"></i><i style="--m:9"></i><i style="--m:10"></i><i style="--m:11"></i><i style="--m:12"></i></div></div>
           <figcaption class="g-legend"><span><i class="bar crit"></i>Chemin critique : chaque tâche attend la précédente</span><span><i class="bar para"></i>Menée en parallèle</span><span><i class="ms"></i>Jalon</span><span><i class="copil-dot"></i>COPIL mensuel</span></figcaption>
         </figure>
@@ -237,12 +237,13 @@
     <section class="slide" data-title="Audit de certification" data-chapter="Pilotage">
       <div class="content">
         <p class="eyebrow reveal">PILOTAGE · AUDIT DE CERTIFICATION</p>
-        <h2 class="reveal">Un certificateur accrédité, <em>une répétition avant.</em></h2>
+        <h2 class="reveal">Un certificateur accrédité, <em>deux audits avant.</em></h2>
         <div class="certif reveal">
           <article class="certifier"><svg class="badge"><use href="#i-shield"/></svg><b>AFNOR Certification</b><span>Accréditée COFRAC (n° 4-0001) pour certifier les systèmes de management.</span></article>
           <ol class="path">
-            <li><span class="when">M10</span><b>Audit blanc</b><span>Auditeur externe indépendant, en conditions réelles.</span></li>
-            <li><span class="when">M12</span><b>Étape 1</b><span>Revue documentaire (PSMSI, DdA, risques).</span></li>
+            <li class="prep"><span class="when">M6</span><b>Audit interne</b><span>Indépendant des activités auditées, écarts corrigés avant M10.</span></li>
+            <li class="prep"><span class="when">M10</span><b>Audit blanc</b><span>Auditeur externe indépendant, en conditions réelles.</span></li>
+            <li><span class="when">M11</span><b>Étape 1</b><span>Revue documentaire (PSMSI, DdA, risques).</span></li>
             <li><span class="when">M12</span><b>Étape 2</b><span>Sur site, entretiens et preuves.</span></li>
           </ol>
         </div>
@@ -388,14 +389,10 @@
           <li><span class="when">M1–M2</span><b>Audit initial</b>État des lieux par l’équipe SMSI.</li>
           <li><span class="when">M6</span><b>Audit interne</b>Indépendant des activités auditées.</li>
           <li><span class="when">M10</span><b>Audit blanc</b>Auditeur externe indépendant.</li>
-          <li class="hot"><span class="when">M12</span><b>Certification</b>AFNOR, étapes 1 et 2.</li>
+          <li class="hot"><span class="when">M11</span><b>AFNOR, étape 1</b>Revue documentaire.</li>
+          <li class="hot"><span class="when">M12</span><b>AFNOR, étape 2</b>Sur site, puis certification.</li>
           <li class="after"><span class="when">Puis</span><b>Surveillance</b>Chaque année, renouvellement à 3 ans.</li>
         </ol>
-        <ul class="cards three reveal">
-          <li><b>Critères</b><span>ISO 27001, DdA, PSMSI.</span></li>
-          <li><b>Auditeurs</b><span>Indépendants des activités auditées.</span></li>
-          <li><b>Sorties</b><span>Rapport, écarts, actions correctives suivies en COPIL.</span></li>
-        </ul>
       </div>
     </section>
     <!-- MAJ-AUDIT : fin -->
