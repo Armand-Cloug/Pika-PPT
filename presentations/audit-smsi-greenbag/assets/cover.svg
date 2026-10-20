@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="GreenBag — Kick-off SMSI ISO 27001">
+  <defs>
+    <pattern id="w" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect x="4" y="10" width="32" height="20" rx="3" fill="#1D3729"/>
+      <rect x="44" y="4" width="20" height="32" rx="3" fill="#24653A" fill-opacity=".45"/>
+      <rect x="10" y="44" width="20" height="32" rx="3" fill="#24653A" fill-opacity=".45"/>
+      <rect x="44" y="50" width="32" height="20" rx="3" fill="#1D3729"/>
+    </pattern>
+    <linearGradient id="f" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/></linearGradient>
+    <mask id="m"><rect width="760" height="900" fill="url(#f)"/></mask>
+  </defs>
+  <rect width="1600" height="900" fill="#13261C"/>
+  <rect x="840" width="760" height="900" fill="url(#w)" mask="url(#m)"/>
+  <g transform="translate(1240 450) rotate(-28)" fill="none" stroke="#D9B57E" stroke-width="5" stroke-linecap="round">
+    <path d="M0-260C135-170 135 135 0 260-135 135-135-170 0-260z" fill="#13261C" stroke-width="6"/>
+    <path d="M0-225V260M0-125 70-180M0-35 88-102M0 56 84-7M0-80-75-138M0 12-88-52M0 100-80 40"/>
+  </g>
+  <rect x="110" y="200" width="18" height="18" rx="2" fill="#2C7944" transform="rotate(45 119 209)"/>
+  <text x="150" y="218" font-family="'DM Sans', Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="5" fill="#8FD3A1">ENSAR · UE22 · AUDIT D’UN SMSI</text>
+  <text x="104" y="420" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="190" font-weight="800" fill="#F2EFE6">KICK-OFF SMSI</text>
+  <text x="104" y="600" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="190" font-weight="800" fill="#8FD3A1">GREENBAG.</text>
+  <rect x="110" y="660" width="560" height="6" rx="3" fill="#B88A4A"/>
+  <text x="110" y="730" font-family="'DM Sans', Arial, sans-serif" font-size="36" fill="#B9C6BD">Certification ISO/IEC 27001 · M1 → M12</text>
+</svg>
