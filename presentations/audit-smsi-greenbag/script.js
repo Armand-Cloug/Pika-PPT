@@ -18,6 +18,15 @@
   let touchStart = null;
   let statusTimer;
   let counterAnimation = 0;
+  // Musique de fin : jouée une fois sur la slide « Merci ! », en fondu.
+  const outro = document.getElementById('outro-audio');
+  const musicButton = document.getElementById('music-button');
+  const outroIndex = slides.findIndex(slide => slide.matches('.thanks'));
+  const outroVolume = .7;
+  let onOutro = false;
+  let audioMissing = false;
+  let fadeFrame = 0;
+  let fadingOut = false;
 
   function pageLabel(index) {
     return `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
@@ -51,6 +60,66 @@
       if (ratio < 1) counterAnimation = requestAnimationFrame(frame);
     }
     counterAnimation = requestAnimationFrame(frame);
+  }
+  function fadeOutro(target, duration, done) {
+    cancelAnimationFrame(fadeFrame);
+    const from = outro.volume;
+    const started = performance.now();
+    function frame(now) {
+      const ratio = reduceMotion.matches ? 1 : Math.max(0, Math.min(1, (now - started) / duration));
+      outro.volume = Math.max(0, Math.min(1, from + (target - from) * ratio));
+      if (ratio < 1) fadeFrame = requestAnimationFrame(frame);
+      else if (done) done();
+    }
+    fadeFrame = requestAnimationFrame(frame);
+  }
+  function syncMusicButton(needsStart = false) {
+    const playing = !outro.paused && !fadingOut;
+    musicButton.hidden = !onOutro || audioMissing;
+    musicButton.classList.toggle('needs-start', needsStart);
+    musicButton.setAttribute('aria-pressed', String(playing));
+    musicButton.setAttribute('aria-label', playing ? 'Couper la musique' : 'Lancer la musique');
+  }
+  function markAudioMissing() {
+    audioMissing = true;
+    cancelAnimationFrame(fadeFrame);
+    syncMusicButton();
+  }
+  function playOutro() {
+    if (audioMissing) return;
+    cancelAnimationFrame(fadeFrame);
+    fadingOut = false;
+    if (outro.paused) outro.volume = 0;
+    outro.play().then(() => {
+      if (!onOutro) { outro.pause(); return; }
+      fadeOutro(outroVolume, 2000);
+      syncMusicButton();
+    }).catch(error => {
+      // Lecture automatique refusée avant toute interaction : un clic suffira.
+      if (error.name === 'NotAllowedError') syncMusicButton(true);
+      else if (error.name !== 'AbortError') markAudioMissing();
+    });
+  }
+  function pauseOutro(rewind) {
+    fadingOut = true;
+    syncMusicButton();
+    fadeOutro(0, 1000, () => {
+      outro.pause();
+      if (rewind) outro.currentTime = 0;
+      fadingOut = false;
+      syncMusicButton();
+    });
+  }
+  function toggleOutro() {
+    if (outro.paused || fadingOut) playOutro();
+    else pauseOutro(false);
+  }
+  function syncOutro(index) {
+    const entering = index === outroIndex;
+    if (entering === onOutro) return;
+    onOutro = entering;
+    if (entering) { syncMusicButton(); playOutro(); }
+    else { syncMusicButton(); if (!outro.paused) pauseOutro(true); else if (outro.currentTime) outro.currentTime = 0; }
   }
   function show(index, updateHash = true) {
     index = Math.max(0, Math.min(slides.length - 1, index));
@@ -86,6 +155,7 @@
     });
     document.querySelectorAll('.overview-item').forEach((button, i) => button.setAttribute('aria-current', String(i === index)));
     animateCounter(slide);
+    syncOutro(index);
     if (updateHash) {
       try { history.replaceState(null, '', `#${index + 1}`); }
       catch { location.hash = String(index + 1); }
@@ -150,6 +220,9 @@
   document.getElementById('overview-button').addEventListener('click', () => openDialog(overview));
   document.getElementById('sources-button').addEventListener('click', () => openDialog(sources));
   document.getElementById('fullscreen-button').addEventListener('click', toggleFullscreen);
+  musicButton.addEventListener('click', toggleOutro);
+  outro.addEventListener('error', markAudioMissing);
+  outro.addEventListener('ended', () => { outro.currentTime = 0; syncMusicButton(); });
   document.querySelectorAll('dialog').forEach(dialog => {
     dialog.querySelector('.close-dialog').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', event => {
@@ -170,6 +243,7 @@
     else if (key === 'end') { event.preventDefault(); show(slides.length - 1); }
     else if (key === 's') { event.preventDefault(); openDialog(overview); }
     else if (key === 'f') { event.preventDefault(); toggleFullscreen(); }
+    else if (key === 'm' && onOutro && !audioMissing) { event.preventDefault(); toggleOutro(); }
   });
   stage.addEventListener('wheel', event => {
     if (overview.open || sources.open || event.ctrlKey) return;

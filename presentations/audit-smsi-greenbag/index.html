@@ -26,6 +26,7 @@
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
 </defs></svg>
 
 <main id="stage"
@@ -424,9 +425,10 @@
   <footer class="controls">
     <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">Introduction</span></div>
     <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et informations">Sources &amp; infos</button></div>
-    <div class="control-right"><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 20</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="control-right"><button id="music-button" class="icon-button" title="Musique (M)" aria-label="Lancer la musique" aria-pressed="false" hidden><svg><use href="#i-music"/></svg></button><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 20</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
   </footer><div class="progress-track"><div id="progress"></div></div>
   <span id="status-message" role="status"></span>
+  <audio id="outro-audio" src="assets/audio/music.mp3" preload="none"></audio>
 </main>
 
 <dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">GREENBAG · KICK-OFF SMSI</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · Début / Fin : première / dernière · S : sélecteur · F : plein écran · Échap : fermer</p></dialog>
@@ -442,6 +444,7 @@
   </ul>
   <h3>Images et typographie</h3>
   <p>Aucune image tierce : motifs et schémas dessinés en SVG et CSS pour cette présentation. Barlow Condensed (The Barlow Project Authors) et DM Sans (The DM Sans Project Authors), licence SIL Open Font License 1.1, fichiers dans <code>assets/fonts/</code>.</p>
+  <!-- Crédit musique : titre, artiste, licence, lien -->
   <h3>Navigation</h3>
   <p>Flèches, Espace ou molette pour avancer · Début / Fin · S : sélecteur de slides · F : plein écran · Ctrl+P : export PDF, une slide par page.</p>
 </div></dialog>
