@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F2A2E">
+  <meta name="description" content="ENSAR UE22 — Étude de cas : migrer vers le cloud en maîtrisant les risques. Comparatif on-premise / cloud, PSSI cloud, exigences client, clauses contractuelles et plan de contrôle.">
+  <title>Migrer vers le cloud, maîtriser les risques</title>
+  <link rel="icon" id="favicon" href="assets/cover.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="metadata.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20zM12 10v4M12 17v.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l5 3V10l5 3V10l5 3V4h3v17zM7 17h2M11 17h2M15 17h2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 19h10a4.5 4.5 0 0 0 .5-9A6 6 0 0 0 6 9.5 4.8 4.8 0 0 0 7 19z"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="13" width="16" height="7" rx="1.5"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2 19h20"/></symbol>
+  <symbol id="i-restore" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/><path d="M12 8v4l3 2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7zM14 3v4h4M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-shift" viewBox="0 0 24 24"><path d="M4 9h15l-4-4M20 15H5l4 4"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M4 8h16M6 8l-3 6a3 3 0 0 0 6 0zM18 8l-3 6a3 3 0 0 0 6 0z"/></symbol>
+</defs></svg>
+
+<main id="stage" aria-label="Migrer vers le cloud, maîtriser les risques — étude de cas UE22" aria-roledescription="diaporama"
+      data-deck-title="Sécurité cloud · UE22">
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Retour à la première slide">Cloud &amp; risques<span>ÉTUDE DE CAS</span></a>
+    <div class="chapters" aria-label="Chapitres"><button data-go="3">Comprendre et comparer</button><button data-go="7">Concevoir et sécuriser</button><button data-go="12">Contractualiser et contrôler</button></div>
+    <span class="edition"><span data-meta="school">ENSAR</span> · UE22 · <span data-meta="academicYear">2026-2027</span></span>
+  </header>
+
+  <div id="slides">
+
+    <!-- 01 · Couverture — Intervenant 1 — 0:20 -->
+    <section class="slide dark cover is-active" data-title="Couverture" data-chapter="Introduction" data-speaker="1" data-time="20">
+      <svg class="cover-art" viewBox="0 0 560 640" aria-hidden="true" focusable="false">
+        <g class="ca-cloud">
+          <path d="M150 210h270a70 70 0 0 0 8-139.6A104 104 0 0 0 232 52a86 86 0 0 0-82 158z"/>
+          <rect x="214" y="116" width="56" height="40" rx="6"/><rect x="286" y="116" width="56" height="40" rx="6"/><rect x="358" y="116" width="40" height="40" rx="6" class="ca-ghost"/>
+        </g>
+        <g class="ca-flow">
+          <path d="M250 430V250M314 430V250"/>
+          <path d="M238 266l12-16 12 16M302 266l12-16 12 16"/>
+        </g>
+        <g class="ca-gate"><rect x="196" y="318" width="168" height="34" rx="17"/><path d="M226 335h108"/></g>
+        <g class="ca-factory">
+          <path d="M40 600V470l90 46v-46l90 46v-46l90 46v-46l90 46V420h50v180z"/>
+          <path d="M40 600h480"/>
+          <rect x="248" y="540" width="54" height="40" rx="4"/><rect x="330" y="540" width="54" height="40" rx="4"/>
+          <g class="ca-ot"><circle cx="130" cy="558" r="26"/><circle cx="130" cy="558" r="9"/><path d="M130 524v-8M130 600v-8M96 558h-8M172 558h-8M106 534l-6-6M160 588l-6-6M154 534l6-6M100 588l6-6"/></g>
+        </g>
+      </svg>
+      <div class="content">
+        <p class="eyebrow reveal"><span data-meta="school">ENSAR</span> · UE22 · SÉCURITÉ DE L’INFORMATIQUE DANS LES NUAGES</p>
+        <h1 class="reveal">MIGRER VERS LE CLOUD,<br><em>MAÎTRISER LES RISQUES.</em></h1>
+        <p class="lead reveal">Qu’externaliser sans fragiliser la production et les données&nbsp;?</p>
+        <p class="cover-tag reveal">Étude de cas · Recommandation au COMEX</p>
+        <dl class="identity reveal">
+          <div><dt>Intervenants</dt><dd data-meta="speakers">Intervenant 1 · Intervenant 2 · Intervenant 3</dd></div>
+          <div><dt>Enseignant</dt><dd data-meta="teacher">à compléter</dd></div>
+          <div><dt>Année universitaire</dt><dd data-meta="academicYear">2026-2027</dd></div>
+          <div data-meta-optional="group" hidden><dt>Groupe</dt><dd data-meta="group"></dd></div>
+          <div data-meta-optional="defenseDate" hidden><dt>Soutenance</dt><dd data-meta="defenseDate"></dd></div>
+        </dl>
+        <button class="start reveal" data-next>Commencer <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- 02 · Sommaire — Intervenant 1 — 0:20 -->
+    <section class="slide summary" data-title="Sommaire" data-chapter="Introduction" data-speaker="1" data-time="20">
+      <div class="content">
+        <p class="eyebrow reveal">SOMMAIRE</p>
+        <h2 class="reveal">Trois temps, <em>une recommandation.</em></h2>
+        <ol class="summary-list reveal">
+          <li><button data-go="3"><span class="sum-num">01</span><b>Comprendre et comparer</b><small>Existant, risques et priorités</small><i class="sum-who"><span data-meta="speaker-1">Intervenant 1</span> · 00:00</i></button></li>
+          <li><button data-go="7"><span class="sum-num">02</span><b>Concevoir et sécuriser</b><small>Cible, responsabilités, prérequis, PSSI</small><i class="sum-who"><span data-meta="speaker-2">Intervenant 2</span> · 05:00</i></button></li>
+          <li><button data-go="12"><span class="sum-num">03</span><b>Contractualiser et contrôler</b><small>Clauses, contrôles, trajectoire, décision</small><i class="sum-who"><span data-meta="speaker-3">Intervenant 3</span> · 10:00</i></button></li>
+        </ol>
+        <p class="annex-link reveal"><svg aria-hidden="true"><use href="#i-file"/></svg>Détails des cinq livrables&nbsp;: <a href="annexe.html" target="_blank" rel="noopener">annexe imprimable</a></p>
+      </div>
+    </section>
+
+    <!-- 03 · Ouverture 01 — Intervenant 1 — 0:10 -->
+    <section class="slide dark part" data-title="01 · Comprendre et comparer" data-chapter="Comprendre et comparer" data-speaker="1" data-time="10">
+      <div class="content">
+        <span class="part-number reveal">01</span>
+        <h2 class="reveal">COMPRENDRE ET COMPARER</h2>
+        <p class="lead reveal">Préserver la fabrication, les ventes et les données.</p>
+        <p class="part-speaker reveal" data-meta="speaker-1">Intervenant 1</p>
+      </div>
+      <ol class="part-map" aria-hidden="true"><li class="on"><span>01</span>Comprendre et comparer</li><li><span>02</span>Concevoir et sécuriser</li><li><span>03</span>Contractualiser et contrôler</li></ol>
+    </section>
+
+    <!-- 04 · Existant — Intervenant 1 — 1:00 -->
+    <section class="slide" data-title="Un SI déjà externalisé" data-chapter="Comprendre et comparer" data-speaker="1" data-time="60">
+      <div class="content">
+        <p class="eyebrow reveal">COMPRENDRE · L’EXISTANT</p>
+        <h2 class="reveal">Le SI est déjà <em>partiellement externalisé.</em></h2>
+        <figure class="si-map reveal" aria-label="Cartographie du système d’information : usine, SI interne, services externes et partenaires, avec les flux établis et les flux à confirmer">
+          <div class="zone z-ot">
+            <h3><svg aria-hidden="true"><use href="#i-factory"/></svg>Usine · OT</h3>
+            <ul><li>Pilotage industriel</li><li>Postes Windows&nbsp;7</li><li>VLAN dédié, Internet bloqué</li></ul>
+          </div>
+          <div class="link-col" aria-hidden="true">
+            <span class="flow dashed"><i></i></span>
+            <small>Flux à confirmer <br>firewall de cœur</small>
+          </div>
+          <div class="zone z-it">
+            <h3><svg aria-hidden="true"><use href="#i-server"/></svg>SI interne · IT</h3>
+            <ul class="two-col"><li>AD · PKI · NAS</li><li>802.1X</li><li>Wi-Fi interne et invité</li><li>Postes hétérogènes</li><li>Qualiac · Hadoop</li><li>Talentsoft · Salesforce&nbsp;<sup>*</sup></li></ul>
+          </div>
+          <div class="link-col stacked" aria-hidden="true">
+            <div><span class="flow"><i></i></span><small>Internet · Orange</small></div>
+            <div><span class="flow"><i></i></span><small>MPLS · Orange</small></div>
+          </div>
+          <div class="zone-stack">
+            <div class="zone z-ext">
+              <h3><svg aria-hidden="true"><use href="#i-cloud"/></svg>Services externes</h3>
+              <ul><li>Office 365 E3 · SaaS</li><li>Web&nbsp;: ESN → OVH <span class="rank">rang&nbsp;2</span></li></ul>
+            </div>
+            <div class="zone z-partner">
+              <h3><svg aria-hidden="true"><use href="#i-link"/></svg>Partenaires</h3>
+              <ul><li>Échanges via MPLS</li></ul>
+            </div>
+          </div>
+        </figure>
+        <div class="findings reveal">
+          <p class="f-ok"><b><svg aria-hidden="true"><use href="#i-check"/></svg>Acquis</b><span>802.1X · PKI · segmentation · OT sans Internet · environnements séparés</span></p>
+          <p class="f-ko"><b><svg aria-hidden="true"><use href="#i-alert"/></svg>Fragilités</b><span>Comptes par défaut · ports ouverts · logiciels obsolètes · secrets locaux · BYOD · postes non gérés</span></p>
+        </div>
+        <p class="legend-line reveal"><span class="lg-solid">Flux établi par l’énoncé</span><span class="lg-dashed">Dépendance à confirmer</span><span><sup>*</sup> Décrits comme hébergés localement&nbsp;: à clarifier</span></p>
+      </div>
+    </section>
+
+    <!-- 05 · Comparatif — Intervenant 1 — 1:40 -->
+    <section class="slide" data-title="Le cloud déplace les risques" data-chapter="Comprendre et comparer" data-speaker="1" data-time="100">
+      <div class="content">
+        <p class="eyebrow reveal">COMPRENDRE · ON-PREMISE / CLOUD</p>
+        <h2 class="reveal">Le cloud <em>déplace les risques.</em></h2>
+        <table class="compare reveal">
+          <caption class="sr-only">Comparaison de cinq scénarios de risque entre la situation actuelle et un hébergement cloud, avec la condition de maîtrise</caption>
+          <thead><tr><th scope="col">Scénario</th><th scope="col">Aujourd’hui</th><th scope="col">Dans le cloud</th><th scope="col">Condition de maîtrise</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Sinistre local</th><td>SI interne sur site, PRA non documenté</td><td><span class="trend down"><svg aria-hidden="true"><use href="#i-down"/></svg>Réduit</span>sauf usine et réseau local</td><td>Copies hors site, PRA testé</td></tr>
+            <tr><th scope="row">Perte de connectivité</th><td>Office 365 et web déjà dépendants</td><td><span class="trend up"><svg aria-hidden="true"><use href="#i-up"/></svg>Accru</span>chaque service migré en dépend</td><td>Double accès, mode dégradé</td></tr>
+            <tr><th scope="row">Compromission d’identité</th><td>Comptes par défaut, admin local</td><td><span class="trend up"><svg aria-hidden="true"><use href="#i-up"/></svg>Accru</span>consoles exposées à Internet</td><td>MFA, comptes d’admin dédiés</td></tr>
+            <tr><th scope="row">Fuite ou destruction</th><td>Chiffrement partiel, BYOD</td><td><span class="trend shift"><svg aria-hidden="true"><use href="#i-shift"/></svg>Déplacé</span>partage ouvert, suppression répliquée</td><td>Classification, sauvegarde indépendante</td></tr>
+            <tr><th scope="row">Dépendance fournisseur</th><td>ESN, OVH, Microsoft, Orange</td><td><span class="trend up"><svg aria-hidden="true"><use href="#i-up"/></svg>Accru</span>concentration, coût de sortie</td><td>Contrat, plan de sortie testé</td></tr>
+          </tbody>
+        </table>
+        <p class="note reveal">Tendance qualitative, sans score global&nbsp;: elle dépend du service retenu et du contrat.</p>
+      </div>
+    </section>
+
+    <!-- 06 · Priorités — Intervenant 1 — 1:30 -->
+    <section class="slide" data-title="Nos priorités" data-chapter="Comprendre et comparer" data-speaker="1" data-time="90">
+      <div class="content">
+        <p class="eyebrow reveal">COMPRENDRE · PRIORITÉS</p>
+        <h2 class="reveal">Nos priorités suivent <em>les impacts métiers.</em></h2>
+        <ol class="method reveal" aria-label="Méthode d’analyse">
+          <li>Scénario</li><li>Impact métier</li><li>Vraisemblance</li><li>Protections</li><li>Risque résiduel</li>
+        </ol>
+        <ul class="scenarios reveal">
+          <li>
+            <span class="prio p1">Priorité 1</span>
+            <b>Compte ou poste privilégié compromis</b>
+            <span class="sc-line"><i>Impact</i>Arrêt bureautique, rebond vers le cloud</span>
+            <span class="sc-line"><i>Pourquoi</i>Failles constatées, aucune supervision</span>
+          </li>
+          <li>
+            <span class="prio p2">Priorité 2 · P1 si migré</span>
+            <b>Service indispensable indisponible</b>
+            <span class="sc-line"><i>Impact</i>Fabrication ou ventes arrêtées</span>
+            <span class="sc-line"><i>Pourquoi</i>Dépendances non cartographiées</span>
+          </li>
+          <li>
+            <span class="prio p1">Priorité 1</span>
+            <b>Données détruites ou divulguées</b>
+            <span class="sc-line"><i>Impact</i>Clients, RH, comptabilité exposés</span>
+            <span class="sc-line"><i>Pourquoi</i>Restauration non démontrée</span>
+          </li>
+        </ul>
+        <p class="missing reveal"><b>Manque pour décider</b>dépendances · interruption et perte admissibles · sauvegardes · MFA · journaux</p>
+        <p class="note reveal">Estimations pédagogiques à valider&nbsp;; registre complet en annexe.</p>
+      </div>
+    </section>
+
+    <!-- 07 · Ouverture 02 — Intervenant 2 — 0:10 -->
+    <section class="slide dark part" data-title="02 · Concevoir et sécuriser" data-chapter="Concevoir et sécuriser" data-speaker="2" data-time="10">
+      <div class="content">
+        <span class="part-number reveal">02</span>
+        <h2 class="reveal">CONCEVOIR ET SÉCURISER</h2>
+        <p class="lead reveal">Choisir une cible adaptée à chaque usage.</p>
+        <p class="part-speaker reveal" data-meta="speaker-2">Intervenant 2</p>
+      </div>
+      <ol class="part-map" aria-hidden="true"><li><span>01</span>Comprendre et comparer</li><li class="on"><span>02</span>Concevoir et sécuriser</li><li><span>03</span>Contractualiser et contrôler</li></ol>
+    </section>
+
+    <!-- 08 · Cible — Intervenant 2 — 1:20 -->
+    <section class="slide" data-title="Une cible progressive" data-chapter="Concevoir et sécuriser" data-speaker="2" data-time="80">
+      <div class="content">
+        <p class="eyebrow reveal">CONCEVOIR · CIBLE PROPOSÉE</p>
+        <h2 class="reveal">Une cible progressive, <em>un pilotage industriel local.</em></h2>
+        <figure class="target reveal" aria-label="Architecture cible proposée : pilotage industriel conservé sur le site de Niort, services cloud existants sécurisés, applications métiers candidates selon compatibilité, flux maîtrisés, sauvegardes et administration protégées">
+          <div class="t-site">
+            <p class="t-label"><svg aria-hidden="true"><use href="#i-factory"/></svg>Site de Niort</p>
+            <div class="t-box keep"><span class="tag">Conservé</span><b>Pilotage industriel</b><small>OT isolé, sans flux direct vers Internet</small></div>
+            <div class="t-box study"><span class="tag">À étudier</span><b>AD · PKI · 802.1X</b><small>Identités hybrides, certificats</small></div>
+          </div>
+          <div class="t-flows">
+            <p class="t-pipe"><span>Flux maîtrisés</span><small>filtrés · chiffrés · journalisés</small></p>
+            <p class="t-pipe study"><span>Connectivité</span><small>redondance à étudier</small></p>
+            <p class="t-noflow"><svg aria-hidden="true"><use href="#i-lock"/></svg>Pas de flux OT ↔ cloud sans étude dédiée</p>
+          </div>
+          <div class="t-cloud">
+            <p class="t-label"><svg aria-hidden="true"><use href="#i-cloud"/></svg>Cloud</p>
+            <div class="t-box secure"><span class="tag">À sécuriser</span><b>Office 365 E3 · plateforme web</b><small>Existants, paramétrage à vérifier</small></div>
+            <div class="t-box study"><span class="tag">Selon compatibilité</span><b>Talentsoft · Salesforce · Qualiac · Hadoop</b><small>Étude par application</small></div>
+          </div>
+          <p class="t-base"><svg aria-hidden="true"><use href="#i-shield"/></svg><b>Socle protégé</b><span>Sauvegardes isolées et testées</span><span>Administration par comptes et postes dédiés</span></p>
+        </figure>
+        <p class="note reveal">Décision application par application&nbsp;: données, dépendances, coût, sortie.</p>
+      </div>
+    </section>
+
+    <!-- 09 · Responsabilités — Intervenant 2 — 1:00 -->
+    <section class="slide" data-title="Responsabilités du client" data-chapter="Concevoir et sécuriser" data-speaker="2" data-time="60">
+      <div class="content">
+        <p class="eyebrow reveal">CONCEVOIR · RESPONSABILITÉ PARTAGÉE</p>
+        <h2 class="reveal">Le client conserve <em>des responsabilités.</em></h2>
+        <div class="shared reveal">
+          <table class="resp">
+            <caption class="sr-only">Répartition indicative des responsabilités entre client et fournisseur selon le modèle de service</caption>
+            <thead><tr><th scope="col"><span class="sr-only">Couche</span></th><th scope="col">IaaS</th><th scope="col">PaaS</th><th scope="col">SaaS</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Infrastructure et système</th><td class="r-share">Partagée<small>système&nbsp;: client</small></td><td class="r-prov">Fournisseur</td><td class="r-prov">Fournisseur</td></tr>
+              <tr><th scope="row">Application</th><td class="r-client">Client</td><td class="r-share">Partagée<small>code&nbsp;: client</small></td><td class="r-share">Partagée<small>paramétrage&nbsp;: client</small></td></tr>
+              <tr><th scope="row">Données, identités, configuration</th><td class="r-client">Client</td><td class="r-client">Client</td><td class="r-client">Client</td></tr>
+            </tbody>
+          </table>
+          <aside class="always">
+            <h3>Toujours chez nous</h3>
+            <ul><li>Classer les données</li><li>Gérer comptes et droits</li><li>Paramétrer, puis vérifier</li><li>Organiser sauvegarde et sortie</li><li>Accepter le risque résiduel</li></ul>
+          </aside>
+        </div>
+        <p class="resp-legend reveal"><span class="r-client">Client</span><span class="r-share">Partagée</span><span class="r-prov">Fournisseur</span><em>Répartition indicative, à confirmer offre par offre, contrat par contrat.</em></p>
+      </div>
+    </section>
+
+    <!-- 10 · Prérequis — Intervenant 2 — 1:30 -->
+    <section class="slide" data-title="Les prérequis" data-chapter="Concevoir et sécuriser" data-speaker="2" data-time="90">
+      <div class="content">
+        <p class="eyebrow reveal">CONCEVOIR · EXIGENCES CÔTÉ CLIENT</p>
+        <h2 class="reveal">Les prérequis <em>conditionnent la migration.</em></h2>
+        <div class="reqs reveal" role="table" aria-label="Exigences préalables, preuves et responsables">
+          <div class="req-head" role="row"><span role="columnheader">Domaine</span><span role="columnheader">Exigence vérifiable</span><span role="columnheader">Preuve attendue</span><span role="columnheader">Responsable</span></div>
+          <div class="req" role="row"><b role="rowheader"><svg aria-hidden="true"><use href="#i-key"/></svg>Identités et administration</b><span role="cell">MFA sur 100&nbsp;% des comptes à privilèges · revue trimestrielle des droits</span><span role="cell">Export de configuration · compte rendu signé</span><span role="cell">Responsable IT</span></div>
+          <div class="req" role="row"><b role="rowheader"><svg aria-hidden="true"><use href="#i-laptop"/></svg>Postes, vulnérabilités, secrets</b><span role="cell">Aucun compte par défaut actif · inventaire des actifs à jour</span><span role="cell">Scan avant / après · inventaire daté</span><span role="cell">Équipe technique</span></div>
+          <div class="req" role="row"><b role="rowheader"><svg aria-hidden="true"><use href="#i-restore"/></svg>Sauvegardes, reprise, connectivité</b><span role="cell">Restauration complète testée dans le délai fixé par le métier</span><span role="cell">Procès-verbal de test chronométré</span><span role="cell">Resp. IT + métier</span></div>
+          <div class="req" role="row"><b role="rowheader"><svg aria-hidden="true"><use href="#i-eye"/></svg>Supervision, compétences, changements</b><span role="cell">Journaux d’administration revus · référent SSI désigné</span><span role="cell">Rapport de revue · lettre de mission</span><span role="cell">Direction</span></div>
+        </div>
+        <p class="note reveal">Une licence ne prouve pas une protection déployée. Responsables nommés par la direction&nbsp;; liste complète en annexe.</p>
+      </div>
+    </section>
+
+    <!-- 11 · PSSI cloud — Intervenant 2 — 1:00 -->
+    <section class="slide" data-title="Une PSSI cloud applicable" data-chapter="Concevoir et sécuriser" data-speaker="2" data-time="60">
+      <div class="content">
+        <p class="eyebrow reveal">CONCEVOIR · PSSI CLOUD</p>
+        <h2 class="reveal">Une PSSI cloud <em>doit être applicable.</em></h2>
+        <ol class="tiles reveal">
+          <li><span>1</span><b>Gouvernance et fournisseurs</b>Rôles, validation, suivi</li>
+          <li><span>2</span><b>Données et conformité</b>Classification, localisation, RGPD</li>
+          <li><span>3</span><b>Identités et accès</b>MFA, moindre privilège</li>
+          <li><span>4</span><b>Architecture, exploitation, développement</b>Configurations de référence, changements</li>
+          <li><span>5</span><b>Incidents et continuité</b>Alerte, sauvegarde, reprise</li>
+          <li><span>6</span><b>Contrôles et réversibilité</b>Preuves, audits, sortie</li>
+        </ol>
+        <p class="rule reveal"><b>Applicable</b>chaque règle a un propriétaire, un périmètre, une preuve et une date de revue.</p>
+      </div>
+    </section>
+
+    <!-- 12 · Ouverture 03 — Intervenant 3 — 0:10 -->
+    <section class="slide dark part" data-title="03 · Contractualiser et contrôler" data-chapter="Contractualiser et contrôler" data-speaker="3" data-time="10">
+      <div class="content">
+        <span class="part-number reveal">03</span>
+        <h2 class="reveal">CONTRACTUALISER ET CONTRÔLER</h2>
+        <p class="lead reveal">Transformer les engagements en preuves.</p>
+        <p class="part-speaker reveal" data-meta="speaker-3">Intervenant 3</p>
+      </div>
+      <ol class="part-map" aria-hidden="true"><li><span>01</span>Comprendre et comparer</li><li><span>02</span>Concevoir et sécuriser</li><li class="on"><span>03</span>Contractualiser et contrôler</li></ol>
+    </section>
+
+    <!-- 13 · Contrats — Intervenant 3 — 1:15 -->
+    <section class="slide" data-title="Le contrat et la chaîne" data-chapter="Contractualiser et contrôler" data-speaker="3" data-time="75">
+      <div class="content">
+        <p class="eyebrow reveal">CONTRACTUALISER · CLAUSES DE SÉCURITÉ</p>
+        <h2 class="reveal">Le contrat encadre <em>toute la chaîne.</em></h2>
+        <div class="chain-row reveal">
+          <ol class="chain" aria-label="Chaîne contractuelle du service web">
+            <li class="c-client"><b>Entreprise</b><small>cliente</small></li>
+            <li class="c-arrow" aria-hidden="true"><span>contrat de prestation</span></li>
+            <li><b>ESN</b><small>développe, exploite</small></li>
+            <li class="c-arrow" aria-hidden="true"><span>contrat d’hébergement</span></li>
+            <li><b>OVH</b><small>héberge · rang 2</small></li>
+          </ol>
+          <p class="o365"><b>Office 365 E3</b><span>Contrat Microsoft distinct, conditions standard&nbsp;: vérifier et paramétrer.</span></p>
+        </div>
+        <ul class="clauses reveal">
+          <li><svg aria-hidden="true"><use href="#i-file"/></svg><b>Responsabilités, données, sous-traitance</b></li>
+          <li><svg aria-hidden="true"><use href="#i-restore"/></svg><b>Disponibilité, sauvegardes, incidents</b></li>
+          <li><svg aria-hidden="true"><use href="#i-eye"/></svg><b>Audits et traitement des écarts</b></li>
+          <li><svg aria-hidden="true"><use href="#i-shift"/></svg><b>Réversibilité, restitution, effacement</b></li>
+        </ul>
+        <div class="example-row reveal">
+          <blockquote class="example">
+            <p>«&nbsp;Alerte du client sous 24&nbsp;h après détection de tout incident touchant ses données.&nbsp;»</p>
+            <footer>Exemple d’engagement vérifiable, à négocier.</footer>
+          </blockquote>
+          <p class="legal"><b>≠ Délai légal</b>Notification à la CNIL par le responsable de traitement, si possible sous 72&nbsp;h (RGPD, art.&nbsp;33).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · Contrôles — Intervenant 3 — 1:15 -->
+    <section class="slide" data-title="Trois niveaux de contrôle" data-chapter="Contractualiser et contrôler" data-speaker="3" data-time="75">
+      <div class="content">
+        <p class="eyebrow reveal">CONTRÔLER · PLAN DE CONTRÔLE</p>
+        <h2 class="reveal">Trois niveaux de contrôle, <em>une décision.</em></h2>
+        <table class="controls-table reveal">
+          <caption class="sr-only">Plan de contrôle à trois niveaux : acteurs, contrôles, fréquences proposées et preuves</caption>
+          <thead><tr><th scope="col">Niveau</th><th scope="col">Qui</th><th scope="col">Contrôle</th><th scope="col">Fréquence proposée</th><th scope="col">Preuve</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><span class="lvl">N1</span>Exploitation</th><td>Équipe technique, ESN</td><td>Correctifs, sauvegardes, alertes</td><td>Continu à mensuel</td><td>Tickets, journaux, rapports</td></tr>
+            <tr><th scope="row"><span class="lvl">N2</span>Supervision</th><td>Référent SSI et risques, distinct des exécutants</td><td>Échantillons, indicateurs, fournisseurs</td><td>Trimestriel</td><td>Tableau de bord, comptes rendus</td></tr>
+            <tr><th scope="row"><span class="lvl">N3</span>Audit</th><td>Auditeur indépendant</td><td>Configuration, intrusion, contrat</td><td>Annuel et avant généralisation</td><td>Rapport, plan d’action</td></tr>
+          </tbody>
+        </table>
+        <p class="comex reveal"><svg aria-hidden="true"><use href="#i-scale"/></svg><b>COMEX</b><span>Reçoit la synthèse, arbitre, accepte ou refuse par écrit le risque résiduel.</span></p>
+        <p class="note reveal">Petite structure&nbsp;: N2 à temps partagé, N3 externe. Un certificat fournisseur éclaire nos contrôles, sans les remplacer.</p>
+      </div>
+    </section>
+
+    <!-- 15 · Trajectoire — Intervenant 3 — 1:00 -->
+    <section class="slide" data-title="Migrer par étapes" data-chapter="Contractualiser et contrôler" data-speaker="3" data-time="60">
+      <div class="content">
+        <p class="eyebrow reveal">CONTRÔLER · TRAJECTOIRE</p>
+        <h2 class="reveal">Migrer par étapes <em>et sous conditions.</em></h2>
+        <ol class="road reveal">
+          <li><span class="step">1</span><b>Cadrage</b><small>Inventaire, dépendances et besoins métier validés</small></li>
+          <li><span class="step">2</span><b>Remédiation</b><small>Prérequis atteints et prouvés</small></li>
+          <li><span class="step">3</span><b>Pilote</b><small>Compatibilité, sécurité, restauration, retour arrière testés</small></li>
+          <li class="gate"><span class="step">4</span><b>Décision</b><small>Contrat conforme, coût complet, risque accepté</small></li>
+          <li><span class="step">5</span><b>Migration par lots</b><small>Validation métier, retour arrière possible</small></li>
+          <li><span class="step">6</span><b>Suivi</b><small>Contrôles N1 à N3, revue annuelle</small></li>
+        </ol>
+        <p class="note reveal">Sous chaque étape, son critère de passage. Aucune date fixée&nbsp;: l’étape suivante s’ouvre quand le critère est prouvé.</p>
+      </div>
+    </section>
+
+    <!-- 16 · Économie — Intervenant 3 — 0:40 -->
+    <section class="slide" data-title="Le gain financier" data-chapter="Contractualiser et contrôler" data-speaker="3" data-time="40">
+      <div class="content">
+        <p class="eyebrow reveal">CONTRÔLER · COÛT COMPLET</p>
+        <h2 class="reveal">Le gain financier <em>reste à démontrer.</em></h2>
+        <div class="tco reveal">
+          <section class="tco-col"><h3>Actuel</h3><ul><li>Matériel</li><li>Énergie</li><li>Licences</li><li>Exploitation</li><li>Sécurité</li></ul></section>
+          <p class="tco-op" aria-hidden="true">vs</p>
+          <section class="tco-col target-col"><h3>Cible</h3><ul><li>Abonnements</li><li>Réseau</li><li>Sauvegardes</li><li>Journaux</li><li>Exploitation</li></ul></section>
+          <p class="tco-op" aria-hidden="true">+</p>
+          <section class="tco-col trans"><h3>Transition</h3><ul><li>Migration</li><li>Formation</li><li>Double fonctionnement</li><li>Sortie</li></ul></section>
+        </div>
+        <p class="note reveal">Même période, même niveau de service. Aucun montant&nbsp;: l’énoncé ne fournit pas les coûts.</p>
+      </div>
+    </section>
+
+    <!-- 17 · Décision — Intervenant 3 — 0:30 -->
+    <section class="slide" data-title="Décision proposée" data-chapter="Conclusion" data-speaker="3" data-time="30">
+      <div class="content">
+        <p class="eyebrow reveal">CONCLUSION · DÉCISION PROPOSÉE AU COMEX</p>
+        <h2 class="reveal">Avancer, <em>sous conditions.</em></h2>
+        <ol class="decisions reveal">
+          <li><span>1</span>Autoriser le cadrage et un pilote.</li>
+          <li><span>2</span>Conditionner la généralisation aux résultats.</li>
+          <li><span>3</span>Protéger la continuité industrielle et accepter explicitement le risque résiduel.</li>
+        </ol>
+        <p class="next-step reveal"><svg aria-hidden="true"><use href="#i-arrow"/></svg>Notre recommandation&nbsp;; la décision appartient au COMEX.</p>
+      </div>
+    </section>
+
+    <!-- 18 · Questions — Intervenant 3 — 0:10 -->
+    <section class="slide dark thanks" data-title="Questions" data-chapter="Conclusion" data-speaker="3" data-time="10">
+      <div class="content">
+        <h2 class="reveal">Merci. <em>Place à vos questions.</em></h2>
+        <p class="names reveal" data-meta="speakers">Intervenant 1 · Intervenant 2 · Intervenant 3</p>
+        <p class="lead reveal"><span data-meta="school">ENSAR</span> · UE22 Sécurité de l’informatique dans les nuages · <span data-meta="academicYear">2026-2027</span></p>
+        <p class="contact reveal" data-meta-optional="contact" hidden><span data-meta="contact"></span></p>
+        <p class="thanks-annex reveal"><a href="annexe.html" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-file"/></svg>Annexe&nbsp;: registre des risques, PSSI, exigences, clauses, contrôles</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="controls">
+    <div class="control-left"><button id="overview-button" class="icon-button" title="Sélecteur de slides (S)" aria-label="Ouvrir le sélecteur de slides"><svg><use href="#i-grid"/></svg></button><span id="chapter-name">Introduction</span></div>
+    <div class="control-middle"><span id="deck-info"></span><button id="sources-button" title="Sources et informations">Sources &amp; infos</button></div>
+    <div class="control-right"><button id="rehearsal-button" class="icon-button" title="Mode répétition (R)" aria-label="Afficher le minutage de répétition" aria-pressed="false"><svg><use href="#i-clock"/></svg></button><button id="fullscreen-button" class="icon-button" title="Plein écran (F)" aria-label="Activer le plein écran"><svg><use href="#i-expand"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">01 / 18</span><button id="previous" class="nav-button" aria-label="Slide précédente"><svg><use href="#i-arrow"/></svg></button><button id="next" class="nav-button" aria-label="Slide suivante"><svg><use href="#i-arrow"/></svg></button></div>
+  </footer><div class="progress-track"><div id="progress"></div></div>
+  <div id="rehearsal" hidden><span id="rh-speaker"></span><span id="rh-window"></span><span id="rh-elapsed"></span></div>
+  <span id="status-message" role="status"></span>
+</main>
+
+<dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="eyebrow">UE22 · SÉCURITÉ CLOUD</p><h2 id="overview-title">Choisir une slide</h2></div><button class="close-dialog" aria-label="Fermer le sélecteur">×</button></div><div id="overview-grid"></div><p class="dialog-tip">Flèches : naviguer · Début / Fin : première / dernière · S : sélecteur · F : plein écran · R : minutage de répétition · Échap : fermer</p></dialog>
+
+<dialog id="sources" aria-labelledby="sources-title"><div class="dialog-header"><div><p class="eyebrow">UE22 · SÉCURITÉ CLOUD</p><h2 id="sources-title">Sources &amp; infos</h2></div><button class="close-dialog" aria-label="Fermer les sources">×</button></div><div class="sources-copy">
+  <h3>Statut des contenus</h3>
+  <p><b>Faits</b>&nbsp;: éléments de l’énoncé. <b>Hypothèses, recommandations, priorités</b>&nbsp;: propositions du groupe, à valider avec l’entreprise. Les priorités et cotations sont des estimations pédagogiques. Aucun montant, aucune date de projet ni aucune donnée chiffrée n’a été ajouté au cas.</p>
+  <p>Le détail des cinq livrables (registre des risques, plan de PSSI, exigences, clauses, plan de contrôle) est dans l’<a href="annexe.html" target="_blank" rel="noopener">annexe imprimable</a>.</p>
+  <h3>Sources du cas</h3>
+  <ul class="refs">
+    <li>ENSAR (2026). <i>UE22 — Sécurité informatique en nuage</i>. Support de cours (PDF « 2026_UE22_Sécurité informatique en nuage »). Pages à préciser.</li>
+    <li>ENSAR (2026). <i>UE22 — Sécurité informatique en nuage, étude de cas, v2</i> (PDF). Pages à préciser.</li>
+  </ul>
+  <h3>Références</h3>
+  <ul class="refs">
+    <li>ANSSI (2024). <i>Recommandations pour l’hébergement dans le cloud des systèmes d’information sensibles</i>, v1.0, juillet 2024, §&nbsp;3 «&nbsp;Précautions d’emploi&nbsp;», p.&nbsp;4-5, et focus SecNumCloud p.&nbsp;9. Consulté le 17/11/2026.</li>
+    <li>ANSSI (2017). <i>Guide d’hygiène informatique — 42 mesures</i>, v2.0, mesures 3, 8 et 14. Consulté le 17/11/2026.</li>
+    <li>ANSSI (2025). <i>La cybersécurité des systèmes industriels — Mesures détaillées</i>, ANSSI-PA-108, v2.0, §&nbsp;2.2.1, p.&nbsp;15. Consulté le 17/11/2026.</li>
+    <li>CNIL (2024). <i>Guide pratique RGPD — Sécurité des données personnelles</i>, fiches 17 «&nbsp;Sauvegarder&nbsp;» et 22 «&nbsp;Cloud&nbsp;». Consulté le 17/11/2026.</li>
+    <li>UE (2016). Règlement (UE) 2016/679 (RGPD), art.&nbsp;28, 32 et 33.</li>
+    <li>UE (2023). Règlement (UE) 2023/2854 (Data Act), art.&nbsp;25 et 29&nbsp;; applicable depuis le 12/09/2025. Consulté le 17/11/2026.</li>
+    <li>UE (2022). Directive (UE) 2022/2555 (NIS&nbsp;2), art.&nbsp;2 et annexe&nbsp;II. Consulté le 17/11/2026.</li>
+    <li>Microsoft (2026). <i>Shared responsibility in the cloud</i>, Microsoft Learn, mis à jour le 24/08/2026. Consulté le 17/11/2026.</li>
+    <li>Microsoft (2026). <i>Microsoft Entra licensing</i>, Microsoft Learn, 07/10/2026. Consulté le 17/11/2026.</li>
+    <li>NIST (2011). <i>SP 800-145 — The NIST Definition of Cloud Computing</i>. Consulté le 17/11/2026.</li>
+    <li>Cloud Security Alliance. <i>Cloud Controls Matrix</i> v4.1. Consulté le 17/11/2026.</li>
+  </ul>
+  <p>URL complètes et détails dans l’annexe, section «&nbsp;Sources&nbsp;».</p>
+  <h3>Images et typographie</h3>
+  <p>Aucune image tierce&nbsp;: schémas et illustration dessinés en SVG et CSS pour cette présentation. Barlow Condensed (The Barlow Project Authors) et DM Sans (The DM Sans Project Authors), licence SIL Open Font License 1.1, fichiers et licences dans <code>assets/fonts/</code>.</p>
+  <h3>Navigation</h3>
+  <p>Flèches, Espace ou molette pour avancer · Début / Fin · S&nbsp;: sélecteur · F&nbsp;: plein écran · R&nbsp;: minutage de répétition (aucune avance automatique) · Ctrl+P&nbsp;: export PDF, une slide par page.</p>
+</div></dialog>
+<noscript><div class="noscript">Activez JavaScript pour naviguer dans le diaporama. Aucun serveur ni accès Internet n’est nécessaire.</div></noscript>
+</body>
+</html>

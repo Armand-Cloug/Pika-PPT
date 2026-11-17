@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0E2A2D">
+  <meta name="description" content="Annexe de l’étude de cas UE22 : comparatif des risques, registre des risques, plan de PSSI cloud, exigences client, clauses contractuelles, plan de contrôle et sources.">
+  <title>Annexe — Migrer vers le cloud, maîtriser les risques</title>
+  <link rel="icon" id="favicon" href="assets/cover.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="annexe.css">
+  <script src="metadata.js" defer></script>
+  <script src="annexe.js" defer></script>
+</head>
+<body>
+<header class="doc-head">
+  <p class="kicker"><span data-meta="school">ENSAR</span> · <span data-meta="course">UE22 — Sécurité de l’informatique dans les nuages</span> · <span data-meta="academicYear">2026-2027</span></p>
+  <h1>Annexe — Migrer vers le cloud, <em>maîtriser les risques</em></h1>
+  <p class="subtitle">Étude de cas · Documentation des cinq livrables, hors temps de présentation</p>
+  <dl class="meta">
+    <div><dt>Intervenants</dt><dd data-meta="speakers">Intervenant 1 · Intervenant 2 · Intervenant 3</dd></div>
+    <div><dt>Enseignant</dt><dd data-meta="teacher">à compléter</dd></div>
+    <div data-meta-optional="defenseDate" hidden><dt>Soutenance</dt><dd data-meta="defenseDate"></dd></div>
+    <div><dt>Version</dt><dd>Document de travail du 17/11/2026</dd></div>
+  </dl>
+  <p class="screen-only back"><a href="index.html">← Retour à la présentation</a> · <button type="button" id="print-button">Imprimer / exporter en PDF</button></p>
+</header>
+
+<aside class="todo-box" id="a-verifier">
+  <h2>Avant remise&nbsp;: points à vérifier</h2>
+  <ul>
+    <li>Relire les deux PDF de l’énoncé et ajouter les numéros de page dans la section <a href="#sources">Sources</a>&nbsp;: cette version a été rédigée à partir de la synthèse du cas, sans accès aux PDF.</li>
+    <li>Confirmer avec l’enseignant que l’export PDF de la présentation et de cette annexe répond à l’exigence de remise en format PPT, DOC ou XLS. Ces fichiers HTML ne sont pas des fichiers PowerPoint ou Word.</li>
+    <li>Compléter les noms, l’enseignant et la date de soutenance dans <code>metadata.js</code>, puis supprimer cet encadré.</li>
+  </ul>
+</aside>
+
+<nav class="toc" aria-label="Sommaire de l’annexe">
+  <h2>Sommaire</h2>
+  <ol>
+    <li><a href="#lecture">Mode de lecture et synthèse</a></li>
+    <li><a href="#comparatif">Livrable 1 — Comparatif des risques on-premise / cloud</a></li>
+    <li><a href="#registre">Registre synthétique des risques</a></li>
+    <li><a href="#pssi">Livrable 2 — Plan de PSSI cloud</a></li>
+    <li><a href="#exigences">Livrable 3 — Exigences côté client</a></li>
+    <li><a href="#clauses">Livrable 4 — Clauses contractuelles</a></li>
+    <li><a href="#controle">Livrable 5 — Plan de contrôle à trois niveaux</a></li>
+    <li><a href="#faisabilite">Faisabilité, compétences et coût complet</a></li>
+    <li><a href="#cadre">Cadre réglementaire et référentiels</a></li>
+    <li><a href="#manques">Informations à confirmer</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="lecture">
+  <h2><span>1</span>Mode de lecture et synthèse</h2>
+  <div class="legend">
+    <p><abbr class="st st-f" title="Fait">F</abbr><b>Fait</b> élément de l’énoncé.</p>
+    <p><abbr class="st st-h" title="Hypothèse">H</abbr><b>Hypothèse</b> supposition du groupe, à vérifier.</p>
+    <p><abbr class="st st-r" title="Recommandation">R</abbr><b>Recommandation</b> proposition du groupe, à arbitrer.</p>
+    <p><abbr class="st st-c" title="À confirmer">?</abbr><b>À confirmer</b> information absente de l’énoncé&nbsp;: ni présente, ni absente.</p>
+  </div>
+  <div class="callout">
+    <h3>Notre recommandation au COMEX</h3>
+    <p>Une migration <b>progressive et sélective</b> peut être pertinente, sous réserve de sécuriser les fondamentaux, de contractualiser les responsabilités et de démontrer la continuité. Le <b>pilotage industriel reste local</b> à ce stade, dans l’attente d’une étude spécifique. Il s’agit d’une recommandation, ni d’une décision prise ni d’une obligation réglementaire.</p>
+    <ol>
+      <li>Autoriser le cadrage et un pilote sur un usage non critique pour la fabrication.</li>
+      <li>Conditionner la généralisation aux résultats&nbsp;: prérequis atteints, restauration et retour arrière testés, contrat conforme, coût complet démontré.</li>
+      <li>Protéger la continuité industrielle et faire accepter explicitement, par écrit, le risque résiduel par le COMEX.</li>
+    </ol>
+  </div>
+  <p>Constats structurants&nbsp;: l’entreprise utilise déjà des services externalisés (Office 365 E3, plateforme web développée et exploitée par une ESN et hébergée chez OVH). La migration <b>déplace</b> certaines responsabilités techniques sans supprimer celles du client. Les protections disponibles sous licence (McAfee) ne prouvent pas leur déploiement ni leur efficacité. La réduction des coûts reste à démontrer.</p>
+</section>
+
+<section id="comparatif">
+  <h2><span>2</span>Livrable 1 — Comparatif des risques on-premise / cloud</h2>
+  <p class="intro">Tendance qualitative pour un service migré, sans score global&nbsp;: elle dépend du modèle (IaaS, PaaS, SaaS), de l’offre et du contrat. ↓ réduit · ↑ accru · ↔ déplacé.</p>
+  <div class="table-wrap">
+  <table>
+    <caption>Comparatif par scénario</caption>
+    <thead><tr><th scope="col">Scénario</th><th scope="col">Situation actuelle</th><th scope="col">Effet d’un hébergement cloud</th><th scope="col">Tendance</th><th scope="col">Condition de maîtrise</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Sinistre physique du site (incendie, eau, électricité)</th><td><abbr class="st st-f" title="Fait">F</abbr> Ancienne usine à Niort. <abbr class="st st-h" title="Hypothèse">H</abbr> AD, PKI, NAS et applications internes hébergés sur ce site. <abbr class="st st-c" title="À confirmer">?</abbr> Copies hors site, PRA.</td><td>Services migrés hébergés dans les centres du fournisseur, redondés selon l’offre. L’usine, l’OT et le réseau local restent exposés.</td><td class="tr">↓</td><td>Copies hors site isolées, PRA couvrant le site, test annuel.</td></tr>
+      <tr><th scope="row">Perte de connectivité</th><td><abbr class="st st-f" title="Fait">F</abbr> Office 365 et plateforme web déjà dépendants d’Internet. <abbr class="st st-c" title="À confirmer">?</abbr> Redondance des accès Orange.</td><td>Chaque service migré devient inaccessible en cas de coupure&nbsp;; dépendance accrue à l’opérateur.</td><td class="tr">↑</td><td>Double accès (opérateur ou chemin distinct à étudier), mode dégradé documenté, OT autonome.</td></tr>
+      <tr><th scope="row">Compromission d’identité</th><td><abbr class="st st-f" title="Fait">F</abbr> Comptes par défaut, droits d’administration locaux, secrets locaux. <abbr class="st st-c" title="À confirmer">?</abbr> MFA.</td><td>Interfaces d’administration joignables depuis Internet&nbsp;; un compte global compromis ouvre tout le locataire.</td><td class="tr">↑</td><td>MFA, comptes d’administration dédiés, moindre privilège, journalisation, comptes de secours protégés.</td></tr>
+      <tr><th scope="row">Rançongiciel depuis un poste</th><td><abbr class="st st-f" title="Fait">F</abbr> Postes hétérogènes, non gérés centralement, non supervisés&nbsp;; logiciels obsolètes&nbsp;; déploiement antivirus non prouvé.</td><td>Les postes restent chez le client. Les fichiers synchronisés peuvent propager un chiffrement&nbsp;; la reprise dépend des options de version et de rétention.</td><td class="tr">↔</td><td>Gestion centralisée, protection vérifiée, correctifs, sauvegarde indépendante et versionnée.</td></tr>
+      <tr><th scope="row">Fuite par mauvaise configuration</th><td><abbr class="st st-f" title="Fait">F</abbr> Configurations manuelles, documentation pas toujours à jour, chiffrement des disques incomplet, BYOD non encadré.</td><td>Partages publics, liens anonymes, stockage ouvert, droits excessifs, exposés directement sur Internet.</td><td class="tr">↔</td><td>Classification, configuration de référence, revue des partages, contrôle N2.</td></tr>
+      <tr><th scope="row">Destruction ou perte de données</th><td><abbr class="st st-c" title="À confirmer">?</abbr> Sauvegardes, fréquence, isolement, tests.</td><td>Une suppression ou un chiffrement peut être répliqué&nbsp;; la sauvegarde du fournisseur ne couvre pas forcément l’erreur du client.</td><td class="tr">↔</td><td>Sauvegarde indépendante du service, copie isolée, restauration testée dans le délai métier.</td></tr>
+      <tr><th scope="row">Vulnérabilités d’infrastructure</th><td><abbr class="st st-f" title="Fait">F</abbr> Services inutiles, ports ouverts, logiciels obsolètes.</td><td>Le fournisseur corrige les couches qu’il gère&nbsp;; le client garde le système en IaaS, l’application et la configuration.</td><td class="tr">↓ PaaS, SaaS<br>↔ IaaS</td><td>Répartition écrite des responsabilités, gestion des vulnérabilités sur la part client.</td></tr>
+      <tr><th scope="row">Dépendance ou défaillance d’un fournisseur</th><td><abbr class="st st-f" title="Fait">F</abbr> ESN, OVH (rang 2), Microsoft, Orange déjà présents.</td><td>Concentration, évolution unilatérale des offres et des prix, difficulté de sortie, sous-traitance en cascade.</td><td class="tr">↑</td><td>Clauses, plan de réversibilité testé, suivi des fournisseurs.</td></tr>
+      <tr><th scope="row">Accès par des tiers et lois extraterritoriales</th><td><abbr class="st st-f" title="Fait">F</abbr> Plateforme hébergée en France chez OVH. <abbr class="st st-c" title="À confirmer">?</abbr> Localisation des données Office 365.</td><td>Administrateurs du fournisseur&nbsp;; demandes d’autorités selon la juridiction du fournisseur. Localisation en France ≠ souveraineté ≠ conformité RGPD.</td><td class="tr">↑ selon fournisseur</td><td>Analyse juridique, chiffrement avec maîtrise des clés, SecNumCloud comme critère si la sensibilité le justifie.</td></tr>
+      <tr><th scope="row">Perte de maîtrise et de compétences</th><td><abbr class="st st-f" title="Fait">F</abbr> Pas d’expert SSI, pas de politique de maintien des compétences.</td><td>Souscription facile (informatique fantôme), paramètres nombreux, dépendance aux prestataires.</td><td class="tr">↑</td><td>Procédure d’adoption, registre des services, référent SSI, formation.</td></tr>
+      <tr><th scope="row">Capacité et disponibilité</th><td><abbr class="st st-c" title="À confirmer">?</abbr> Capacité et redondance des serveurs locaux.</td><td>Élasticité et haute disponibilité possibles, selon l’offre souscrite et l’architecture.</td><td class="tr">↓ selon offre</td><td>Niveaux de service mesurés, architecture adaptée, tests.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nb">Sauvegarde, réplication, haute disponibilité et PRA ne sont pas synonymes&nbsp;: la réplication recopie aussi les erreurs, la haute disponibilité limite les interruptions sans protéger contre la suppression, seule une sauvegarde isolée et restaurée avec succès prouve la capacité de reprise des données, et le PRA organise la reprise complète du service.</p>
+</section>
+
+<section id="registre">
+  <h2><span>3</span>Registre synthétique des risques</h2>
+  <p class="intro">Démarche inspirée des principes de l’analyse de risque (scénario, impact, vraisemblance, mesures, risque résiduel). Ce n’est pas une analyse EBIOS Risk Manager complète. <b>Toutes les cotations sont des estimations pédagogiques à valider</b> avec les métiers et la direction.</p>
+  <div class="scales">
+    <div>
+      <h3>Gravité (G)</h3>
+      <ol>
+        <li><b>G1 Limitée</b> gêne interne, contournement simple, aucune donnée sensible.</li>
+        <li><b>G2 Significative</b> processus dégradé moins d’une journée, données internes exposées.</li>
+        <li><b>G3 Grave</b> ventes ou fabrication interrompues plusieurs jours, ou données personnelles exposées.</li>
+        <li><b>G4 Critique</b> arrêt prolongé de la fabrication ou des ventes, perte définitive de données essentielles.</li>
+      </ol>
+      <p class="small">Seuils de durée à faire valider par les directions métiers.</p>
+    </div>
+    <div>
+      <h3>Vraisemblance (V)</h3>
+      <ol>
+        <li><b>V1 Peu vraisemblable</b> exploitation difficile, aucune faiblesse connue.</li>
+        <li><b>V2 Vraisemblable</b> faiblesses partielles, scénario courant dans des organisations comparables.</li>
+        <li><b>V3 Très vraisemblable</b> faiblesses constatées et exploitables, ou exposition à Internet.</li>
+        <li><b>V4 Quasi certain</b> faiblesse triviale déjà ciblée, ou incident déjà survenu.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Niveau = G × V</h3>
+      <ul class="levels">
+        <li><span class="lv lv1">1–3</span>Faible&nbsp;: accepté par le propriétaire du risque.</li>
+        <li><span class="lv lv2">4–6</span>Modéré&nbsp;: accepté par le COMEX avec suivi.</li>
+        <li><span class="lv lv3">8–9</span>Élevé&nbsp;: traitement prioritaire.</li>
+        <li><span class="lv lv4">12–16</span>Critique&nbsp;: traitement avant toute migration.</li>
+      </ul>
+      <p class="small"><b>Initial</b> (brut, sans aucune mesure)&nbsp;: non coté ici. <b>Actuel</b>&nbsp;: avec les mesures existantes. <b>Induit</b>&nbsp;: risque créé par la migration si elle se faisait sans mesure. <b>Résiduel cible</b>&nbsp;: après les mesures proposées, à accepter formellement.</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+  <table class="register">
+    <caption>Registre des risques — estimations pédagogiques</caption>
+    <thead><tr><th scope="col">ID</th><th scope="col">Scénario</th><th scope="col">Type</th><th scope="col">G</th><th scope="col">V</th><th scope="col">Niveau</th><th scope="col">Justification de la cotation</th><th scope="col">Mesures (exigences)</th><th scope="col">Résiduel cible</th><th scope="col">Propriétaire proposé</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">R1</th><td>Un attaquant exploite un compte par défaut ou un secret local et prend le contrôle d’un compte à privilèges (AD, console cloud).</td><td>Actuel</td><td>4</td><td>3</td><td><span class="lv lv4">12</span></td><td>Faiblesses constatées, droits locaux, aucune supervision&nbsp;; MFA non documenté.</td><td>EX-01 à EX-04, EX-12</td><td>G3 V2 <span class="lv lv2">6</span><br><small>cloisonnement des comptes d’administration</small></td><td>Responsable IT</td></tr>
+      <tr><th scope="row">R2</th><td>Un rançongiciel entre par un poste non géré, chiffre le NAS et les fichiers synchronisés.</td><td>Actuel</td><td>4</td><td>3</td><td><span class="lv lv4">12</span></td><td>Postes non gérés ni supervisés, logiciels obsolètes, protection antivirale non prouvée, sauvegardes non documentées.</td><td>EX-05, EX-08 à EX-10</td><td>G3 V2 <span class="lv lv2">6</span></td><td>Responsable IT</td></tr>
+      <tr><th scope="row">R3</th><td>Un service migré nécessaire aux ventes ou à la fabrication devient inaccessible (coupure d’accès, panne du fournisseur).</td><td>Induit</td><td>4</td><td>2</td><td><span class="lv lv3">8</span></td><td>Gravité critique si la fabrication en dépend&nbsp;; coupures et pannes fournisseurs sont des événements connus.</td><td>EX-06, EX-07, EX-16, EX-17</td><td>G2 V2 <span class="lv lv2">4</span><br><small>OT local, mode dégradé</small></td><td>Directeur des opérations</td></tr>
+      <tr><th scope="row">R4</th><td>Un sinistre du site détruit serveurs et sauvegardes locales.</td><td>Actuel</td><td>4</td><td>2</td><td><span class="lv lv3">8</span></td><td>Infrastructure concentrée sur le site&nbsp;; copies hors site non documentées.</td><td>EX-07 à EX-09</td><td>G3 V1 <span class="lv lv1">3</span><br><small>l’usine reste exposée</small></td><td>Direction générale</td></tr>
+      <tr><th scope="row">R5</th><td>Une mauvaise configuration cloud expose des données (partage public, stockage ouvert, droits excessifs).</td><td>Induit</td><td>3</td><td>3</td><td><span class="lv lv3">9</span></td><td>Pas d’expert SSI, configurations manuelles, documentation incomplète.</td><td>EX-13, EX-14, EX-18, EX-19</td><td>G3 V1 <span class="lv lv1">3</span></td><td>Référent SSI</td></tr>
+      <tr><th scope="row">R6</th><td>La perte ou le vol d’un portable ou d’un terminal personnel expose des données.</td><td>Actuel</td><td>3</td><td>3</td><td><span class="lv lv3">9</span></td><td>Chiffrement incomplet, BYOD non encadré.</td><td>EX-11</td><td>G2 V2 <span class="lv lv2">4</span></td><td>Responsable IT et RH</td></tr>
+      <tr><th scope="row">R7</th><td>Une vulnérabilité de la plateforme web est exploitée&nbsp;: fraude, fuite de données clients, arrêt des ventes.</td><td>Actuel</td><td>3</td><td>3</td><td><span class="lv lv3">9</span></td><td>Exposition permanente à Internet&nbsp;; aucune information sur les tests de sécurité ni les correctifs de l’ESN.</td><td>Clauses B5, C4&nbsp;; EX-21</td><td>G3 V2 <span class="lv lv2">6</span></td><td>Directeur commercial</td></tr>
+      <tr><th scope="row">R8</th><td>L’ESN ou OVH fait défaut (faillite, litige, fin de contrat) sans réversibilité&nbsp;: perte de maîtrise du site, du code et des données.</td><td>Actuel</td><td>3</td><td>2</td><td><span class="lv lv2">6</span></td><td>Chaîne de sous-traitance à deux rangs&nbsp;; contrats et propriété du code inconnus.</td><td>EX-20&nbsp;; clauses A6, D1 à D4</td><td>G2 V2 <span class="lv lv2">4</span></td><td>Direction générale</td></tr>
+      <tr><th scope="row">R9</th><td>Un flux ou une mise à jour non maîtrisés perturbent le SI industriel (Windows 7, support distant, connexion IT–OT).</td><td>Actuel</td><td>4</td><td>2</td><td><span class="lv lv3">8</span></td><td>Windows 7 hors support&nbsp;; VLAN dédié et blocage Internet limitent l’exposition&nbsp;; mises à jour automatiques annoncées, à examiner.</td><td>EX-16&nbsp;; étude OT dédiée</td><td>G4 V1 <span class="lv lv2">4</span></td><td>Responsable de production</td></tr>
+      <tr><th scope="row">R10</th><td>La chaîne de sous-traitance enfreint le RGPD (rôles mal qualifiés, sous-traitant non autorisé, transfert hors UE, alerte tardive).</td><td>Actuel</td><td>3</td><td>2</td><td><span class="lv lv2">6</span></td><td>Deux rangs de sous-traitance, contrats non analysés.</td><td>EX-15&nbsp;; clauses A3 à A5, B4</td><td>G2 V1 <span class="lv lv1">2</span></td><td>Direction et référent RGPD</td></tr>
+      <tr><th scope="row">R11</th><td>Une erreur ou une absence paralyse la réaction faute de compétences et de documentation.</td><td>Actuel</td><td>3</td><td>3</td><td><span class="lv lv3">9</span></td><td>Pas d’expert SSI ni de maintien des compétences&nbsp;; configurations manuelles.</td><td>EX-18, EX-19</td><td>G2 V2 <span class="lv lv2">4</span></td><td>Direction générale</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nb">Le niveau résiduel cible suppose les mesures en place <b>et vérifiées</b>. Il reste un risque&nbsp;: il doit être accepté explicitement par le COMEX, avec une date de revue.</p>
+</section>
+
+<section id="pssi">
+  <h2><span>4</span>Livrable 2 — Plan de PSSI cloud</h2>
+  <p class="intro">La PSSI cloud complète la PSSI générale, dont l’existence est à confirmer&nbsp;; si elle n’existe pas, ce plan en fournit le volet cloud et la base des autres volets. Chaque règle porte un propriétaire, un périmètre, une preuve attendue et une date de revue.</p>
+  <div class="pssi-grid">
+    <article><h3>0. Cadre</h3><ul>
+      <li>Objet, périmètre&nbsp;: services IaaS, PaaS, SaaS, prestataires d’infogérance et leurs sous-traitants. Le SI industriel est exclu, sauf ses interfaces.</li>
+      <li>Articulation avec la PSSI générale et les chartes.</li>
+      <li>Références&nbsp;: ISO/IEC 27001:2022 (mesures relatives aux fournisseurs et aux services en nuage), ISO/IEC 27017, guide d’hygiène ANSSI, RGPD.</li>
+      <li>Approbation par le COMEX, revue annuelle et à chaque changement majeur&nbsp;; procédure de dérogation à durée limitée.</li>
+    </ul></article>
+    <article><h3>1. Gouvernance et fournisseurs</h3><ul>
+      <li>Rôles&nbsp;: COMEX (approuve, accepte les risques résiduels), comité opérationnel (pilote), référent SSI (rédige, contrôle N2), propriétaires de services et de données, référent RGPD.</li>
+      <li>Procédure d’adoption d’un service cloud&nbsp;: besoin, classification, analyse de risque, validation sécurité et juridique.</li>
+      <li>Registre des services cloud et des prestataires, rang 2 inclus.</li>
+      <li>Critères de sélection&nbsp;: certificats et leur périmètre, qualification SecNumCloud si la sensibilité le justifie, localisation, juridiction, sous-traitants, réversibilité.</li>
+      <li>Revue annuelle des fournisseurs&nbsp;: niveaux de service, incidents, rapports.</li>
+    </ul></article>
+    <article><h3>2. Données et conformité</h3><ul>
+      <li>Classification (par exemple publique, interne, confidentielle, restreinte) et règles d’hébergement par niveau.</li>
+      <li>Localisation, transferts hors UE, exposition aux lois extraterritoriales.</li>
+      <li>RGPD&nbsp;: registre, rôles qualifiés traitement par traitement, contrats article 28, analyse d’impact si nécessaire.</li>
+      <li>Chiffrement en transit et au repos&nbsp;; détention et gestion des clés.</li>
+      <li>Conservation, restitution, effacement et preuve d’effacement.</li>
+    </ul></article>
+    <article><h3>3. Identités et accès</h3><ul>
+      <li>Annuaire de référence et synchronisation AD–cloud (à étudier, avec la PKI et le 802.1X).</li>
+      <li>MFA obligatoire pour les administrateurs et les accès distants, puis pour tous&nbsp;; blocage des protocoles hérités.</li>
+      <li>Comptes d’administration nominatifs et dédiés, moindre privilège, postes d’administration dédiés, comptes de secours protégés.</li>
+      <li>Arrivées, mobilités, départs&nbsp;; revue trimestrielle des droits.</li>
+      <li>Comptes de service et secrets dans un coffre&nbsp;; aucun secret en clair sur un poste.</li>
+      <li>Accès des prestataires nominatifs, tracés, limités dans le temps.</li>
+      <li>Conditions d’accès des terminaux et du BYOD.</li>
+    </ul></article>
+    <article><h3>4. Architecture, exploitation et développement</h3><ul>
+      <li>Configuration de référence par service et suivi des écarts.</li>
+      <li>Segmentation et matrice des flux&nbsp;; pas de flux direct OT–Internet.</li>
+      <li>Gestion des vulnérabilités et des correctifs&nbsp;; procédure spécifique OT validée par la production et les éditeurs.</li>
+      <li>Journalisation&nbsp;: sources, durée de conservation, revue.</li>
+      <li>Administration sécurisée.</li>
+      <li>Gestion des changements et documentation à jour.</li>
+      <li>Séparation production, développement, recette, préproduction&nbsp;; données de test minimisées ou anonymisées.</li>
+      <li>Exigences de développement sécurisé imposées à l’ESN.</li>
+    </ul></article>
+    <article><h3>5. Incidents et continuité</h3><ul>
+      <li>Détection, qualification, escalade, contacts des fournisseurs.</li>
+      <li>Alertes contractuelles des fournisseurs et notifications réglementaires (CNIL si violation de données à risque).</li>
+      <li>Sauvegardes&nbsp;: périmètre, fréquence alignée sur la perte de données admissible, copie isolée, chiffrement, tests.</li>
+      <li>Continuité et reprise&nbsp;: besoins métiers, PCA, PRA, mode dégradé, connectivité.</li>
+      <li>Exercice annuel.</li>
+    </ul></article>
+    <article><h3>6. Contrôles et réversibilité</h3><ul>
+      <li>Plan de contrôle N1, N2, N3 et indicateurs.</li>
+      <li>Audits fournisseurs et exploitation de leurs preuves.</li>
+      <li>Traitement des écarts&nbsp;: plan d’action, échéance, propriétaire, escalade au COMEX.</li>
+      <li>Plan de réversibilité par service&nbsp;: formats, délais, rôles, test.</li>
+    </ul></article>
+    <article><h3>Annexes de la PSSI</h3><ul>
+      <li>Glossaire.</li>
+      <li>Matrice des responsabilités par service (RACI).</li>
+      <li>Matrice des flux.</li>
+      <li>Modèle de dérogation et d’acceptation du risque.</li>
+      <li>Liste des services cloud autorisés.</li>
+    </ul></article>
+  </div>
+</section>
+
+<section id="exigences">
+  <h2><span>5</span>Livrable 3 — Exigences côté client</h2>
+  <p class="intro">Jalons&nbsp;: <b>Cadrage</b>, <b>Avant pilote</b>, <b>Avant généralisation</b>, <b>Continu</b>. Les responsables sont proposés&nbsp;; la direction les nomme.</p>
+  <div class="table-wrap">
+  <table>
+    <caption>Exigences, responsables et preuves</caption>
+    <thead><tr><th scope="col">ID</th><th scope="col">Exigence</th><th scope="col">Jalon</th><th scope="col">Responsable proposé</th><th scope="col">Preuve attendue</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">EX-01</th><td>MFA sur tous les comptes à privilèges et tous les accès distants. Vérifier les options de la licence&nbsp;: Office 365 E3 permet le MFA, l’accès conditionnel requiert Microsoft Entra ID P1.</td><td>Avant pilote</td><td>Responsable IT</td><td>Export de configuration, taux de couverture 100&nbsp;%</td></tr>
+      <tr><th scope="row">EX-02</th><td>Comptes d’administration nominatifs et distincts&nbsp;; retrait des droits d’administration locaux non justifiés.</td><td>Avant pilote</td><td>Responsable IT</td><td>Liste des comptes, dérogations signées</td></tr>
+      <tr><th scope="row">EX-03</th><td>Suppression ou désactivation des comptes par défaut&nbsp;; changement des mots de passe constructeurs.</td><td>Avant pilote</td><td>Équipe technique</td><td>Scan avant / après</td></tr>
+      <tr><th scope="row">EX-04</th><td>Retrait des secrets stockés localement, coffre-fort de secrets, renouvellement des secrets exposés.</td><td>Avant pilote</td><td>Équipe technique</td><td>Résultat de recherche de secrets, inventaire du coffre</td></tr>
+      <tr><th scope="row">EX-05</th><td>Fermeture des services et ports inutiles&nbsp;; mise à jour ou isolement des logiciels obsolètes côté IT.</td><td>Avant pilote</td><td>Équipe technique</td><td>Scan de vulnérabilités, plan de correction</td></tr>
+      <tr><th scope="row">EX-06</th><td>Inventaire des actifs, applications, flux et dépendances, y compris OT–IT et AD–PKI.</td><td>Cadrage</td><td>Responsable IT et métiers</td><td>Inventaire daté, cartographie validée</td></tr>
+      <tr><th scope="row">EX-07</th><td>Durée d’interruption et perte de données admissibles par processus.</td><td>Cadrage</td><td>Directions métiers</td><td>Fiche de besoins validée</td></tr>
+      <tr><th scope="row">EX-08</th><td>Sauvegarde avec au moins une copie isolée, y compris pour les données SaaS jugées critiques.</td><td>Avant pilote</td><td>Responsable IT</td><td>Schéma, journaux de sauvegarde</td></tr>
+      <tr><th scope="row">EX-09</th><td>Test de restauration complète d’un service dans le délai cible, puis chaque année.</td><td>Avant pilote</td><td>Responsable IT et métier</td><td>Procès-verbal chronométré</td></tr>
+      <tr><th scope="row">EX-10</th><td>Gestion centralisée des postes et vérification du déploiement effectif des protections sous licence.</td><td>Avant généralisation</td><td>Équipe technique</td><td>Tableau de couverture par poste</td></tr>
+      <tr><th scope="row">EX-11</th><td>Chiffrement complet des portables&nbsp;; charte BYOD et conditions d’accès.</td><td>Avant généralisation</td><td>Responsable IT et RH</td><td>Rapport de chiffrement, charte signée</td></tr>
+      <tr><th scope="row">EX-12</th><td>Journalisation centralisée des connexions et actions d’administration (AD, consoles cloud, pare-feu), conservation et revue.</td><td>Avant pilote</td><td>Référent SSI</td><td>Rapport de revue mensuel</td></tr>
+      <tr><th scope="row">EX-13</th><td>Configuration de référence Office 365&nbsp;: partages externes, protocoles hérités, journal d’audit.</td><td>Avant pilote</td><td>Responsable IT</td><td>Rapport de configuration</td></tr>
+      <tr><th scope="row">EX-14</th><td>Classification des données et règles d’hébergement associées.</td><td>Avant pilote</td><td>Propriétaires de données</td><td>Inventaire classé</td></tr>
+      <tr><th scope="row">EX-15</th><td>Registre RGPD à jour, rôles qualifiés par traitement, contrats article 28.</td><td>Avant décision</td><td>Direction et référent RGPD</td><td>Registre, contrats annotés</td></tr>
+      <tr><th scope="row">EX-16</th><td>Matrice des flux OT–IT–cloud, aucun flux direct OT–Internet&nbsp;; procédure de mise à jour OT validée avec la production et les éditeurs.</td><td>Cadrage</td><td>Responsable de production et IT</td><td>Matrice, procédure signée</td></tr>
+      <tr><th scope="row">EX-17</th><td>Étude de redondance des accès et mode dégradé documenté pour chaque service migré.</td><td>Avant chaque lot</td><td>Responsable IT</td><td>Étude, test de bascule</td></tr>
+      <tr><th scope="row">EX-18</th><td>Toute modification d’infrastructure est tracée, testée et documentée.</td><td>Continu</td><td>Responsable IT</td><td>Registre des changements</td></tr>
+      <tr><th scope="row">EX-19</th><td>Référent SSI désigné (interne ou à temps partagé) et plan de formation cloud de l’équipe technique.</td><td>Cadrage</td><td>Direction générale</td><td>Lettre de mission, plan de formation</td></tr>
+      <tr><th scope="row">EX-20</th><td>Plan de réversibilité par service, testé sur un échantillon.</td><td>Avant généralisation</td><td>Propriétaire du service</td><td>Procès-verbal d’export et de réimport</td></tr>
+      <tr><th scope="row">EX-21</th><td>Procédure de gestion des incidents intégrant les fournisseurs et les notifications réglementaires.</td><td>Avant pilote</td><td>Référent SSI</td><td>Procédure, compte rendu d’exercice</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="clauses">
+  <h2><span>6</span>Livrable 4 — Clauses contractuelles</h2>
+  <p class="intro">Propositions à adapter avec un juriste. Les valeurs entre crochets sont à négocier. Chaîne visée&nbsp;: <b>entreprise → ESN → OVH</b> pour le service web. Le contrat <b>Office 365</b> est distinct, aux conditions standard de Microsoft&nbsp;: il se vérifie et se compense par le paramétrage, plus qu’il ne se négocie.</p>
+  <div class="table-wrap">
+  <table class="clauses">
+    <caption>Clauses proposées</caption>
+    <thead><tr><th scope="col">Réf.</th><th scope="col">Clause proposée</th><th scope="col">Point de vigilance</th></tr></thead>
+    <tbody>
+      <tr class="group"><th colspan="3" scope="colgroup">A — Responsabilités, données, sous-traitance</th></tr>
+      <tr><th scope="row">A1</th><td>Le prestataire décrit dans un plan d’assurance sécurité les mesures appliquées, leur responsable et leur preuve&nbsp;; toute évolution défavorable requiert l’accord préalable du client.</td><td>Annexer le plan au contrat (mesure 3 du guide d’hygiène ANSSI).</td></tr>
+      <tr><th scope="row">A2</th><td>Une matrice de responsabilités annexée précise, mesure par mesure, la part du prestataire, de ses sous-traitants et du client.</td><td>Évite les zones grises entre ESN et OVH.</td></tr>
+      <tr><th scope="row">A3</th><td>Pour chaque traitement où le client est responsable de traitement, le prestataire agit comme sous-traitant, sur instructions documentées, avec les garanties de l’article 28 du RGPD.</td><td>Qualifier les rôles traitement par traitement. Ne pas reprendre sans analyse une clause qualifiant l’hébergeur de responsable de traitement.</td></tr>
+      <tr><th scope="row">A4</th><td>Tout sous-traitant ultérieur requiert l’autorisation écrite préalable du client&nbsp;; le prestataire lui impose les mêmes obligations et répond de ses manquements.</td><td>RGPD art. 28 §2 et §4&nbsp;: OVH, au rang 2, doit être couvert par le contrat ESN.</td></tr>
+      <tr><th scope="row">A5</th><td>Données hébergées et administrées dans l’UE&nbsp;; tout transfert ou accès depuis un pays tiers requiert l’accord du client et des garanties conformes au chapitre V du RGPD&nbsp;; information du client en cas de demande d’une autorité, sauf interdiction légale.</td><td>Localisation ≠ souveraineté ≠ conformité.</td></tr>
+      <tr><th scope="row">A6</th><td>Le client est propriétaire de ses données et des développements spécifiques&nbsp;; le code source et sa documentation sont remis à chaque version majeure.</td><td>Condition de la réversibilité de la plateforme web.</td></tr>
+      <tr class="group"><th colspan="3" scope="colgroup">B — Disponibilité, sauvegardes, incidents</th></tr>
+      <tr><th scope="row">B1</th><td>Disponibilité mensuelle de [x&nbsp;%], délais d’intervention par gravité, méthode de mesure, rapport mensuel, pénalités.</td><td>Les pénalités ne compensent pas la perte d’activité.</td></tr>
+      <tr><th scope="row">B2</th><td>Sauvegarde des données et configurations selon la fréquence et la rétention annexées, avec une copie isolée&nbsp;; test de restauration au moins annuel, procès-verbal remis au client.</td><td>La sauvegarde du prestataire ne remplace pas la stratégie du client.</td></tr>
+      <tr><th scope="row">B3</th><td>PRA du prestataire décrit, testé, résultats communiqués&nbsp;; objectifs de reprise alignés sur les besoins du client.</td><td>Vérifier que le PRA couvre le service souscrit.</td></tr>
+      <tr><th scope="row">B4</th><td>Alerte du client sous [24&nbsp;h] après détection de tout incident de sécurité affectant ou pouvant affecter ses données ou le service&nbsp;; rapport complet sous [5 jours ouvrés].</td><td>Délai contractuel distinct du délai légal&nbsp;: le responsable de traitement notifie la CNIL dans les meilleurs délais et, si possible, 72&nbsp;h au plus tard après en avoir pris connaissance (RGPD art. 33).</td></tr>
+      <tr><th scope="row">B5</th><td>Correction des vulnérabilités selon des délais par criticité&nbsp;; information du client des vulnérabilités critiques.</td><td>Concerne surtout la plateforme web.</td></tr>
+      <tr class="group"><th colspan="3" scope="colgroup">C — Audits et traitement des écarts</th></tr>
+      <tr><th scope="row">C1</th><td>Le client peut auditer ou faire auditer par un tiers indépendant le respect des engagements, avec un préavis de [30 jours]&nbsp;; le prestataire fournit aussi ses certificats et rapports en cours de validité, avec leur périmètre.</td><td>RGPD art. 28 §3 h. Un certificat sans périmètre vérifié ne prouve rien pour le service souscrit.</td></tr>
+      <tr><th scope="row">C2</th><td>Tout écart donne lieu à un plan d’action sous [15 jours], suivi en comité&nbsp;; un écart majeur non corrigé ouvre droit à résiliation.</td><td>Prévoir l’escalade au COMEX.</td></tr>
+      <tr><th scope="row">C3</th><td>Comité de suivi trimestriel avec indicateurs de sécurité et de service.</td><td>Alimente le contrôle N2.</td></tr>
+      <tr><th scope="row">C4</th><td>Test d’intrusion annuel de la plateforme web par un prestataire indépendant, rapport partagé, correctifs suivis.</td><td>La qualification PASSI de l’ANSSI peut servir de critère de choix.</td></tr>
+      <tr class="group"><th colspan="3" scope="colgroup">D — Réversibilité, restitution, effacement</th></tr>
+      <tr><th scope="row">D1</th><td>Plan de réversibilité rédigé sous [3 mois], testé, mis à jour annuellement.</td><td>Le test est la seule preuve.</td></tr>
+      <tr><th scope="row">D2</th><td>Restitution des données, configurations, journaux et documentation dans un format ouvert et documenté, avec assistance au client ou au repreneur.</td><td>Pour les services de traitement de données, le Data Act fixe un préavis maximal de deux mois, une période transitoire de trente jours et au moins trente jours pour récupérer les données (art. 25).</td></tr>
+      <tr><th scope="row">D3</th><td>Après restitution confirmée, effacement de toutes les copies, sauvegardes comprises à l’issue de leur cycle, et attestation d’effacement.</td><td>Préciser le délai et la méthode.</td></tr>
+      <tr><th scope="row">D4</th><td>Frais de sortie encadrés et connus à la signature.</td><td>Data Act art. 29&nbsp;: plus aucun frais de changement de fournisseur à compter du 12/01/2027 pour les services concernés. Qualification du service à vérifier.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="controle">
+  <h2><span>7</span>Livrable 5 — Plan de contrôle à trois niveaux</h2>
+  <p class="intro">Organisation réaliste pour une petite structure&nbsp;: N1 par ceux qui exploitent, N2 par un référent distinct des exécutants (interne à temps partiel, à temps partagé ou mutualisé), N3 externe. Si le référent SSI administre aussi des systèmes, ses propres actions sont revues par un tiers. Fréquences proposées, à ajuster.</p>
+  <div class="table-wrap">
+  <table>
+    <caption>Plan de contrôle détaillé</caption>
+    <thead><tr><th scope="col">Niveau</th><th scope="col">Objet du contrôle</th><th scope="col">Acteur</th><th scope="col">Fréquence proposée</th><th scope="col">Preuve</th><th scope="col">Indicateur</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">N1</th><td>Réussite des sauvegardes et copie isolée à jour</td><td>Équipe technique, ESN</td><td>Quotidienne</td><td>Rapport de sauvegarde</td><td>Taux de réussite, jours sans copie isolée</td></tr>
+      <tr><th scope="row">N1</th><td>Application des correctifs IT</td><td>Équipe technique</td><td>Mensuelle</td><td>Tableau de bord</td><td>% de postes et serveurs à jour</td></tr>
+      <tr><th scope="row">N1</th><td>Traitement des alertes (protection des postes, connexions d’administration)</td><td>Équipe technique</td><td>Quotidienne</td><td>Tickets</td><td>Délai de prise en charge</td></tr>
+      <tr><th scope="row">N1</th><td>Arrivées et départs</td><td>RH et IT</td><td>À chaque mouvement, rapprochement mensuel</td><td>Liste rapprochée</td><td>Comptes actifs sans titulaire</td></tr>
+      <tr><th scope="row">N1</th><td>Disponibilité et incidents de la plateforme web</td><td>ESN</td><td>Mensuelle</td><td>Rapport de service</td><td>Disponibilité mesurée, incidents</td></tr>
+      <tr><th scope="row">N1</th><td>Changements OT et sauvegarde des configurations</td><td>Production et IT</td><td>Mensuelle</td><td>Registre des changements</td><td>Changements non validés</td></tr>
+      <tr><th scope="row">N2</th><td>Vérification par échantillon des contrôles N1</td><td>Référent SSI</td><td>Trimestrielle</td><td>Compte rendu</td><td>Écarts constatés</td></tr>
+      <tr><th scope="row">N2</th><td>Revue des droits à privilèges</td><td>Référent SSI et propriétaires</td><td>Trimestrielle</td><td>Revue signée</td><td>Droits retirés</td></tr>
+      <tr><th scope="row">N2</th><td>Observation d’un test de restauration</td><td>Référent SSI</td><td>Semestrielle</td><td>Procès-verbal</td><td>Délai réel / délai cible</td></tr>
+      <tr><th scope="row">N2</th><td>Suivi des fournisseurs&nbsp;: niveaux de service, incidents, rapports</td><td>Référent SSI et achats</td><td>Trimestrielle (comité)</td><td>Compte rendu de comité</td><td>Engagements tenus</td></tr>
+      <tr><th scope="row">N2</th><td>Revue de configuration Office 365 et cloud</td><td>Référent SSI</td><td>Trimestrielle</td><td>Rapport d’écarts</td><td>Écarts à la référence</td></tr>
+      <tr><th scope="row">N2</th><td>Indicateurs SSI et plan de traitement des risques</td><td>Référent SSI</td><td>Trimestrielle, synthèse semestrielle au COMEX</td><td>Tableau de bord</td><td>Actions en retard</td></tr>
+      <tr><th scope="row">N3</th><td>Audit de configuration et d’architecture cloud</td><td>Auditeur indépendant</td><td>Annuelle et avant généralisation</td><td>Rapport, plan d’action</td><td>Écarts majeurs</td></tr>
+      <tr><th scope="row">N3</th><td>Test d’intrusion de la plateforme web</td><td>Prestataire indépendant</td><td>Annuelle et après changement majeur</td><td>Rapport</td><td>Vulnérabilités critiques ouvertes</td></tr>
+      <tr><th scope="row">N3</th><td>Audit contractuel et RGPD de la chaîne ESN–OVH</td><td>Auditeur ou juriste externe</td><td>Selon le risque, au moins tous les deux ans</td><td>Rapport</td><td>Clauses non respectées</td></tr>
+      <tr><th scope="row">N3</th><td>Exercice de PRA</td><td>Tiers ou auditeur</td><td>Annuelle</td><td>Rapport d’exercice</td><td>Objectifs de reprise atteints</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nb"><b>Rôle du COMEX</b>&nbsp;: reçoit la synthèse semestrielle N2 et les rapports N3, arbitre les moyens, et accepte ou refuse par écrit chaque risque résiduel, avec une date de revue.</p>
+</section>
+
+<section id="faisabilite">
+  <h2><span>8</span>Faisabilité, compétences et coût complet</h2>
+  <div class="cols">
+    <article>
+      <h3>Faisabilité</h3>
+      <ul>
+        <li>Office 365 E3 et la plateforme web existent déjà&nbsp;: sécuriser l’existant est réalisable sans attendre la migration.</li>
+        <li>Compatibilité à établir application par application&nbsp;: Talentsoft et Salesforce sont décrits comme hébergés localement alors que ces offres sont habituellement proposées en SaaS&nbsp;; Qualiac et Hadoop exigent une étude technique.</li>
+        <li>Dépendances AD, PKI, 802.1X et connectivité à cartographier avant tout lot.</li>
+        <li>OT exclu&nbsp;: postes Windows 7 conservés pour compatibilité, plan de remplacement à étudier avec les éditeurs.</li>
+      </ul>
+    </article>
+    <article>
+      <h3>Compétences</h3>
+      <ul>
+        <li>À couvrir&nbsp;: architecture et identités cloud, sécurité de configuration, sauvegarde et reprise, droit des contrats et RGPD, pilotage des fournisseurs.</li>
+        <li>Options&nbsp;: formation de l’équipe technique (recommandée par l’ANSSI dans tout projet de migration), référent SSI interne ou à temps partagé, experts externes ponctuels.</li>
+        <li>Politique de maintien des compétences&nbsp;: plan annuel, veille, exercices.</li>
+      </ul>
+    </article>
+    <article>
+      <h3>Coût complet, sans montant</h3>
+      <ul>
+        <li>Même période (par exemple trois à cinq ans) et même niveau de service.</li>
+        <li><b>Actuel</b>&nbsp;: matériel et renouvellement, énergie, licences, exploitation, sécurité.</li>
+        <li><b>Cible</b>&nbsp;: abonnements, réseau et redondance, sauvegardes et stockage, journaux et supervision, exploitation résiduelle, sortie de données.</li>
+        <li><b>Transition</b>&nbsp;: migration, formation, double fonctionnement, réversibilité.</li>
+        <li>Distinguer coûts évités et coûts déplacés&nbsp;; tester la sensibilité aux volumes.</li>
+        <li>L’énoncé ne fournit aucun coût&nbsp;: aucun montant n’est présenté.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="cadre">
+  <h2><span>9</span>Cadre réglementaire et référentiels</h2>
+  <div class="table-wrap">
+  <table>
+    <caption>Obligation applicable, applicabilité à qualifier, référentiel volontaire ou critère de sélection</caption>
+    <thead><tr><th scope="col">Texte ou référentiel</th><th scope="col">Statut pour l’entreprise</th><th scope="col">Commentaire</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">RGPD (UE) 2016/679</th><td><span class="tag t-oblig">Obligation applicable</span></td><td>Données clients, RH, prospects. Articles 28 (sous-traitants), 32 (sécurité, capacité de rétablissement, tests réguliers) et 33 (notification).</td></tr>
+      <tr><th scope="row">NIS 2, directive (UE) 2022/2555</th><td><span class="tag t-qualif">À qualifier</span></td><td>Le secteur «&nbsp;fabrication&nbsp;» de l’annexe II vise les dispositifs médicaux et les divisions NACE 26 à 30, a priori pas les bagages&nbsp;; l’annexe II vise aussi la production d’articles à partir de substances ou mélanges (secteur des produits chimiques), à analyser. Seuil&nbsp;: au moins entreprise moyenne. Transposition française en cours d’adoption au 17/11/2026. Avis juridique requis&nbsp;; ne pas présumer.</td></tr>
+      <tr><th scope="row">DORA (UE) 2022/2554</th><td><span class="tag t-na">Non applicable</span></td><td>Vise les entités financières.</td></tr>
+      <tr><th scope="row">HDS</th><td><span class="tag t-na">Non applicable a priori</span></td><td>À revoir si des données de santé étaient hébergées pour le compte de tiers.</td></tr>
+      <tr><th scope="row">Data Act (UE) 2023/2854</th><td><span class="tag t-oblig">Obligations des fournisseurs</span></td><td>Applicable depuis le 12/09/2025&nbsp;: droits de changement de fournisseur utiles à la réversibilité (art. 23 à 31).</td></tr>
+      <tr><th scope="row">SecNumCloud (ANSSI)</th><td><span class="tag t-crit">Critère de sélection</span></td><td>Qualification volontaire de l’offre&nbsp;; elle ne sécurise pas les services du client hébergés dessus (ANSSI, 2024, p.&nbsp;9).</td></tr>
+      <tr><th scope="row">ISO/IEC 27001, 27017, 27018</th><td><span class="tag t-vol">Référentiel volontaire</span></td><td>Utile pour structurer la PSSI et évaluer un fournisseur&nbsp;; vérifier le périmètre du certificat.</td></tr>
+      <tr><th scope="row">PCI DSS</th><td><span class="tag t-qualif">À qualifier</span></td><td>Si la plateforme traite des données de carte de paiement&nbsp;; modalité de paiement à confirmer avec l’ESN.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="manques">
+  <h2><span>10</span>Informations à confirmer avant décision</h2>
+  <ul class="checklist">
+    <li>Hébergement réel de Talentsoft et de Salesforce, local ou SaaS.</li>
+    <li>Sauvegardes&nbsp;: existence, fréquence, localisation, isolement, tests de restauration&nbsp;; existence d’un PCA ou d’un PRA.</li>
+    <li>MFA, licences complémentaires, journal d’audit Office 365.</li>
+    <li>Redondance et débit des accès Orange&nbsp;; dépendances à la liaison MPLS.</li>
+    <li>Flux OT–IT et nature exacte des «&nbsp;mises à jour automatiques&nbsp;» des postes industriels.</li>
+    <li>Contrats existants&nbsp;: ESN, OVH via l’ESN, Microsoft, Orange&nbsp;; niveaux de service, clauses de données.</li>
+    <li>Taille, chiffre d’affaires et activité exacte (applicabilité de NIS 2).</li>
+    <li>Coûts actuels complets et volumes de données.</li>
+    <li>Existence d’une PSSI générale et d’un DPO ou référent RGPD.</li>
+    <li>Besoins métiers de continuité&nbsp;: durée d’interruption et perte de données admissibles.</li>
+  </ul>
+</section>
+
+<section id="sources">
+  <h2><span>11</span>Sources</h2>
+  <h3>Énoncé</h3>
+  <ul class="refs">
+    <li>ENSAR (2026). <i>2026_UE22_Sécurité informatique en nuage</i>. Support de cours, PDF. Numéros de page à ajouter après relecture.</li>
+    <li>ENSAR (2026). <i>2026_UE22_Sécurité informatique en nuage_Etude de cas_v2</i>. PDF. Numéros de page à ajouter après relecture.</li>
+  </ul>
+  <h3>Références consultées le 17/11/2026</h3>
+  <ul class="refs">
+    <li>ANSSI (2024). <i>Recommandations pour l’hébergement dans le cloud des systèmes d’information sensibles</i>. Version 1.0, juillet 2024. §&nbsp;3 «&nbsp;Précautions d’emploi&nbsp;», p.&nbsp;4-5&nbsp;; focus SecNumCloud, p.&nbsp;9. <a href="https://messervices.cyber.gouv.fr/documents-guides/20240814_np_anssi_recommandations_hebergement_cloud_si_a5_v1g_fr.pdf">messervices.cyber.gouv.fr</a></li>
+    <li>ANSSI (2017). <i>Guide d’hygiène informatique — Renforcer la sécurité de son système d’information en 42 mesures</i>. Version 2.0, septembre 2017. Mesures 3 (infogérance), 8 (comptes nominatifs, administration distincte), 14 (sécurité minimale du parc), 37 (sauvegarde), 39 (référent SSI). <a href="https://messervices.cyber.gouv.fr/documents-guides/guide_hygiene_informatique_anssi.pdf">messervices.cyber.gouv.fr</a></li>
+    <li>ANSSI (2025). <i>La cybersécurité des systèmes industriels — Mesures détaillées</i>. ANSSI-PA-108, version 2.0, 27/11/2025. §&nbsp;2.2.1 «&nbsp;Gestion des correctifs de sécurité&nbsp;», p.&nbsp;15. <a href="https://messervices.cyber.gouv.fr/documents-guides/Guide_Systemes_industriels__Mesures_detaillees_v2.pdf">messervices.cyber.gouv.fr</a></li>
+    <li>ANSSI (2025). <i>La cybersécurité des systèmes industriels — Méthode de classification</i>. ANSSI-PA-107, version 2.0, 10/03/2025. <a href="https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-systemes_industriels-methode_de_classification_v2-0.pdf.pdf">messervices.cyber.gouv.fr</a></li>
+    <li>CNIL (2024). <i>Guide pratique RGPD — Sécurité des données personnelles</i>. Version 2024, fiches n°&nbsp;17 «&nbsp;Sauvegarder&nbsp;» et n°&nbsp;22 «&nbsp;Cloud&nbsp;: informatique en nuage&nbsp;». <a href="https://www.cnil.fr/sites/cnil/files/2024-03/cnil_guide_securite_personnelle_2024.pdf">cnil.fr</a></li>
+    <li>Union européenne (2016). Règlement (UE) 2016/679 (RGPD), articles 28, 32 et 33. <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre4">cnil.fr — chapitre IV</a></li>
+    <li>Union européenne (2023). Règlement (UE) 2023/2854 (Data Act), articles 23, 25, 29 et 50. <a href="https://eur-lex.europa.eu/eli/reg/2023/2854/oj">eur-lex.europa.eu</a></li>
+    <li>Union européenne (2022). Directive (UE) 2022/2555 (NIS 2), article 2 et annexe II. <a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj">eur-lex.europa.eu</a></li>
+    <li>Microsoft (2026). <i>Shared responsibility in the cloud</i>. Microsoft Learn, mise à jour du 24/08/2026. <a href="https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility">learn.microsoft.com</a></li>
+    <li>Microsoft (2026). <i>Microsoft Entra licensing</i>. Microsoft Learn, 07/10/2026&nbsp;: Entra ID P1 inclus dans Microsoft 365 E3, accès conditionnel soumis à P1. <a href="https://learn.microsoft.com/en-us/entra/fundamentals/licensing">learn.microsoft.com</a></li>
+    <li>Microsoft. <i>Windows 7 — Microsoft Lifecycle</i>&nbsp;: fin du support étendu le 14/01/2020, dernière année ESU close en janvier 2023. <a href="https://learn.microsoft.com/en-us/lifecycle/products/windows-7">learn.microsoft.com</a></li>
+    <li>NIST (2011). <i>SP 800-145 — The NIST Definition of Cloud Computing</i>. Mell P., Grance T. <a href="https://csrc.nist.gov/pubs/sp/800/145/final">csrc.nist.gov</a></li>
+    <li>Cloud Security Alliance. <i>Cloud Controls Matrix</i>, version 4.1 (17 domaines, 197 objectifs de contrôle). <a href="https://cloudsecurityalliance.org/research/cloud-controls-matrix">cloudsecurityalliance.org</a></li>
+  </ul>
+  <h3>Référentiels cités sans consultation en ligne</h3>
+  <ul class="refs">
+    <li>ISO/IEC 27001:2022, ISO/IEC 27017:2015, ISO/IEC 27018:2019. Normes payantes&nbsp;: aucun extrait n’est reproduit.</li>
+  </ul>
+</section>
+</main>
+
+<footer class="doc-foot"><span id="doc-foot-info">ENSAR · UE22 Sécurité cloud</span><span>Annexe — hors temps de présentation</span></footer>
+</body>
+</html>

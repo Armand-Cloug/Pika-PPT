@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Migrer vers le cloud, maîtriser les risques — ENSAR UE22">
+  <rect width="1600" height="900" fill="#0E2A2D"/>
+  <g transform="translate(1130 70) scale(.75)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 210h270a70 70 0 0 0 8-139.6A104 104 0 0 0 232 52a86 86 0 0 0-82 158z" fill="#163B3F" stroke="#6FD6C6" stroke-width="6"/>
+    <rect x="214" y="116" width="56" height="40" rx="6" fill="#0E7C73"/>
+    <rect x="286" y="116" width="56" height="40" rx="6" fill="#0E7C73"/>
+    <rect x="358" y="116" width="40" height="40" rx="6" stroke="#6FD6C6" stroke-width="3" stroke-dasharray="7 6"/>
+    <path d="M250 430V250M314 430V250M238 266l12-16 12 16M302 266l12-16 12 16" stroke="#6FD6C6" stroke-width="6"/>
+    <rect x="196" y="318" width="168" height="34" rx="17" fill="#0E2A2D" stroke="#F2BC6B" stroke-width="5"/>
+    <path d="M226 335h108" stroke="#F2BC6B" stroke-width="5" stroke-dasharray="14 10"/>
+    <path d="M40 600V470l90 46v-46l90 46v-46l90 46v-46l90 46V420h50v180z" fill="#163B3F" stroke="#B5C7C4" stroke-width="5"/>
+    <rect x="248" y="540" width="54" height="40" rx="4" fill="#0E7C73"/>
+    <rect x="330" y="540" width="54" height="40" rx="4" fill="#0E7C73"/>
+    <circle cx="130" cy="558" r="26" stroke="#F2BC6B" stroke-width="6"/>
+    <circle cx="130" cy="558" r="9" stroke="#F2BC6B" stroke-width="6"/>
+  </g>
+  <rect x="110" y="196" width="22" height="16" rx="8" fill="#6FD6C6"/>
+  <text x="150" y="214" font-family="'DM Sans', Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="5" fill="#6FD6C6">ENSAR · UE22 · SÉCURITÉ CLOUD</text>
+  <text x="104" y="380" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="136" font-weight="800" fill="#F3F5F3">MIGRER VERS</text>
+  <text x="104" y="510" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="136" font-weight="800" fill="#F3F5F3">LE CLOUD,</text>
+  <text x="104" y="640" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="136" font-weight="800" fill="#6FD6C6">MAÎTRISER LES RISQUES.</text>
+  <rect x="110" y="694" width="560" height="6" rx="3" fill="#C47F22"/>
+  <text x="110" y="764" font-family="'DM Sans', Arial, sans-serif" font-size="36" fill="#B5C7C4">Étude de cas · Recommandation au COMEX · 2026-2027</text>
+</svg>
