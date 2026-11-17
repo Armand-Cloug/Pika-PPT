@@ -10,7 +10,7 @@ Présentation : `index.html` (18 slides) · Annexe : `annexe.html` · Métadonn�
 ## Conventions
 
 - **Fait** : élément de l’énoncé. **Hypothèse** : supposition du groupe, à vérifier. **Recommandation** : proposition du groupe. **À confirmer** : information absente de l’énoncé ; on ne conclut ni à sa présence ni à son absence.
-- Les noms entre crochets, par exemple [Intervenant 2], sont à remplacer par les prénoms au moment de la répétition.
+- Ordre de passage : intervenant 1 = Armand Zireg, intervenant 2 = Timothée Faure, intervenant 3 = Mael Bodin. Enseignant : Arnaud Pupin.
 - Rythme visé : environ 120 mots par minute, pauses comprises. Les textes ci-dessous sont un support de répétition, pas un texte à lire.
 - Le minutage est un objectif de répétition. Aucune slide n’avance seule. Touche **R** : affiche l’intervenant, la fenêtre prévue et un chronomètre ; il passe en orange quand on dépasse la fin prévue de la slide.
 
@@ -43,7 +43,7 @@ Couverture des livrables : comparatif on-premise / cloud (slides 4 à 6, annexe 
 
 ---
 
-## Intervenant 1 — Comprendre et comparer (00:00 – 05:00)
+## Intervenant 1 · Armand Zireg — Comprendre et comparer (00:00 – 05:00)
 
 ### Slide 1 — Couverture · 0:20 · 00:00 – 00:20
 
@@ -146,17 +146,17 @@ Couverture des livrables : comparatif on-premise / cloud (slides 4 à 6, annexe 
 >
 > Trois scénarios ressortent. Un : la compromission d’un poste ou d’un compte privilégié. Les failles sont déjà constatées et rien n’est supervisé : priorité 1. C’est aussi la porte d’entrée d’un rançongiciel.
 >
-> Deux : l’indisponibilité d’un service indispensable à la production ou aux ventes. Aujourd’hui priorité 2, parce que les dépendances ne sont pas cartographiées ; mais elle devient priorité 1 pour tout service que l’on migre.
+> Deux : la destruction ou la fuite de données, alors que personne n’a démontré qu’on sait restaurer : priorité 2. Un rançongiciel qui chiffre le NAS en est le cas typique.
 >
-> Trois : la destruction ou la fuite de données, alors que personne n’a démontré qu’on sait restaurer : priorité 1.
+> Trois : l’indisponibilité d’un service indispensable à la production ou aux ventes : priorité 3. Les dépendances ne sont pas cartographiées, et ce risque grandit avec chaque service que l’on migre.
 >
-> Nous les avons cotés, de façon provisoire, dans un registre de onze risques en annexe. Ces cotations sont des estimations pédagogiques. Pour décider, il nous manque les dépendances, la durée d’interruption et la perte de données acceptables, l’état réel des sauvegardes, le MFA et les journaux. [Intervenant 2] va maintenant montrer quelle cible permet de traiter ces risques.
+> Nous les avons cotés, de façon provisoire, dans un registre de onze risques en annexe. Pour décider, il nous manque les dépendances, la durée d’interruption et la perte de données acceptables, l’état réel des sauvegardes, le MFA et les journaux. Timothée va maintenant montrer quelle cible permet de traiter ces risques.
 
 **Transition** : passage de parole explicite à l’intervenant 2.
 
 **Faits et hypothèses**
 - Faits : vulnérabilités constatées, postes non supervisés, droits d’administration locaux.
-- Estimations : priorités dérivées du registre (annexe § 3) : R1 et R2 au niveau 12, R3 au niveau 8 comme risque induit.
+- Estimations : priorités dérivées du registre (annexe § 3) : R1 et R2 au niveau 12, R1 placé avant R2 car la compromission d’un compte est la porte d’entrée du rançongiciel ; R3 au niveau 8, risque induit qui augmente avec chaque service migré.
 - À confirmer : sauvegardes, PRA, MFA, dépendances, besoins de continuité.
 - Distinguer : risque **actuel** (avec les mesures existantes), risque **induit** par la migration, risque **résiduel cible** (après mesures, à accepter).
 
@@ -164,7 +164,7 @@ Couverture des livrables : comparatif on-premise / cloud (slides 4 à 6, annexe 
 
 ---
 
-## Intervenant 2 — Concevoir et sécuriser (05:00 – 10:00)
+## Intervenant 2 · Timothée Faure — Concevoir et sécuriser (05:00 – 10:00)
 
 ### Slide 7 — Ouverture 02 · 0:10 · 05:00 – 05:10
 
@@ -261,7 +261,7 @@ Couverture des livrables : comparatif on-premise / cloud (slides 4 à 6, annexe 
 >
 > Le mot important du titre est « applicable ». Une politique qui reste un document ne protège rien. Chaque règle doit avoir un propriétaire, un périmètre, une preuve et une date de revue. Exemple : « tout compte à privilèges utilise le MFA » ; propriétaire, le responsable IT ; preuve, l’export de configuration ; revue, chaque trimestre. La PSSI est validée par le COMEX, et son plan détaillé est en annexe.
 >
-> Reste une question : comment s’assurer que les fournisseurs tiennent leur part, et que nous tenons la nôtre ? [Intervenant 3] vous présente les contrats et les contrôles.
+> Reste une question : comment s’assurer que les fournisseurs tiennent leur part, et que nous tenons la nôtre ? Mael vous présente les contrats et les contrôles.
 
 **Transition** : passage de parole explicite à l’intervenant 3.
 
@@ -282,7 +282,7 @@ Annexes : glossaire, RACI par service, matrice des flux, modèle de dérogation,
 
 ---
 
-## Intervenant 3 — Contractualiser et contrôler (10:00 – 15:00)
+## Intervenant 3 · Mael Bodin — Contractualiser et contrôler (10:00 – 15:00)
 
 ### Slide 12 — Ouverture 03 · 0:10 · 10:00 – 10:10
 
@@ -439,10 +439,8 @@ Les dépendances applicatives et les flux OT–IT ; la durée d’interruption e
 
 ---
 
-## Métadonnées à compléter dans `metadata.js`
+## Métadonnées dans `metadata.js`
 
-- `speakers` : prénoms et noms des trois intervenants, dans l’ordre de passage.
-- `speakersShort` : version courte pour le bas de page.
-- `teacher` : enseignant (affiché « à compléter » tant qu’il est vide).
+- Renseignés : intervenants (Armand Zireg, Timothée Faure, Mael Bodin), version courte du bas de page, enseignant (Arnaud Pupin).
 - `defenseDate` : date de soutenance (masquée tant qu’elle est vide). Elle est distincte de la date technique du manifeste (`presentation.json`, 2026-11-17, date de création).
 - `group` et `contact` : facultatifs.

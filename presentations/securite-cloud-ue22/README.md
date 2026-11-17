@@ -32,7 +32,7 @@ assets/fonts/       Barlow Condensed et DM Sans + licences OFL
 
 ## À compléter avant l’oral
 
-Dans `metadata.js` : noms des intervenants (`speakers`, `speakersShort`), enseignant (`teacher`), date de soutenance (`defenseDate`), et facultativement `group` et `contact`. Rien d’autre à modifier : page de garde, bas de page, sélecteur, slide finale et annexe se mettent à jour.
+Dans `metadata.js` : intervenants et enseignant sont renseignés ; reste la date de soutenance (`defenseDate`), et facultativement `group` et `contact`. Rien d’autre à modifier : page de garde, bas de page, sélecteur, slide finale et annexe se mettent à jour.
 
 Puis : relire les deux PDF de l’énoncé, corriger tout écart avec la synthèse utilisée et ajouter les numéros de page (panneau Sources, annexe § 11, notes) ; supprimer l’encadré « Avant remise » de l’annexe. Vérifier avec l’enseignant si l’export PDF de la présentation et de l’annexe répond à l’exigence de remise en format PPT, DOC ou XLS : ces fichiers HTML ne sont ni des PowerPoint ni des documents Word.
 

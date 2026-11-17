@@ -14,12 +14,12 @@ window.DECK_META = Object.freeze({
   academicYear: '2026-2027',
 
   // Noms complets, dans l’ordre de passage (page de garde, slide finale, notes).
-  speakers: ['Intervenant 1', 'Intervenant 2', 'Intervenant 3'],
+  speakers: ['Armand Zireg', 'Timothée Faure', 'Mael Bodin'],
   // Version courte pour le bas de page, par exemple « A. NOM, B. NOM & C. NOM ».
-  speakersShort: 'Intervenants 1, 2 & 3',
+  speakersShort: 'A. Zireg, T. Faure & M. Bodin',
 
   group: '',        // Facultatif : nom du groupe, classe ou option.
-  teacher: '',      // Enseignant : Prénom NOM. Affiché « à compléter » tant qu’il est vide.
+  teacher: 'Arnaud Pupin', // Enseignant : Prénom NOM. Affiché « à compléter » tant qu’il est vide.
   defenseDate: '',  // Date de soutenance, par exemple « 8 décembre 2026 ». Masquée si vide.
   contact: ''       // Facultatif : adresse de contact affichée sur la slide finale.
 });

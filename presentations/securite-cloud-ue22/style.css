@@ -131,12 +131,11 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 
 /* 02 · Sommaire */
 .summary-list{display:grid;gap:22px;margin-top:44px}
-.summary-list button{display:grid;grid-template-columns:96px 470px 1fr auto;align-items:center;gap:26px;width:100%;text-align:left;padding:28px 30px;border-radius:18px;background:var(--card);border:2px solid var(--line-soft);transition:background .2s,border-color .2s}
+.summary-list button{display:grid;grid-template-columns:96px 470px 1fr;align-items:center;gap:26px;width:100%;text-align:left;padding:28px 30px;border-radius:18px;background:var(--card);border:2px solid var(--line-soft);transition:background .2s,border-color .2s}
 .summary-list button:hover{background:var(--teal-tint);border-color:var(--teal)}
 .sum-num{font:800 62px/1 'Barlow Condensed',sans-serif;color:var(--teal)}
 .summary-list b{font:700 42px 'Barlow Condensed',sans-serif}
 .summary-list small{font-size:24px;color:var(--muted)}
-.sum-who{font-size:17px;font-weight:700;letter-spacing:1px;color:var(--teal-deep);padding:6px 14px;border-radius:999px;background:var(--teal-tint);white-space:nowrap}
 .annex-link{margin-top:auto;display:flex;align-items:center;gap:12px;font-size:21px;color:var(--muted)}
 .annex-link svg{color:var(--teal-deep)}
 .annex-link a,.thanks-annex a{color:var(--teal-deep);font-weight:700;text-underline-offset:4px}
@@ -146,7 +145,6 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .part-number{font:800 210px/0.85 'Barlow Condensed',sans-serif;color:var(--teal-light)}
 .part .content>h2{font-size:108px;font-weight:800;letter-spacing:1.5px;margin-top:16px}
 .part .lead{font-size:34px;margin-top:14px}
-.part-speaker{margin-top:34px;align-self:flex-start;font-size:18px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:8px 18px;border-radius:999px;border:2px solid var(--line-dark);color:var(--on-dark)}
 .part-map{position:absolute;right:104px;top:146px;z-index:2;display:grid;gap:10px;counter-reset:none}
 .part-map li{display:flex;align-items:center;gap:14px;font-size:19px;font-weight:500;color:var(--on-dark-muted);padding:8px 18px 8px 10px;border-radius:999px;border:2px solid var(--line-dark)}
 .part-map span{font:800 22px 'Barlow Condensed',sans-serif;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--night-2);color:var(--on-dark-muted)}
@@ -218,8 +216,9 @@ sup{font-size:.85em;line-height:0;color:var(--amber-deep);font-weight:700}
 .scenarios li{display:flex;flex-direction:column;gap:12px;padding:24px 26px;border-radius:20px;background:var(--card);border:2px solid var(--line-soft)}
 .scenarios b{font:700 32px/1.1 'Barlow Condensed',sans-serif;min-height:70px}
 .prio{align-self:flex-start;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:999px}
-.prio.p1{background:var(--night);color:var(--on-dark)}
+.prio.p1{background:var(--night);color:var(--on-dark);border:2px solid var(--night)}
 .prio.p2{background:var(--amber-tint);color:var(--amber-deep);border:2px solid var(--amber)}
+.prio.p3{background:var(--steel-tint);color:var(--steel);border:2px solid var(--steel)}
 .sc-line{display:grid;grid-template-columns:96px 1fr;gap:10px;font-size:20px;line-height:1.35;color:var(--ink)}
 .sc-line i{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-top:3px}
 .missing{margin-top:22px;display:flex;align-items:baseline;gap:18px;font-size:20px;line-height:1.4;color:var(--ink);padding:12px 20px;border-radius:14px;background:var(--amber-tint);border-left:6px solid var(--amber)}
@@ -430,9 +429,8 @@ dialog::backdrop{background:var(--backdrop);backdrop-filter:blur(8px)}
   .cover-art{right:30px;top:auto;bottom:96px;width:250px;height:286px;opacity:.5}
   .identity{flex-direction:column;gap:12px}
   .summary-list button{grid-template-columns:72px 1fr;gap:4px 18px;padding:16px 20px}
-  .sum-num{grid-row:span 3;font-size:52px}
+  .sum-num{grid-row:span 2;font-size:52px}
   .summary-list b{font-size:34px}.summary-list small{font-size:20px}
-  .sum-who{justify-self:start;font-size:15px}
   .annex-link{font-size:18px;align-items:flex-start}
   .part-number{font-size:170px}.part .content>h2{font-size:78px}.part .lead{font-size:28px}
   .part-map{right:40px;left:40px;top:auto;bottom:110px}
